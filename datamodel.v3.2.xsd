@@ -1,0 +1,262 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="itop_design">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="classes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="class" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="parent" type="xs:string" />
+                                        <xs:element name="properties">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="is_link" type="xs:byte" minOccurs="0" />
+                                                    <xs:element name="comment" type="xs:string" />
+                                                    <xs:element name="category" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="abstract" type="xs:boolean" />
+                                                    <xs:element name="key_type" type="xs:string" fixed="autoincrement" />
+                                                    <xs:element name="db_table" type="xs:string" />
+                                                    <xs:element name="db_key_field" type="xs:string" />
+                                                    <xs:element name="db_final_class_field" type="xs:string" />
+                                                    <xs:element name="naming">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="attributes" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="complementary_attributes" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:any />
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="menus" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="menu" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="user_rights" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="groups" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:any />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="profiles" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:any />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="files" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="file" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dictionaries" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dictionary" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="branding" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="constants" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="constant" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="portals" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="portal" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="module_parameters" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="parameters" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="module_designs" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="module_design" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="snippets" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="snippet" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="events" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="event_listeners" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="listener" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:any />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                    <xs:attribute name="_delta" type="deltaType" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:any minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="version" type="xs:string" fixed="3.2" />
+            <xs:anyAttribute />
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="deltaType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="merge" />
+            <xs:enumeration value="must_exist" />
+            <xs:enumeration value="if_exists" />
+            <xs:enumeration value="define" />
+            <xs:enumeration value="define_if_not_exists" />
+            <xs:enumeration value="redefine" />
+            <xs:enumeration value="delete" />
+            <xs:enumeration value="delete_if_exists" />
+            <xs:enumeration value="force" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
