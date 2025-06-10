@@ -8,7 +8,9 @@
         "extkey",
         "metavalue",
         "metavalues",
+        "mgmt",
         "neighbour",
-        "neighbours"
+        "neighbours",
+        "teemip"
     ]
 }
