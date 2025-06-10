@@ -1117,6 +1117,7 @@
                     <xs:element name="count_max" type="xs:integer" />
                     <xs:element name="with_php_constraint" type="xs:boolean" />
                     <xs:element name="with_php_computation" type="xs:boolean" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
                 </xs:choice>
             </xs:extension>
         </xs:complexContent>
