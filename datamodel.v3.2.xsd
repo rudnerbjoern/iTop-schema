@@ -119,7 +119,7 @@
                                                     </xs:element>
                                                     <xs:element name="uniqueness_rules" minOccurs="0" maxOccurs="1">
                                                         <xs:complexType>
-                                                            <xs:sequence maxOccurs="unbounded">
+                                                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                 <xs:element name="rule">
                                                                     <xs:complexType>
                                                                         <xs:choice maxOccurs="unbounded">
@@ -151,7 +151,7 @@
                                         </xs:element>
                                         <xs:element name="fields" minOccurs="0" maxOccurs="1">
                                             <xs:complexType>
-                                                <xs:choice maxOccurs="unbounded">
+                                                <xs:choice minOccurs="0" maxOccurs="unbounded">
                                                     <xs:element name="field" />
                                                 </xs:choice>
                                             </xs:complexType>
@@ -168,7 +168,7 @@
                                         </xs:element>
                                         <xs:element name="methods" minOccurs="0" maxOccurs="1">
                                             <xs:complexType>
-                                                <xs:sequence maxOccurs="unbounded">
+                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                     <xs:element name="method">
                                                         <xs:complexType>
                                                             <xs:choice maxOccurs="unbounded">
@@ -899,6 +899,23 @@
     </xs:complexType>
     <!-- ########################### /AttributeInteger ########################### -->
 
+    <!-- ########################### AttributeIPAddress ########################### -->
+    <xs:complexType name="AttributeIPAddress">
+        <xs:complexContent>
+            <xs:extension base="AttributeBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="sql" type="xs:string" />
+                    <xs:element name="default_value" type="xs:string" />
+                    <xs:element name="is_null_allowed" type="xs:boolean" />
+                    <xs:element name="tracking_level" type="TrackingLevel" />
+                    <xs:element name="always_load_in_tables" type="xs:boolean" maxOccurs="1" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeIPAddress ########################### -->
+
     <!-- ########################### AttributeLinkedSet ########################### -->
     <xs:complexType name="AttributeLinkedSet">
         <xs:complexContent>
@@ -937,6 +954,30 @@
     </xs:simpleType>
     <!-- ########################### /AttributeLinkedSet ########################### -->
 
+    <!-- ########################### AttributeLinkedSetIndirect ########################### -->
+    <xs:complexType name="AttributeLinkedSetIndirect">
+        <xs:complexContent>
+            <xs:extension base="AttributeBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="linked_class" type="xs:string" maxOccurs="1" />
+                    <xs:element name="ext_key_to_me" type="xs:string" maxOccurs="1" />
+                    <xs:element name="ext_key_to_remote" type="xs:string" maxOccurs="1" />
+                    <xs:element name="tracking_level" type="TrackingLevel" maxOccurs="1" />
+                    <xs:element name="edit_when" type="AttributeLinkedSetEditWhen" maxOccurs="1" />
+                    <xs:element name="duplicates" type="xs:boolean" maxOccurs="1" default="false" />
+                    <xs:element name="count_min" type="xs:integer" maxOccurs="1" />
+                    <xs:element name="count_max" type="xs:integer" maxOccurs="1" />
+                    <xs:element name="display_style" type="xs:string" maxOccurs="1" />
+                    <xs:element name="with_php_constraint" type="xs:boolean" maxOccurs="1" />
+                    <xs:element name="with_php_computation" type="xs:boolean" maxOccurs="1" />
+                    <xs:element name="filter" type="xs:string" maxOccurs="1" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeLinkedSetIndirect ########################### -->
+
     <!-- ########################### AttributePhoneNumber ########################### -->
     <xs:complexType name="AttributePhoneNumber">
         <xs:complexContent>
@@ -954,6 +995,29 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /AttributePhoneNumber ########################### -->
+
+    <!-- ########################### AttributeRedundancySettings ########################### -->
+    <xs:complexType name="AttributeRedundancySettings">
+        <xs:complexContent>
+            <xs:extension base="AttributeBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="sql" type="xs:string" maxOccurs="1" />
+                    <xs:element name="relation_code" type="xs:string" maxOccurs="1" />
+                    <xs:element name="from_class" type="xs:string" maxOccurs="1" />
+                    <xs:element name="neighbour_id" type="xs:string" maxOccurs="1" />
+                    <xs:element name="enabled" type="xs:boolean" maxOccurs="1" />
+                    <xs:element name="enabled_mode" type="xs:string" maxOccurs="1" />
+                    <xs:element name="min_up" type="xs:string" maxOccurs="1" />
+                    <xs:element name="min_up_type" type="xs:string" maxOccurs="1" />
+                    <xs:element name="min_up_mode" type="xs:string" maxOccurs="1" />
+                    <xs:element name="tracking_level" type="TrackingLevel" />
+                    <xs:element name="always_load_in_tables" type="xs:boolean" maxOccurs="1" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeRedundancySettings ########################### -->
 
     <!-- ########################### AttributeString ########################### -->
     <xs:complexType name="AttributeString">
@@ -987,7 +1051,6 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /AttributeTagSet ########################### -->
-
 
     <!-- ########################### AttributeText ########################### -->
     <xs:complexType name="AttributeText">
@@ -1088,6 +1151,42 @@
                     <xs:element name="definition" minOccurs="0" maxOccurs="1">
                         <xs:complexType>
                             <xs:choice maxOccurs="unbounded">
+                                <xs:element name="layout" type="xs:string" minOccurs="0" />
+                                <xs:element name="title" type="xs:string" minOccurs="0" />
+                                <xs:element name="cells" minOccurs="0" maxOccurs="1">
+                                    <xs:complexType>
+                                        <xs:sequence maxOccurs="unbounded">
+                                            <xs:element name="cell">
+                                                <xs:complexType>
+                                                    <xs:choice maxOccurs="unbounded">
+                                                        <xs:element name="rank" maxOccurs="1" />
+                                                        <xs:element name="dashlets">
+                                                            <xs:complexType>
+                                                                <xs:sequence maxOccurs="unbounded">
+                                                                    <xs:element name="dashlet">
+                                                                        <xs:complexType>
+                                                                            <xs:choice maxOccurs="unbounded">
+                                                                                <xs:element name="rank" type="xs:string" maxOccurs="1" />
+                                                                                <xs:element name="class" type="xs:string" maxOccurs="1" />
+                                                                                <xs:element name="title" type="xs:string" maxOccurs="1" />
+                                                                                <xs:element name="subtitle" type="xs:string" maxOccurs="1" />
+                                                                                <xs:element name="icon" type="xs:string" maxOccurs="1" />
+                                                                                <xs:element name="query" type="xs:string" maxOccurs="1" />
+                                                                            </xs:choice>
+                                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                                            <xs:attribute name="_delta" type="delta" use="optional" />
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                </xs:sequence>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:choice>
+                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
                                 <xs:any maxOccurs="unbounded" />
                             </xs:choice>
                         </xs:complexType>
@@ -1101,6 +1200,64 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashboardMenuNode ########################### -->
+
+
+    <!-- ########################### NewObjectMenuNode ########################### -->
+    <xs:complexType name="NewObjectMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="rank" type="xs:decimal" maxOccurs="1" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="class" type="xs:string" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_permission" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /NewObjectMenuNode ########################### -->
+
+    <!-- ########################### SearchMenuNode ########################### -->
+    <xs:complexType name="SearchMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="rank" type="xs:decimal" maxOccurs="1" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="class" type="xs:string" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_permission" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /SearchMenuNode ########################### -->
+
+    <!-- ########################### TemplateMenuNode ########################### -->
+    <xs:complexType name="TemplateMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="rank" type="xs:decimal" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" />
+                    <xs:element name="template_file" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_permission" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /TemplateMenuNode ########################### -->
 
     <!-- ########################### OQLMenuNode ########################### -->
     <xs:complexType name="OQLMenuNode">
@@ -1123,25 +1280,6 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /OQLMenuNode ########################### -->
-
-    <!-- ########################### TemplateMenuNode ########################### -->
-    <xs:complexType name="TemplateMenuNode">
-        <xs:complexContent>
-            <xs:extension base="MenuBase">
-                <xs:choice maxOccurs="unbounded">
-                    <xs:element name="rank" type="xs:decimal" />
-                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
-                    <xs:element name="parent" type="xs:string" minOccurs="0" />
-                    <xs:element name="template_file" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_action" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_permission" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
-                </xs:choice>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <!-- ########################### /TemplateMenuNode ########################### -->
 
 
 </xs:schema>
