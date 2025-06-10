@@ -332,7 +332,7 @@
                                         </xs:element>
                                         <xs:element name="relations" minOccurs="0" maxOccurs="1">
                                             <xs:complexType>
-                                                <xs:sequence maxOccurs="unbounded">
+                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                     <xs:element name="relation">
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -1385,6 +1385,24 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /AttributeURL ########################### -->
+
+    <!-- ########################### AttributeMacAddress ########################### -->
+    <!-- introduced by: teemip-ip-mgmt -->
+    <xs:complexType name="AttributeMacAddress">
+        <xs:complexContent>
+            <xs:extension base="AttributeBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="sql" type="xs:string" />
+                    <xs:element name="default_value" type="xs:string" />
+                    <xs:element name="is_null_allowed" type="xs:boolean" />
+                    <xs:element name="tracking_level" type="TrackingLevel" />
+                    <xs:element name="always_load_in_tables" type="xs:boolean" maxOccurs="1" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeMacAddress ########################### -->
 
     <xs:complexType name="MenuBase">
         <xs:attribute name="id" type="xs:string" use="required" />
