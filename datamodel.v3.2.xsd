@@ -332,7 +332,7 @@
                                         </xs:element>
                                         <xs:element name="relations" minOccurs="0" maxOccurs="1">
                                             <xs:complexType>
-                                                <xs:sequence maxOccurs="unbounded">
+                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                     <xs:element name="relation">
                                                         <xs:complexType>
                                                             <xs:sequence>
