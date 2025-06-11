@@ -575,7 +575,7 @@
                                                                                             <xs:complexType>
                                                                                                 <xs:simpleContent>
                                                                                                     <xs:extension base="xs:string">
-                                                                                                        <xs:attribute name="id" type="ProfileGroupAction" use="required" />
+                                                                                                        <xs:attribute name="id" type="profileGroupActionEnumeration" use="required" />
                                                                                                         <xs:attributeGroup ref="alteredNode" />
                                                                                                     </xs:extension>
                                                                                                 </xs:simpleContent>
