@@ -17,5 +17,8 @@
         "noout",
         "stylesheet",
         "teemip"
-    ]
+    ],
+    "xml.codeLens.enabled": true,
+    "xml.format.emptyElements": "collapse",
+    "xml.format.maxLineWidth": 0
 }
