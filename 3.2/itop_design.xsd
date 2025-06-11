@@ -485,7 +485,7 @@
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attribute name="_delta" type="delta" use="optional" />
-                                    <xs:attribute name="_rename_from " type="xs:string" use="optional" />
+                                    <xs:attribute name="_rename_from" type="xs:string" use="optional" />
                                     <xs:attribute name="_created_in" type="xs:string" use="optional" />
                                 </xs:complexType>
                             </xs:element>
@@ -831,7 +831,7 @@
     <xs:complexType name="AttributeBase">
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attribute name="_delta" type="delta" use="optional" />
-        <xs:attribute name="_rename_from " type="xs:string" use="optional" />
+        <xs:attribute name="_rename_from" type="xs:string" use="optional" />
     </xs:complexType>
 
     <xs:simpleType name="TrackingLevel">
