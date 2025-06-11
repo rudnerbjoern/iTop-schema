@@ -588,9 +588,26 @@
                         <xs:sequence>
                             <xs:element name="dictionary" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:choice maxOccurs="unbounded">
-                                        <xs:any />
-                                    </xs:choice>
+                                    <xs:sequence>
+                                        <xs:element name="english_description" type="xs:string" maxOccurs="1"/>
+										<xs:element name="localized_description" type="xs:string" maxOccurs="1"/>
+                                        <xs:element name="entries" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute name="id" type="xs:string" use="required" />
+                                                                    <xs:attribute name="_delta" type="delta" use="optional" />
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attribute name="_delta" type="delta" use="optional" />
                                 </xs:complexType>
