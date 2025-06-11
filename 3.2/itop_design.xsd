@@ -1161,6 +1161,8 @@
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="none" />
+            <xs:enumeration value="list" />
+            <xs:enumeration value="details" />
             <xs:enumeration value="all" />
         </xs:restriction>
     </xs:simpleType>
