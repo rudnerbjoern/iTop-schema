@@ -927,7 +927,21 @@
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
-
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="bricks" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence maxOccurs="unbounded">
+                                                    <xs:element name="brick" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:any processContents="lax" />
+                                                            </xs:choice>
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attribute name="_delta" type="delta" use="optional" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:choice>
