@@ -586,15 +586,15 @@
                 <xs:element name="dictionaries" minOccurs="0" maxOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="dictionary" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="dictionary" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="english_description" type="xs:string" maxOccurs="1"/>
-										<xs:element name="localized_description" type="xs:string" maxOccurs="1"/>
-                                        <xs:element name="entries" maxOccurs="1">
+                                        <xs:element name="english_description" type="xs:string" minOccurs="0"/>
+										<xs:element name="localized_description" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="entries">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                                                    <xs:element name="entry" maxOccurs="unbounded">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
