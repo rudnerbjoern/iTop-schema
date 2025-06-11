@@ -6,12 +6,14 @@
         "dashlet",
         "dashlets",
         "extkey",
+        "fileref",
         "metavalue",
         "metavalues",
         "mgmt",
         "neighbour",
         "neighbours",
         "noout",
+        "stylesheet",
         "teemip"
     ]
 }
