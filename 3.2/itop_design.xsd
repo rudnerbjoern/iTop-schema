@@ -1379,8 +1379,8 @@
                     <xs:element name="sql" type="xs:string" maxOccurs="1" />
                     <xs:element name="default_value" type="xs:string" maxOccurs="1" />
                     <xs:element name="is_null_allowed" type="xs:boolean" maxOccurs="1" />
-                    <xs:element name="digits" type="xs:integer" maxOccurs="1" />
-                    <xs:element name="decimals" type="xs:integer" maxOccurs="1" />
+                    <xs:element name="digits" type="xs:byte" maxOccurs="1" />
+                    <xs:element name="decimals" type="xs:byte" maxOccurs="1" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" maxOccurs="1" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" maxOccurs="1" default="false" />
                     <xs:element name="dependencies" type="dependenciesType" maxOccurs="1" />
@@ -1626,10 +1626,10 @@
         <xs:complexContent>
             <xs:extension base="AttributeDefinition">
                 <xs:choice maxOccurs="unbounded">
-                    <xs:element name="display_max_width" type="xs:integer" minOccurs="0" maxOccurs="1" default="128" />
-                    <xs:element name="display_max_height" type="xs:integer" minOccurs="0" maxOccurs="1" default="128" />
-                    <xs:element name="storage_max_width" type="xs:integer" minOccurs="0" maxOccurs="1" default="256" />
-                    <xs:element name="storage_max_height" type="xs:integer" minOccurs="0" maxOccurs="1" default="256" />
+                    <xs:element name="display_max_width" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="128" />
+                    <xs:element name="display_max_height" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="128" />
+                    <xs:element name="storage_max_width" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="256" />
+                    <xs:element name="storage_max_height" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" default="256" />
                     <xs:element name="default_image" type="xs:string" />
                     <xs:element name="is_null_allowed" type="xs:boolean" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" />
@@ -1688,8 +1688,16 @@
                     <xs:element name="edit_mode" type="editModeEnumeration" default="actions" />
                     <xs:element name="edit_when" type="editWhenEnumeration" />
                     <xs:element name="duplicates" type="xs:boolean" maxOccurs="1" default="false" />
-                    <xs:element name="count_min" type="xs:integer" />
-                    <xs:element name="count_max" type="xs:integer" />
+                    <xs:element name="count_min" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                            <xs:documentation>unused yet</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="count_max" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                            <xs:documentation>unused yet</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element name="with_php_constraint" type="xs:boolean" />
                     <xs:element name="with_php_computation" type="xs:boolean" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
