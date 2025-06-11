@@ -25,13 +25,19 @@ The goal is to catch **syntax errors** and **inconsistencies** in your iTop data
 
 You can either:
 
-  1. Download the latest `datamodel.v3.2.xsd` file.
+  1. Download the latest `itop_design.xsd` file.
   2. Validate your `datamodel.xml` with your preferred XML validator.
 
-or directly link it into your datamodel like this:
+or if you have a  directly link it into your datamodel like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/datamodel.v3.2.xsd"?>
+<?xml-model href="https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/3.2/itop_design.xsd"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.2">
+```
+
+or use a tool like `xmllint`:
+
+```bash
+xmllint --noout --schema https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/3.2/itop_design.xsd datamodel.xml
 ```
