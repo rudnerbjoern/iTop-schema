@@ -872,9 +872,35 @@
                         <xs:sequence>
                             <xs:element name="portal" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:choice maxOccurs="unbounded">
-                                        <xs:any />
-                                    </xs:choice>
+                                    <xs:all>
+                                        <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                                        <xs:element name="url" type="xs:string" minOccurs="0" />
+                                        <xs:element name="handler" type="xs:string" minOccurs="0" />
+                                        <xs:element name="allow" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                                    <xs:element name="profile">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attributeGroup ref="alteredNode" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="deny" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                                    <xs:element name="profile">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attributeGroup ref="alteredNode" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
