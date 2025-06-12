@@ -7,11 +7,11 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
-            <xs:all minOccurs="0">
-                <xs:element name="classes">
+            <xs:all>
+                <xs:element name="classes" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                            <xs:element name="class">
+                        <xs:sequence>
+                            <xs:element name="class" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="parent" type="xs:string" minOccurs="0" />
@@ -534,17 +534,17 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="menus">
+                <xs:element name="menus" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                            <xs:element name="menu" />
+                        <xs:sequence>
+                            <xs:element name="menu" minOccurs="0" maxOccurs="unbounded" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="user_rights">
+                <xs:element name="user_rights" minOccurs="0">
                     <xs:complexType>
-                        <xs:all minOccurs="0">
-                            <xs:element name="groups">
+                        <xs:all>
+                            <xs:element name="groups" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                         <xs:element name="group">
@@ -570,7 +570,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="profiles">
+                            <xs:element name="profiles" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                         <xs:element name="profile">
@@ -619,17 +619,17 @@
                         </xs:all>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="files">
+                <xs:element name="files" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="file" />
+                            <xs:element name="file" minOccurs="0" maxOccurs="unbounded" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="dictionaries">
+                <xs:element name="dictionaries" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="dictionary">
+                        <xs:sequence>
+                            <xs:element name="dictionary" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="english_description" type="xs:string" minOccurs="0" />
@@ -658,10 +658,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="branding">
+                <xs:element name="branding" minOccurs="0">
                     <xs:complexType>
-                        <xs:all minOccurs="0">
-                            <xs:element name="main_logo">
+                        <xs:all>
+                            <xs:element name="main_logo" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -673,7 +673,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="main_logo_compact">
+                            <xs:element name="main_logo_compact" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -685,7 +685,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="login_logo">
+                            <xs:element name="login_logo" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -697,7 +697,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="portal_logo">
+                            <xs:element name="portal_logo" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -709,7 +709,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="main_favicon">
+                            <xs:element name="main_favicon" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -721,7 +721,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="portal_favicon">
+                            <xs:element name="portal_favicon" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -733,7 +733,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="login_favicon">
+                            <xs:element name="login_favicon" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="fileref">
@@ -745,7 +745,7 @@
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="themes">
+                            <xs:element name="themes" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                         <xs:element name="theme">
@@ -808,7 +808,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="themes_common">
+                            <xs:element name="themes_common" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="variables" minOccurs="0">
@@ -865,10 +865,10 @@
                         </xs:all>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="constants">
+                <xs:element name="constants" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="constant">
+                        <xs:sequence>
+                            <xs:element name="constant" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
@@ -881,10 +881,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="portals">
+                <xs:element name="portals" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="portal">
+                        <xs:sequence>
+                            <xs:element name="portal" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="rank" type="xs:decimal" minOccurs="0" />
@@ -922,10 +922,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="module_parameters">
+                <xs:element name="module_parameters" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="parameters">
+                        <xs:sequence>
+                            <xs:element name="parameters" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
                                         <xs:any processContents="lax" />
@@ -937,10 +937,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="module_designs">
+                <xs:element name="module_designs" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="module_design">
+                        <xs:sequence>
+                            <xs:element name="module_design" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="classes" minOccurs="0">
@@ -1053,10 +1053,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="snippets">
+                <xs:element name="snippets" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="snippet">
+                        <xs:sequence>
+                            <xs:element name="snippet" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
                                         <xs:any />
@@ -1068,24 +1068,24 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="meta">
+                <xs:element name="meta" minOccurs="0">
                     <xs:complexType>
-                        <xs:all minOccurs="0">
-                            <xs:element name="classes">
+                        <xs:all>
+                            <xs:element name="classes" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence maxOccurs="unbounded">
                                         <xs:element name="class" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="presentation">
+                            <xs:element name="presentation" minOccurs="0">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
                                         <xs:any />
                                     </xs:choice>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="attribute_properties_definition">
+                            <xs:element name="attribute_properties_definition" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence minOccurs="0">
                                         <xs:element name="properties">
@@ -1112,10 +1112,10 @@
                         </xs:all>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="events">
+                <xs:element name="events" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="event">
+                        <xs:sequence>
+                            <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:all>
                                         <xs:element name="name" type="xs:string" minOccurs="0" />
@@ -1161,10 +1161,10 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="event_listeners">
+                <xs:element name="event_listeners" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element name="listener">
+                        <xs:sequence>
+                            <xs:element name="listener" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
                                         <xs:any />
