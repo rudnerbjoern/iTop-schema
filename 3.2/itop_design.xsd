@@ -1161,8 +1161,6 @@
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="none" />
-            <xs:enumeration value="list" />
-            <xs:enumeration value="details" />
             <xs:enumeration value="all" />
         </xs:restriction>
     </xs:simpleType>
@@ -1686,7 +1684,7 @@
                     <xs:element name="linked_class" type="xs:string" />
                     <xs:element name="filter" type="xs:string" />
                     <xs:element name="ext_key_to_me" type="xs:string" />
-                    <xs:element name="tracking_level" type="trackingLevelEnumeration" />
+                    <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" />
                     <xs:element name="edit_mode" type="editModeEnumeration" default="actions" />
                     <xs:element name="edit_when" type="editWhenEnumeration" />
                     <xs:element name="duplicates" type="xs:boolean" maxOccurs="1" default="false" />
@@ -1707,6 +1705,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+
     <xs:simpleType name="editModeEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="none" />
@@ -1716,12 +1715,22 @@
             <xs:enumeration value="in_place" />
         </xs:restriction>
     </xs:simpleType>
+
     <xs:simpleType name="editWhenEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="always" />
             <xs:enumeration value="on_host_edition" />
             <xs:enumeration value="on_host_display" />
             <xs:enumeration value="never" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="trackingLevelLinkedSetEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="none" />
+            <xs:enumeration value="list" />
+            <xs:enumeration value="details" />
+            <xs:enumeration value="all" />
         </xs:restriction>
     </xs:simpleType>
     <!-- ########################### /AttributeLinkedSet ########################### -->
@@ -1734,7 +1743,7 @@
                     <xs:element name="linked_class" type="xs:string" maxOccurs="1" />
                     <xs:element name="ext_key_to_me" type="xs:string" maxOccurs="1" />
                     <xs:element name="ext_key_to_remote" type="xs:string" maxOccurs="1" />
-                    <xs:element name="tracking_level" type="trackingLevelEnumeration" maxOccurs="1" />
+                    <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" maxOccurs="1" />
                     <xs:element name="edit_when" type="editWhenEnumeration" maxOccurs="1" />
                     <xs:element name="duplicates" type="xs:boolean" maxOccurs="1" default="false" />
                     <xs:element name="count_min" type="xs:integer" maxOccurs="1" />
