@@ -1248,6 +1248,7 @@
             <xs:enumeration value="DEL_MANUAL" />
             <xs:enumeration value="DEL_AUTO" />
             <xs:enumeration value="DEL_MOVEUP" />
+            <xs:enumeration value="DEL_SILENT" />
         </xs:restriction>
     </xs:simpleType>
 
