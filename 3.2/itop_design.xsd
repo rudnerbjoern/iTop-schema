@@ -399,7 +399,7 @@
                                                 <xs:all>
                                                     <xs:element name="details" minOccurs="0">
                                                         <xs:complexType>
-                                                            <xs:sequence>
+                                                            <xs:all>
                                                                 <xs:element name="items">
                                                                     <xs:complexType>
                                                                         <xs:sequence maxOccurs="unbounded">
@@ -417,7 +417,8 @@
                                                                         </xs:sequence>
                                                                     </xs:complexType>
                                                                 </xs:element>
-                                                            </xs:sequence>
+                                                            </xs:all>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="search" minOccurs="0">
@@ -439,6 +440,7 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:all>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="default_search" minOccurs="0">
@@ -460,6 +462,7 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:all>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="list" minOccurs="0">
@@ -481,6 +484,7 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:all>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="summary" minOccurs="0">
@@ -502,6 +506,7 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:all>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:all>
