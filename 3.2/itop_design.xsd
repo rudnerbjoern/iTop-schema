@@ -524,7 +524,7 @@
                 </xs:element>
                 <xs:element name="user_rights">
                     <xs:complexType>
-                        <xs:all>
+                        <xs:all minOccurs="0">
                             <xs:element name="groups">
                                 <xs:complexType>
                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
