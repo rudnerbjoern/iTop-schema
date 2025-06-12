@@ -37,7 +37,7 @@
                                                                             <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
                                                                                 <xs:complexType>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -49,7 +49,7 @@
                                                                             <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
                                                                                 <xs:complexType>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -66,7 +66,7 @@
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:string">
-                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -161,7 +161,7 @@
                                                                                         <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
                                                                                             <xs:complexType>
                                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                                             </xs:complexType>
                                                                                         </xs:element>
                                                                                     </xs:sequence>
@@ -172,7 +172,7 @@
                                                                             <xs:element name="is_blocking" type="xs:boolean" minOccurs="0" maxOccurs="1" default="true" />
                                                                         </xs:choice>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -292,12 +292,12 @@
                                                                                                                     </xs:complexType>
                                                                                                                 </xs:element>
                                                                                                             </xs:sequence>
-                                                                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                            <xs:attributeGroup ref="alteredNode" />
                                                                                                         </xs:complexType>
                                                                                                     </xs:element>
                                                                                                 </xs:sequence>
                                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                                             </xs:complexType>
                                                                                         </xs:element>
                                                                                     </xs:sequence>
@@ -305,7 +305,7 @@
                                                                             </xs:element>
                                                                         </xs:choice>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -326,7 +326,7 @@
                                                                 <xs:element name="rank" type="xs:string" />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -352,8 +352,7 @@
                                                                 <xs:element name="code" type="xs:string" minOccurs="0" maxOccurs="1" />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
-                                                            <xs:attribute name="_revision_id" type="xs:string" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -377,7 +376,7 @@
                                                                                         <xs:element name="direction" type="xs:string" minOccurs="0" maxOccurs="1" />
                                                                                     </xs:choice>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -407,7 +406,7 @@
                                                                                         <xs:any minOccurs="0" />
                                                                                     </xs:sequence>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -429,7 +428,7 @@
                                                                                             <xs:element name="rank" type="xs:integer" minOccurs="0" maxOccurs="1" />
                                                                                         </xs:sequence>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
@@ -452,7 +451,7 @@
                                                                                             <xs:element name="rank" type="xs:integer" minOccurs="0" maxOccurs="1" />
                                                                                         </xs:sequence>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
@@ -475,7 +474,7 @@
                                                                                             <xs:element name="rank" type="xs:integer" minOccurs="0" maxOccurs="1" />
                                                                                         </xs:sequence>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
@@ -498,7 +497,7 @@
                                                                                             <xs:element name="rank" type="xs:integer" minOccurs="0" maxOccurs="1" />
                                                                                         </xs:sequence>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
@@ -513,9 +512,7 @@
                                         </xs:element>
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
-                                    <xs:attribute name="_rename_from" type="xs:string" use="optional" />
-                                    <xs:attribute name="_created_in" type="xs:string" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -543,7 +540,7 @@
                                                                 <xs:element name="class">
                                                                     <xs:complexType>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -551,7 +548,7 @@
                                                     </xs:element>
                                                 </xs:sequence>
                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                <xs:attributeGroup ref="alteredNode" />
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -579,13 +576,13 @@
                                                                                                 <xs:simpleContent>
                                                                                                     <xs:extension base="xs:string">
                                                                                                         <xs:attribute name="id" type="profileGroupActionEnumeration" use="required" />
-                                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                                     </xs:extension>
                                                                                                 </xs:simpleContent>
                                                                                             </xs:complexType>
                                                                                         </xs:element>
                                                                                     </xs:sequence>
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -597,7 +594,7 @@
                                                     </xs:element>
                                                 </xs:choice>
                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                <xs:attributeGroup ref="alteredNode" />
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -629,7 +626,7 @@
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -639,7 +636,7 @@
                                         </xs:element>
                                     </xs:sequence>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -657,7 +654,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="main_logo_compact" maxOccurs="1">
@@ -669,7 +666,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="login_logo" maxOccurs="1">
@@ -681,7 +678,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="portal_logo" maxOccurs="1">
@@ -693,7 +690,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="main_favicon" maxOccurs="1">
@@ -705,7 +702,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="portal_favicon" maxOccurs="1">
@@ -717,7 +714,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="login_favicon" maxOccurs="1">
@@ -729,7 +726,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="themes" maxOccurs="1">
@@ -746,7 +743,7 @@
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:string">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -762,7 +759,7 @@
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:string">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -778,7 +775,7 @@
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:string">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -789,7 +786,7 @@
                                                     <xs:element name="precompiled_stylesheet" type="xs:string" maxOccurs="1" />
                                                 </xs:choice>
                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                <xs:attributeGroup ref="alteredNode" />
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:choice>
@@ -806,7 +803,7 @@
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -822,7 +819,7 @@
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -838,7 +835,7 @@
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -861,7 +858,7 @@
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                            <xs:attributeGroup ref="alteredNode" />
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
@@ -878,7 +875,7 @@
                                         <xs:any />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -893,7 +890,7 @@
                                         <xs:any processContents="lax" />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -921,7 +918,7 @@
                                                                                             <xs:complexType>
                                                                                                 <xs:simpleContent>
                                                                                                     <xs:extension base="xs:string">
-                                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                                     </xs:extension>
                                                                                                 </xs:simpleContent>
                                                                                             </xs:complexType>
@@ -930,7 +927,7 @@
                                                                                             <xs:complexType>
                                                                                                 <xs:simpleContent>
                                                                                                     <xs:extension base="xs:string">
-                                                                                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                                     </xs:extension>
                                                                                                 </xs:simpleContent>
                                                                                             </xs:complexType>
@@ -941,7 +938,7 @@
                                                                                                     <xs:element name="allowed_profile" maxOccurs="1">
                                                                                                         <xs:complexType>
                                                                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                                            <xs:attributeGroup ref="alteredNode" />
                                                                                                         </xs:complexType>
                                                                                                     </xs:element>
                                                                                                 </xs:sequence>
@@ -949,7 +946,7 @@
                                                                                         </xs:element>
                                                                                     </xs:choice>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -957,7 +954,7 @@
                                                                 </xs:element>
                                                             </xs:sequence>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -978,7 +975,7 @@
                                                                             <xs:element name="mode">
                                                                                 <xs:complexType>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -986,7 +983,7 @@
                                                                 </xs:element>
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -1001,7 +998,7 @@
                                                                 <xs:any processContents="lax" />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -1009,7 +1006,7 @@
                                         </xs:element>
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -1024,7 +1021,7 @@
                                         <xs:any />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -1068,7 +1065,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:choice>
@@ -1090,7 +1087,7 @@
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:string">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -1109,7 +1106,7 @@
                                                                 <xs:element name="type" type="xs:string" maxOccurs="1" />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                                            <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -1118,7 +1115,7 @@
                                         <xs:any />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -1133,7 +1130,7 @@
                                         <xs:any />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -1144,19 +1141,39 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:simpleType name="deltaEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="merge" />
-            <xs:enumeration value="must_exist" />
-            <xs:enumeration value="if_exists" />
-            <xs:enumeration value="define" />
-            <xs:enumeration value="define_if_not_exists" />
-            <xs:enumeration value="redefine" />
-            <xs:enumeration value="delete" />
-            <xs:enumeration value="delete_if_exists" />
-            <xs:enumeration value="force" />
-        </xs:restriction>
-    </xs:simpleType>
+    <xs:attributeGroup name="alteredNode">
+        <xs:attribute name="_delta" use="optional" default="merge">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="merge" />
+                    <xs:enumeration value="must_exist" />
+                    <xs:enumeration value="if_exists" />
+                    <xs:enumeration value="define" />
+                    <xs:enumeration value="define_if_not_exists" />
+                    <xs:enumeration value="redefine" />
+                    <xs:enumeration value="delete" />
+                    <xs:enumeration value="delete_if_exists" />
+                    <xs:enumeration value="force" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="_rename_from" type="xs:string" use="optional" />
+        <xs:attribute name="_created_in" type="xs:string" use="optional" />
+        <xs:attribute name="_revision_id" type="xs:integer" use="optional" />
+        <xs:attribute name="_altered_in" type="xs:string" use="optional" />
+        <xs:attribute name="_alteration" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="added" />
+                    <xs:enumeration value="needed" />
+                    <xs:enumeration value="replaced" />
+                    <xs:enumeration value="removed" />
+                    <xs:enumeration value="remove_needed" />
+                    <xs:enumeration value="forced" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
 
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
@@ -1232,8 +1249,7 @@
 
     <xs:complexType name="AttributeDefinition">
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
-        <xs:attribute name="_rename_from" type="xs:string" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
 
 
@@ -1478,7 +1494,7 @@
                                             <xs:element name="style" type="styleType" minOccurs="0" />
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1520,7 +1536,7 @@
                                             <xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1" />
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1766,7 +1782,7 @@
                                             <xs:element name="style" type="styleType" />
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1926,7 +1942,7 @@
                                 <xs:element name="state">
                                     <xs:complexType>
                                         <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1978,7 +1994,7 @@
                                             </xs:element>
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:integer" use="required" />
-                                        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -2144,12 +2160,12 @@
             <xs:element name="height" type="xs:integer" minOccurs="0" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
 
     <xs:complexType name="MenuBase">
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
 
     <xs:simpleType name="MenuEnableAction">
@@ -2224,7 +2240,7 @@
                                                         </xs:element>
                                                     </xs:choice>
                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                    <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+                                                    <xs:attributeGroup ref="alteredNode" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:sequence>
@@ -2350,7 +2366,7 @@
             <xs:element name="class" type="xs:string" minOccurs="0" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletBadge ########################### -->
 
@@ -2360,7 +2376,7 @@
             <xs:element name="rank" type="xs:decimal" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletBadge ########################### -->
 
@@ -2371,7 +2387,7 @@
             <xs:element name="text" type="xs:string" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletPlainText ########################### -->
 
@@ -2387,7 +2403,7 @@
             <xs:element name="values" type="xs:string" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletHeaderDynamic ########################### -->
 
@@ -2414,7 +2430,7 @@
             <xs:element name="order_direction" type="xs:string" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletGroupBy ########################### -->
 
@@ -2451,7 +2467,7 @@
             <xs:element name="icon" type="xs:string" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletHeaderStatic ########################### -->
 
@@ -2464,7 +2480,7 @@
             <xs:element name="menu" type="xs:boolean" maxOccurs="1" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="_delta" type="deltaEnumeration" use="optional" />
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
     <!-- ########################### /DashletObjectList ########################### -->
 
