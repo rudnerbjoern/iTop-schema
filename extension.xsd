@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xs:element name="extension">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="extension_code" type="xs:string" />
+				<xs:element name="version" type="xs:token" />
+				<xs:element name="label" type="xs:string" />
+				<xs:element name="description" type="xs:string" />
+				<xs:element name="mandatory" type="xs:boolean" />
+				<xs:element name="more_info_url" type="xs:anyURI" />
+			</xs:sequence>
+			<xs:attribute name="format" type="xs:token" fixed="1.0" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
