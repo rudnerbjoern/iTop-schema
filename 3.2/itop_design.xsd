@@ -414,113 +414,28 @@
                                                     <xs:element name="details" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:all>
-                                                                <xs:element name="items">
-                                                                    <xs:complexType>
-                                                                        <xs:sequence maxOccurs="unbounded">
-                                                                            <xs:element name="item">
-                                                                                <xs:complexType>
-                                                                                    <xs:sequence>
-                                                                                        <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                                                                        <xs:element name="items" minOccurs="0" />
-                                                                                        <xs:any minOccurs="0" />
-                                                                                    </xs:sequence>
-                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="items" type="presentationItems" />
                                                             </xs:all>
                                                             <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
-                                                    <xs:element name="search" minOccurs="0">
+                                                    <xs:element name="search" minOccurs="0" type="presentationZlist" />
+                                                    <xs:element name="default_search" minOccurs="0" type="presentationZlist" />
+                                                    <xs:element name="list" minOccurs="0" type="presentationZlist" />
+                                                    <xs:element name="summary" minOccurs="0" type="presentationZlist" />
+                                                    <xs:element name="custom_presentations" minOccurs="0">
                                                         <xs:complexType>
-                                                            <xs:all>
-                                                                <xs:element name="items">
+                                                            <xs:sequence maxOccurs="unbounded">
+                                                                <xs:element name="custom_presentation">
                                                                     <xs:complexType>
-                                                                        <xs:sequence maxOccurs="unbounded">
-                                                                            <xs:element name="item">
-                                                                                <xs:complexType>
-                                                                                    <xs:sequence>
-                                                                                        <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                                                                    </xs:sequence>
-                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
+                                                                        <xs:all>
+                                                                            <xs:element name="items" type="presentationItems" />
+                                                                        </xs:all>
+                                                                        <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
-                                                            </xs:all>
-                                                            <xs:attributeGroup ref="alteredNode" />
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="default_search" minOccurs="0">
-                                                        <xs:complexType>
-                                                            <xs:all>
-                                                                <xs:element name="items">
-                                                                    <xs:complexType>
-                                                                        <xs:sequence maxOccurs="unbounded">
-                                                                            <xs:element name="item">
-                                                                                <xs:complexType>
-                                                                                    <xs:all>
-                                                                                        <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                                                                    </xs:all>
-                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:all>
-                                                            <xs:attributeGroup ref="alteredNode" />
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="list" minOccurs="0">
-                                                        <xs:complexType>
-                                                            <xs:all>
-                                                                <xs:element name="items">
-                                                                    <xs:complexType>
-                                                                        <xs:sequence maxOccurs="unbounded">
-                                                                            <xs:element name="item">
-                                                                                <xs:complexType>
-                                                                                    <xs:all>
-                                                                                        <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                                                                    </xs:all>
-                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:all>
-                                                            <xs:attributeGroup ref="alteredNode" />
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="summary" minOccurs="0">
-                                                        <xs:complexType>
-                                                            <xs:all>
-                                                                <xs:element name="items">
-                                                                    <xs:complexType>
-                                                                        <xs:sequence maxOccurs="unbounded">
-                                                                            <xs:element name="item">
-                                                                                <xs:complexType>
-                                                                                    <xs:sequence>
-                                                                                        <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                                                                    </xs:sequence>
-                                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                                </xs:complexType>
-                                                                            </xs:element>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:all>
-                                                            <xs:attributeGroup ref="alteredNode" />
+                                                            </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:all>
@@ -1251,6 +1166,42 @@
             <xs:enumeration value="DEL_SILENT" />
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="presentationZlist">
+        <xs:all>
+            <xs:element name="items">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="item">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="rank" type="xs:integer" minOccurs="0" />
+                                </xs:all>
+                                <xs:attribute name="id" type="xs:string" use="required" />
+                                <xs:attributeGroup ref="alteredNode" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attributeGroup ref="alteredNode" />
+    </xs:complexType>
+
+    <xs:complexType name="presentationItems">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="item">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="rank" type="xs:float" minOccurs="0" />
+                        <xs:element name="items" minOccurs="0" type="presentationItems" />
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:string" use="required" />
+                    <xs:attributeGroup ref="alteredNode" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:simpleType name="profileGroupActionEnumeration">
         <xs:union>
