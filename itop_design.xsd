@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="3.2">
+    <xs:annotation>
+        <xs:appinfo>iTop XML data model</xs:appinfo>
+        <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:xml_reference">
+            This schema defines the structure for iTop data model.
+            It includes definitions for various components used in iTop.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="3.2/itop_design.xsd" />
+</xs:schema>

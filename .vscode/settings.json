@@ -20,5 +20,9 @@
     ],
     "xml.codeLens.enabled": true,
     "xml.format.emptyElements": "collapse",
-    "xml.format.maxLineWidth": 0
+    "xml.format.maxLineWidth": 0,
+    "xml.format.preserveSpace": [
+        "xs:documentation"
+    ],
+    "xml.format.spaceBeforeEmptyCloseTag": true,
 }

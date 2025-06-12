@@ -6,8 +6,8 @@ The goal is to catch **syntax errors** and **inconsistencies** in your iTop data
 
 ## Current Status
 
-- Supported iTop design version:
-  `<itop_design version="3.2">`
+- Supported iTop design versions:
+  - [Version 3.2](https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#version_32)
 - The project is in an **early stage**:
   - The XSD is still **incomplete**.
   - Many **errors and gaps** are expected.
@@ -32,7 +32,7 @@ or if you have a  directly link it into your datamodel like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/3.2/itop_design.xsd"?>
+<?xml-model href="https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/itop_design.xsd"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.2">
 ```
 
