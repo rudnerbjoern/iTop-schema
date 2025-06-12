@@ -1,5 +1,7 @@
 # iTop DataModel XSD
 
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/rudnerbjoern/iTop-schema/issues)
+
 This project provides an **XSD schema** to validate `datamodel.xxx.xml` files used in the [iTop CMDB software](https://www.combodo.com/itop).
 
 The goal is to catch **syntax errors** and **inconsistencies** in your iTop data models *before* importing them into iTop.
@@ -48,3 +50,11 @@ or use a tool like `xmllint`:
 ```bash
 xmllint --noout --schema https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/3.2/itop_design.xsd datamodel.xml
 ```
+
+## Contributors
+
+Thanks to everyone who has contributed to this project!
+
+Special thanks to:
+
+- [@Hipska](https://github.com/Hipska) — for valuable additions, corrections, and improvements to the XSD.
