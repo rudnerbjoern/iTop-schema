@@ -391,6 +391,7 @@
                                                                         <xs:restriction base="xs:string">
                                                                             <xs:enumeration value="LifecycleAction" />
                                                                             <xs:enumeration value="EventListener" />
+                                                                            <xs:enumeration value="StimulusUserAction" />
                                                                             <xs:enumeration value="Overload-cmdbAbstractObject" />
                                                                             <xs:enumeration value="Overload-iDisplay" />
                                                                             <xs:enumeration value="Overload-DBObject" />
@@ -1436,6 +1437,7 @@
             <xs:extension base="AttributeDefinition">
                 <xs:all>
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
+                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
