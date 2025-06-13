@@ -217,6 +217,10 @@
                                                                                         <xs:enumeration value="HIGHLIGHT_WARNING" />
                                                                                         <xs:enumeration value="HIGHLIGHT_CRITICAL" />
                                                                                         <xs:enumeration value="HIGHLIGHT_OK" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_NONE" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_WARNING" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_CRITICAL" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_OK" />
                                                                                     </xs:restriction>
                                                                                 </xs:simpleType>
                                                                             </xs:element>
@@ -397,6 +401,7 @@
                                                                             <xs:enumeration value="Overload-DBObject" />
                                                                             <xs:enumeration value="Overload-ExNihilo" />
                                                                             <xs:enumeration value="Factory" />
+                                                                            <xs:enumeration value="Internal" />
                                                                             <xs:enumeration value="Helper" />
                                                                             <xs:enumeration value="Custom" />
                                                                         </xs:restriction>
@@ -1394,6 +1399,9 @@
         <xs:restriction base="string" />
     </xs:simpleType>
     <xs:simpleType name="attcode">
+        <xs:restriction base="string" />
+    </xs:simpleType>
+    <xs:simpleType name="variables">
         <xs:restriction base="string" />
     </xs:simpleType>
     <!-- ########################### /action parameters ########################### -->
