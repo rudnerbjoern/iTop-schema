@@ -687,6 +687,7 @@
                                                                             </xs:element>
                                                                         </xs:sequence>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
