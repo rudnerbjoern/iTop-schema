@@ -67,15 +67,7 @@
                                                         <xs:complexType>
                                                             <xs:sequence>
                                                                 <xs:element name="image_attribute" type="xs:string" minOccurs="0" />
-                                                                <xs:element name="state_attribute" minOccurs="0">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
-                                                                                <xs:attributeGroup ref="alteredNode" />
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="state_attribute" type="alteredString" minOccurs="0" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -675,9 +667,8 @@
                                                                                         <xs:element name="action">
                                                                                             <xs:complexType>
                                                                                                 <xs:simpleContent>
-                                                                                                    <xs:extension base="xs:string">
+                                                                                                    <xs:extension base="alteredString">
                                                                                                         <xs:attribute name="id" type="profileGroupActionEnumeration" use="required" />
-                                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                                     </xs:extension>
                                                                                                 </xs:simpleContent>
                                                                                             </xs:complexType>
@@ -726,9 +717,8 @@
                                                     <xs:element name="entry" maxOccurs="unbounded">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
+                                                                <xs:extension base="alteredString">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -843,9 +833,8 @@
                                                                 <xs:element name="variable">
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
+                                                                            <xs:extension base="alteredString">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -859,9 +848,8 @@
                                                                 <xs:element name="import">
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
+                                                                            <xs:extension base="alteredString">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -875,9 +863,8 @@
                                                                 <xs:element name="stylesheet">
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
+                                                                            <xs:extension base="alteredString">
                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attributeGroup ref="alteredNode" />
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -903,9 +890,8 @@
                                                     <xs:element name="variable">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
+                                                                <xs:extension base="alteredString">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -919,9 +905,8 @@
                                                     <xs:element name="import">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
+                                                                <xs:extension base="alteredString">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -935,9 +920,8 @@
                                                     <xs:element name="stylesheet">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
+                                                                <xs:extension base="alteredString">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -957,9 +941,8 @@
                             <xs:element name="constant" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:simpleContent>
-                                        <xs:extension base="xs:string">
+                                        <xs:extension base="alteredString">
                                             <xs:attribute name="id" type="xs:string" use="required" />
-                                            <xs:attributeGroup ref="alteredNode" />
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
@@ -1041,24 +1024,8 @@
                                                                             <xs:element name="scope">
                                                                                 <xs:complexType>
                                                                                     <xs:all>
-                                                                                        <xs:element name="oql_view" minOccurs="0">
-                                                                                            <xs:complexType>
-                                                                                                <xs:simpleContent>
-                                                                                                    <xs:extension base="xs:string">
-                                                                                                        <xs:attributeGroup ref="alteredNode" />
-                                                                                                    </xs:extension>
-                                                                                                </xs:simpleContent>
-                                                                                            </xs:complexType>
-                                                                                        </xs:element>
-                                                                                        <xs:element name="oql_edit" minOccurs="0">
-                                                                                            <xs:complexType>
-                                                                                                <xs:simpleContent>
-                                                                                                    <xs:extension base="xs:string">
-                                                                                                        <xs:attributeGroup ref="alteredNode" />
-                                                                                                    </xs:extension>
-                                                                                                </xs:simpleContent>
-                                                                                            </xs:complexType>
-                                                                                        </xs:element>
+                                                                                        <xs:element name="oql_view" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="oql_edit" type="alteredString" minOccurs="0" />
                                                                                         <xs:element name="allowed_profiles" minOccurs="0">
                                                                                             <xs:complexType>
                                                                                                 <xs:sequence maxOccurs="unbounded">
@@ -1212,9 +1179,8 @@
                                                     <xs:element name="source">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
+                                                                <xs:extension base="alteredString">
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
