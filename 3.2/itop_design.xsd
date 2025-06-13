@@ -377,11 +377,31 @@
                                                             <xs:all>
                                                                 <xs:element name="comment" type="xs:string" minOccurs="0" />
                                                                 <xs:element name="static" type="xs:boolean" minOccurs="0" />
-                                                                <xs:element name="access" type="xs:string" minOccurs="0" />
-                                                                <xs:element name="type" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="access" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="public" />
+                                                                            <xs:enumeration value="protected" />
+                                                                            <xs:enumeration value="private" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="type" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="LifecycleAction" />
+                                                                            <xs:enumeration value="EventListener" />
+                                                                            <xs:enumeration value="Overload-cmdbAbstractObject" />
+                                                                            <xs:enumeration value="Overload-iDisplay" />
+                                                                            <xs:enumeration value="Overload-DBObject" />
+                                                                            <xs:enumeration value="Overload-ExNihilo" />
+                                                                            <xs:enumeration value="Custom" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
                                                                 <xs:element name="arguments" minOccurs="0">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>
+                                                                        <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:form_prefill">
                                                                             Use definition from https://www.itophub.io/wiki/page?id=latest:customization:form_prefill
                                                                         </xs:documentation>
                                                                     </xs:annotation>
@@ -390,8 +410,19 @@
                                                                             <xs:element name="argument">
                                                                                 <xs:complexType>
                                                                                     <xs:all>
-                                                                                        <xs:element name="type" type="argumentTypeEnumeration" minOccurs="0" />
-                                                                                        <xs:element name="mandatory" minOccurs="0" />
+                                                                                        <xs:element name="type" minOccurs="0">
+                                                                                            <xs:simpleType>
+                                                                                                <xs:restriction base="xs:string">
+                                                                                                    <xs:enumeration value="attcode" />
+                                                                                                    <xs:enumeration value="class" />
+                                                                                                    <xs:enumeration value="current_stimulus_code" />
+                                                                                                    <xs:enumeration value="int" />
+                                                                                                    <xs:enumeration value="reference" />
+                                                                                                    <xs:enumeration value="string" />
+                                                                                                </xs:restriction>
+                                                                                            </xs:simpleType>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="mandatory" type="xs:boolean" minOccurs="0" />
                                                                                     </xs:all>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
                                                                                     <xs:attributeGroup ref="alteredNode" />
@@ -424,7 +455,14 @@
                                                                                         <xs:element name="query_down" type="xs:string" minOccurs="0" />
                                                                                         <xs:element name="query_up" type="xs:string" minOccurs="0" />
                                                                                         <xs:element name="attribute" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="direction" type="xs:string" minOccurs="0" />
+                                                                                        <xs:element name="direction" minOccurs="0">
+                                                                                            <xs:simpleType>
+                                                                                                <xs:restriction base="xs:string">
+                                                                                                    <xs:enumeration value="both" />
+                                                                                                    <xs:enumeration value="down" />
+                                                                                                </xs:restriction>
+                                                                                            </xs:simpleType>
+                                                                                        </xs:element>
                                                                                     </xs:all>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
                                                                                     <xs:attributeGroup ref="alteredNode" />
@@ -434,7 +472,13 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
-                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attribute name="id" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="impacts" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -1246,17 +1290,6 @@
             </xs:simpleType>
         </xs:attribute>
     </xs:attributeGroup>
-
-    <xs:simpleType name="argumentTypeEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="attcode" />
-            <xs:enumeration value="class" />
-            <xs:enumeration value="current_stimulus_code" />
-            <xs:enumeration value="int" />
-            <xs:enumeration value="reference" />
-            <xs:enumeration value="string" />
-        </xs:restriction>
-    </xs:simpleType>
 
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
