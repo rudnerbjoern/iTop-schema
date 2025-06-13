@@ -395,6 +395,8 @@
                                                                             <xs:enumeration value="Overload-iDisplay" />
                                                                             <xs:enumeration value="Overload-DBObject" />
                                                                             <xs:enumeration value="Overload-ExNihilo" />
+                                                                            <xs:enumeration value="Factory" />
+                                                                            <xs:enumeration value="Helper" />
                                                                             <xs:enumeration value="Custom" />
                                                                         </xs:restriction>
                                                                     </xs:simpleType>
