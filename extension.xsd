@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
 	<xs:element name="extension">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="extension_code" type="xs:string" />
-				<xs:element name="version" type="xs:token" />
+				<xs:element name="company" type="xs:string" />
+				<xs:element name="author" type="xs:string" />
 				<xs:element name="label" type="xs:string" />
 				<xs:element name="description" type="xs:string" />
+				<xs:element name="version" type="xs:token" />
+				<xs:element name="modules" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="module">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="xs:string" />
+										<xs:element name="version" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="release_date" type="xs:date" />
+				<xs:element name="version_description" type="xs:string" />
+				<xs:element name="itop_version_min" type="xs:token" />
+				<xs:element name="status" type="xs:string" />
 				<xs:element name="mandatory" type="xs:boolean" />
 				<xs:element name="more_info_url" type="xs:anyURI" />
 			</xs:sequence>
