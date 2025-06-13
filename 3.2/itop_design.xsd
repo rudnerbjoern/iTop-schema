@@ -205,7 +205,7 @@
                                                 <xs:all>
                                                     <xs:element name="highlight_scale" minOccurs="0">
                                                         <xs:complexType>
-                                                            <xs:sequence>
+                                                            <xs:sequence maxOccurs="unbounded">
                                                                 <xs:element name="item">
                                                                     <xs:complexType>
                                                                         <xs:all>
