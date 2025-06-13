@@ -217,6 +217,10 @@
                                                                                         <xs:enumeration value="HIGHLIGHT_WARNING" />
                                                                                         <xs:enumeration value="HIGHLIGHT_CRITICAL" />
                                                                                         <xs:enumeration value="HIGHLIGHT_OK" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_NONE" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_WARNING" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_CRITICAL" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_OK" />
                                                                                     </xs:restriction>
                                                                                 </xs:simpleType>
                                                                             </xs:element>
@@ -284,7 +288,7 @@
                                                                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                                         <xs:element name="transition">
                                                                                             <xs:complexType>
-                                                                                                <xs:sequence>
+                                                                                                <xs:all>
                                                                                                     <xs:element name="target" type="xs:string" minOccurs="0" />
                                                                                                     <xs:element name="flags" minOccurs="0">
                                                                                                         <xs:complexType>
@@ -332,7 +336,7 @@
                                                                                                             <xs:attributeGroup ref="alteredNode" />
                                                                                                         </xs:complexType>
                                                                                                     </xs:element>
-                                                                                                </xs:sequence>
+                                                                                                </xs:all>
                                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
                                                                                                 <xs:attributeGroup ref="alteredNode" />
                                                                                             </xs:complexType>
@@ -391,11 +395,13 @@
                                                                         <xs:restriction base="xs:string">
                                                                             <xs:enumeration value="LifecycleAction" />
                                                                             <xs:enumeration value="EventListener" />
+                                                                            <xs:enumeration value="StimulusUserAction" />
                                                                             <xs:enumeration value="Overload-cmdbAbstractObject" />
                                                                             <xs:enumeration value="Overload-iDisplay" />
                                                                             <xs:enumeration value="Overload-DBObject" />
                                                                             <xs:enumeration value="Overload-ExNihilo" />
                                                                             <xs:enumeration value="Factory" />
+                                                                            <xs:enumeration value="Internal" />
                                                                             <xs:enumeration value="Helper" />
                                                                             <xs:enumeration value="Custom" />
                                                                         </xs:restriction>
@@ -681,6 +687,7 @@
                                                                             </xs:element>
                                                                         </xs:sequence>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -1395,6 +1402,9 @@
     <xs:simpleType name="attcode">
         <xs:restriction base="string" />
     </xs:simpleType>
+    <xs:simpleType name="variables">
+        <xs:restriction base="string" />
+    </xs:simpleType>
     <!-- ########################### /action parameters ########################### -->
 
     <!-- ########################### AttributeBlob ########################### -->
@@ -1436,6 +1446,7 @@
             <xs:extension base="AttributeDefinition">
                 <xs:all>
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
+                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
