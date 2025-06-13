@@ -203,7 +203,32 @@
                                         <xs:element name="lifecycle" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:all>
-                                                    <xs:element name="highlight_scale" minOccurs="0" />
+                                                    <xs:element name="highlight_scale" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="item">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                                                                            <xs:element name="color" minOccurs="0">
+                                                                                <xs:simpleType>
+                                                                                    <xs:restriction base="xs:string">
+                                                                                        <xs:enumeration value="HIGHLIGHT_NONE" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_WARNING" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CRITICAL" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_OK" />
+                                                                                    </xs:restriction>
+                                                                                </xs:simpleType>
+                                                                            </xs:element>
+                                                                            <xs:element name="icon" type="xs:string" minOccurs="0" />
+                                                                        </xs:all>
+                                                                        <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
                                                     <xs:element name="stimuli" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
