@@ -288,7 +288,7 @@
                                                                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                                         <xs:element name="transition">
                                                                                             <xs:complexType>
-                                                                                                <xs:sequence>
+                                                                                                <xs:all>
                                                                                                     <xs:element name="target" type="xs:string" minOccurs="0" />
                                                                                                     <xs:element name="flags" minOccurs="0">
                                                                                                         <xs:complexType>
@@ -336,7 +336,7 @@
                                                                                                             <xs:attributeGroup ref="alteredNode" />
                                                                                                         </xs:complexType>
                                                                                                     </xs:element>
-                                                                                                </xs:sequence>
+                                                                                                </xs:all>
                                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
                                                                                                 <xs:attributeGroup ref="alteredNode" />
                                                                                             </xs:complexType>
