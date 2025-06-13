@@ -2299,7 +2299,7 @@
                                                         <xs:element name="rank" minOccurs="0" />
                                                         <xs:element name="dashlets" minOccurs="0">
                                                             <xs:complexType>
-                                                                <xs:sequence maxOccurs="unbounded">
+                                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                     <xs:element name="dashlet" />
                                                                 </xs:sequence>
                                                             </xs:complexType>
@@ -2324,7 +2324,6 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashboardMenuNode ########################### -->
-
 
     <!-- ########################### NewObjectMenuNode ########################### -->
     <xs:complexType name="NewObjectMenuNode">
@@ -2383,25 +2382,6 @@
     </xs:complexType>
     <!-- ########################### /TemplateMenuNode ########################### -->
 
-    <!-- ########################### WebPageMenuNode ########################### -->
-    <xs:complexType name="WebPageMenuNode">
-        <xs:complexContent>
-            <xs:extension base="MenuBase">
-                <xs:all>
-                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
-                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
-                    <xs:element name="parent" type="xs:string" minOccurs="0" />
-                    <xs:element name="url" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
-                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
-                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
-                </xs:all>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <!-- ########################### /WebPageMenuNode ########################### -->
-
     <!-- ########################### OQLMenuNode ########################### -->
     <xs:complexType name="OQLMenuNode">
         <xs:complexContent>
@@ -2423,6 +2403,43 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /OQLMenuNode ########################### -->
+
+    <!-- ########################### WebPageMenuNode ########################### -->
+    <xs:complexType name="WebPageMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" />
+                    <xs:element name="url" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
+                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /WebPageMenuNode ########################### -->
+
+    <!-- ########################### ShortcutContainerMenuNode ########################### -->
+    <xs:complexType name="ShortcutContainerMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
+                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /ShortcutContainerMenuNode ########################### -->
 
     <!-- ########################### DashletBadge ########################### -->
     <xs:complexType name="DashletBadge">
