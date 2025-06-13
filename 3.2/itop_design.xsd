@@ -232,7 +232,7 @@
                                                     <xs:element name="stimuli" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
-                                                                <xs:element name="stimulus" />
+                                                                <xs:element name="stimulus" type="StimulusBase" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1323,11 +1323,19 @@
     </xs:complexType>
 
     <!-- ########################### Stimuli ########################### -->
-    <xs:complexType name="StimulusUserAction">
+    <xs:complexType name="StimulusBase" abstract="true">
         <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attributeGroup ref="alteredNode" />
+    </xs:complexType>
+    <xs:complexType name="StimulusUserAction">
+        <xs:complexContent>
+            <xs:extension base="StimulusBase" />
+        </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="StimulusInternal">
-        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:complexContent>
+            <xs:extension base="StimulusBase" />
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /Stimuli ########################### -->
 
@@ -1335,7 +1343,6 @@
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
-
 
     <!-- ########################### action parameters ########################### -->
     <xs:simpleType name="string">
