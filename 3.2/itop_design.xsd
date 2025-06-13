@@ -411,14 +411,7 @@
                                         <xs:element name="presentation" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:all>
-                                                    <xs:element name="details" minOccurs="0">
-                                                        <xs:complexType>
-                                                            <xs:all>
-                                                                <xs:element name="items" type="presentationItems" />
-                                                            </xs:all>
-                                                            <xs:attributeGroup ref="alteredNode" />
-                                                        </xs:complexType>
-                                                    </xs:element>
+                                                    <xs:element name="details" minOccurs="0" type="presentationZlist" />
                                                     <xs:element name="search" minOccurs="0" type="presentationZlist" />
                                                     <xs:element name="default_search" minOccurs="0" type="presentationZlist" />
                                                     <xs:element name="list" minOccurs="0" type="presentationZlist" />
@@ -426,15 +419,7 @@
                                                     <xs:element name="custom_presentations" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
-                                                                <xs:element name="custom_presentation">
-                                                                    <xs:complexType>
-                                                                        <xs:all>
-                                                                            <xs:element name="items" type="presentationItems" />
-                                                                        </xs:all>
-                                                                        <xs:attribute name="id" type="xs:string" use="required" />
-                                                                        <xs:attributeGroup ref="alteredNode" />
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="custom_presentation" type="presentationZlist" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1169,21 +1154,7 @@
 
     <xs:complexType name="presentationZlist">
         <xs:all>
-            <xs:element name="items">
-                <xs:complexType>
-                    <xs:sequence maxOccurs="unbounded">
-                        <xs:element name="item">
-                            <xs:complexType>
-                                <xs:all>
-                                    <xs:element name="rank" type="xs:integer" minOccurs="0" />
-                                </xs:all>
-                                <xs:attribute name="id" type="xs:string" use="required" />
-                                <xs:attributeGroup ref="alteredNode" />
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="items" type="presentationItems" />
         </xs:all>
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
@@ -1193,7 +1164,15 @@
             <xs:element name="item">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="rank" type="xs:float" minOccurs="0" />
+                        <xs:element name="rank" minOccurs="0">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:float">
+                                        <xs:attributeGroup ref="alteredNode" />
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
                         <xs:element name="items" minOccurs="0" type="presentationItems" />
                     </xs:sequence>
                     <xs:attribute name="id" type="xs:string" use="required" />
