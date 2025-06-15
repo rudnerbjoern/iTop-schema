@@ -1623,7 +1623,7 @@
                     <xs:element name="sort_type" type="enumSortEnumeration" minOccurs="0" />
                     <xs:element name="values" minOccurs="0">
                         <xs:complexType>
-                            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:sequence maxOccurs="unbounded">
                                 <xs:element name="value">
                                     <xs:complexType>
                                         <xs:all>
@@ -1636,6 +1636,7 @@
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="default_style" type="styleType" minOccurs="0" />
