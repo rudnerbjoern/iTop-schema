@@ -853,16 +853,7 @@
                                                     <xs:element name="imports" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                                <xs:element name="import">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
-                                                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attributeGroup ref="alteredNode" />
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="import" type="ThemeImportsImportBase" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1203,6 +1194,7 @@
                                     <xs:all>
                                         <xs:element name="name" type="xs:string" minOccurs="0" />
                                         <xs:element name="description" type="xs:string" minOccurs="0" />
+                                        <xs:element name="internal" type="xs:boolean" minOccurs="0" />
                                         <xs:element name="sources" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -1408,10 +1400,33 @@
     <xs:simpleType name="attcode">
         <xs:restriction base="string" />
     </xs:simpleType>
-    <xs:simpleType name="variables">
-        <xs:restriction base="string" />
-    </xs:simpleType>
     <!-- ########################### /action parameters ########################### -->
+
+    <!-- ########################### itop_design/branding/themes/theme/imports/import ########################### -->
+    <xs:complexType name="ThemeImportsImportBase" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Used in itop_design/branding/themes/theme/imports/import
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+                <xs:attributeGroup ref="alteredNode" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="variables">
+        <xs:complexContent>
+            <xs:extension base="ThemeImportsImportBase" />
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="utilities">
+        <xs:complexContent>
+            <xs:extension base="ThemeImportsImportBase" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /itop_design/branding/themes/theme/imports/import ########################### -->
 
     <!-- ########################### AttributeBlob ########################### -->
     <xs:complexType name="AttributeBlob">
