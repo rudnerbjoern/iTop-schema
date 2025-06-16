@@ -1968,6 +1968,14 @@
     </xs:complexType>
     <!-- ########################### /AttributeObjectKey ########################### -->
 
+    <!-- ########################### AttributePassword ########################### -->
+    <xs:complexType name="AttributePassword">
+        <xs:complexContent>
+            <xs:extension base="AttributeString" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributePassword ########################### -->
+
     <!-- ########################### AttributePercentage ########################### -->
     <xs:complexType name="AttributePercentage">
         <xs:complexContent>
