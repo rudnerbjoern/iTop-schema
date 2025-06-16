@@ -1955,7 +1955,7 @@
                                 <xs:element name="mapping">
                                     <xs:complexType>
                                         <xs:choice maxOccurs="unbounded">
-                                            <xs:element name="attcode" type="xs:string" />
+                                            <xs:element name="attcode" type="alteredString" />
                                             <xs:element name="metavalues">
                                                 <xs:complexType>
                                                     <xs:sequence maxOccurs="unbounded">
@@ -1968,23 +1968,29 @@
                                                                                 <xs:element name="value">
                                                                                     <xs:complexType>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
+                                                                            <xs:attributeGroup ref="alteredNode" />
                                                                         </xs:complexType>
                                                                     </xs:element>
                                                                 </xs:all>
                                                                 <xs:attribute name="id" type="xs:string" use="required" />
+                                                                <xs:attributeGroup ref="alteredNode" />
                                                             </xs:complexType>
                                                         </xs:element>
                                                     </xs:sequence>
+                                                    <xs:attributeGroup ref="alteredNode" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                 </xs:all>
