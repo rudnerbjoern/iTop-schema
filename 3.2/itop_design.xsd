@@ -453,9 +453,9 @@
                                                                             <xs:element name="neighbour">
                                                                                 <xs:complexType>
                                                                                     <xs:all>
-                                                                                        <xs:element name="query_down" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="query_up" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="attribute" type="xs:string" minOccurs="0" />
+                                                                                        <xs:element name="query_down" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="query_up" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="attribute" type="alteredString" minOccurs="0" />
                                                                                         <xs:element name="direction" minOccurs="0">
                                                                                             <xs:simpleType>
                                                                                                 <xs:restriction base="xs:string">
@@ -470,19 +470,16 @@
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
-                                                            <xs:attribute name="id" use="required">
-                                                                <xs:simpleType>
-                                                                    <xs:restriction base="xs:string">
-                                                                        <xs:enumeration value="impacts" />
-                                                                    </xs:restriction>
-                                                                </xs:simpleType>
-                                                            </xs:attribute>
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
+                                                <xs:attributeGroup ref="alteredNode" />
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="presentation" minOccurs="0">
@@ -1267,6 +1264,14 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:complexType name="alteredString">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attributeGroup ref="alteredNode" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="none" />
@@ -1589,7 +1594,7 @@
                     <xs:element name="sort_type" type="enumSortEnumeration" minOccurs="0" />
                     <xs:element name="values" minOccurs="0">
                         <xs:complexType>
-                            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:sequence maxOccurs="unbounded">
                                 <xs:element name="value">
                                     <xs:complexType>
                                         <xs:all>
@@ -1602,6 +1607,7 @@
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="default_style" type="styleType" minOccurs="0" />
@@ -1915,7 +1921,7 @@
                                 <xs:element name="mapping">
                                     <xs:complexType>
                                         <xs:choice maxOccurs="unbounded">
-                                            <xs:element name="attcode" type="xs:string" />
+                                            <xs:element name="attcode" type="alteredString" />
                                             <xs:element name="metavalues">
                                                 <xs:complexType>
                                                     <xs:sequence maxOccurs="unbounded">
@@ -1928,23 +1934,29 @@
                                                                                 <xs:element name="value">
                                                                                     <xs:complexType>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
+                                                                            <xs:attributeGroup ref="alteredNode" />
                                                                         </xs:complexType>
                                                                     </xs:element>
                                                                 </xs:all>
                                                                 <xs:attribute name="id" type="xs:string" use="required" />
+                                                                <xs:attributeGroup ref="alteredNode" />
                                                             </xs:complexType>
                                                         </xs:element>
                                                     </xs:sequence>
+                                                    <xs:attributeGroup ref="alteredNode" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                 </xs:all>
