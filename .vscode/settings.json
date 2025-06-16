@@ -4,6 +4,7 @@
         "autoincrement",
         "cmdb",
         "CMDB",
+        "Combodo",
         "dashlet",
         "dashlets",
         "extkey",
@@ -19,7 +20,8 @@
         "Nihilo",
         "noout",
         "stylesheet",
-        "teemip"
+        "teemip",
+        "Zlist"
     ],
     "xml.codeLens.enabled": true,
     "xml.format.emptyElements": "collapse",
