@@ -412,10 +412,10 @@
                                             <xs:complexType>
                                                 <xs:all>
                                                     <xs:element name="details" minOccurs="0" type="presentationZlist" />
-                                                    <xs:element name="search" minOccurs="0" type="presentationZlist" />
-                                                    <xs:element name="default_search" minOccurs="0" type="presentationZlist" />
-                                                    <xs:element name="list" minOccurs="0" type="presentationZlist" />
-                                                    <xs:element name="summary" minOccurs="0" type="presentationZlist" />
+                                                    <xs:element name="search" minOccurs="0" type="flatZlist" />
+                                                    <xs:element name="default_search" minOccurs="0" type="flatZlist" />
+                                                    <xs:element name="list" minOccurs="0" type="flatZlist" />
+                                                    <xs:element name="summary" minOccurs="0" type="flatZlist" />
                                                     <xs:element name="custom_presentations" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
@@ -1115,6 +1115,14 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:complexType name="alteredFloat">
+        <xs:simpleContent>
+            <xs:extension base="xs:float">
+                <xs:attributeGroup ref="alteredNode" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:simpleType name="argumentTypeEnumeration">
         <xs:restriction base="xs:string">
             <xs:enumeration value="attcode" />
@@ -1164,15 +1172,7 @@
             <xs:element name="item">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="rank" minOccurs="0">
-                            <xs:complexType>
-                                <xs:simpleContent>
-                                    <xs:extension base="xs:float">
-                                        <xs:attributeGroup ref="alteredNode" />
-                                    </xs:extension>
-                                </xs:simpleContent>
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="rank" minOccurs="0" type="alteredFloat" />
                         <xs:element name="items" minOccurs="0" type="presentationItems" />
                     </xs:sequence>
                     <xs:attribute name="id" type="xs:string" use="required" />
@@ -1180,7 +1180,30 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
+        <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
+
+    <xs:complexType name="flatZlist">
+        <xs:all>
+            <xs:element name="items">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="item">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="rank" minOccurs="0" type="alteredFloat" />
+                                </xs:sequence>
+                                <xs:attribute name="id" type="xs:string" use="required" />
+                                <xs:attributeGroup ref="alteredNode" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+        <xs:attributeGroup ref="alteredNode" />
+    </xs:complexType>
+
 
     <xs:simpleType name="profileGroupActionEnumeration">
         <xs:union>
