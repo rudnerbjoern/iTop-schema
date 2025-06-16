@@ -1279,7 +1279,15 @@
                     </xs:complexType>
                 </xs:element>
             </xs:all>
-            <xs:attribute name="version" type="xs:string" fixed="3.2" />
+            <xs:attribute name="version" type="xs:string" fixed="3.2" use="required" />
+            <xs:attribute name="load">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="lax" />
+                        <xs:enumeration value="strict" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
