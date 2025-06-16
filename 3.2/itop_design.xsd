@@ -147,6 +147,13 @@
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
+                                                    <xs:element name="archive" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="enabled" type="xs:boolean" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
                                                     <xs:element name="obsolescence" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -196,11 +203,40 @@
                                         <xs:element name="lifecycle" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:all>
-                                                    <xs:element name="highlight_scale" minOccurs="0" />
+                                                    <xs:element name="highlight_scale" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence maxOccurs="unbounded">
+                                                                <xs:element name="item">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                                                                            <xs:element name="color" minOccurs="0">
+                                                                                <xs:simpleType>
+                                                                                    <xs:restriction base="xs:string">
+                                                                                        <xs:enumeration value="HIGHLIGHT_NONE" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_WARNING" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CRITICAL" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_OK" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_NONE" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_WARNING" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_CRITICAL" />
+                                                                                        <xs:enumeration value="HIGHLIGHT_CLASS_OK" />
+                                                                                    </xs:restriction>
+                                                                                </xs:simpleType>
+                                                                            </xs:element>
+                                                                            <xs:element name="icon" type="xs:string" minOccurs="0" />
+                                                                        </xs:all>
+                                                                        <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
                                                     <xs:element name="stimuli" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
-                                                                <xs:element name="stimulus" />
+                                                                <xs:element name="stimulus" type="StimulusBase" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -252,7 +288,7 @@
                                                                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                                         <xs:element name="transition">
                                                                                             <xs:complexType>
-                                                                                                <xs:sequence>
+                                                                                                <xs:all>
                                                                                                     <xs:element name="target" type="xs:string" minOccurs="0" />
                                                                                                     <xs:element name="flags" minOccurs="0">
                                                                                                         <xs:complexType>
@@ -294,13 +330,14 @@
                                                                                                                                 </xs:complexType>
                                                                                                                             </xs:element>
                                                                                                                         </xs:sequence>
+                                                                                                                        <xs:attribute name="id" type="xs:string" use="optional" />
                                                                                                                     </xs:complexType>
                                                                                                                 </xs:element>
                                                                                                             </xs:sequence>
                                                                                                             <xs:attributeGroup ref="alteredNode" />
                                                                                                         </xs:complexType>
                                                                                                     </xs:element>
-                                                                                                </xs:sequence>
+                                                                                                </xs:all>
                                                                                                 <xs:attribute name="id" type="xs:string" use="required" />
                                                                                                 <xs:attributeGroup ref="alteredNode" />
                                                                                             </xs:complexType>
@@ -345,11 +382,35 @@
                                                             <xs:all>
                                                                 <xs:element name="comment" type="xs:string" minOccurs="0" />
                                                                 <xs:element name="static" type="xs:boolean" minOccurs="0" />
-                                                                <xs:element name="access" type="xs:string" minOccurs="0" />
-                                                                <xs:element name="type" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="access" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="public" />
+                                                                            <xs:enumeration value="protected" />
+                                                                            <xs:enumeration value="private" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="type" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="LifecycleAction" />
+                                                                            <xs:enumeration value="EventListener" />
+                                                                            <xs:enumeration value="StimulusUserAction" />
+                                                                            <xs:enumeration value="Overload-cmdbAbstractObject" />
+                                                                            <xs:enumeration value="Overload-iDisplay" />
+                                                                            <xs:enumeration value="Overload-DBObject" />
+                                                                            <xs:enumeration value="Overload-ExNihilo" />
+                                                                            <xs:enumeration value="Factory" />
+                                                                            <xs:enumeration value="Internal" />
+                                                                            <xs:enumeration value="Helper" />
+                                                                            <xs:enumeration value="Custom" />
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
                                                                 <xs:element name="arguments" minOccurs="0">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>
+                                                                        <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:form_prefill">
                                                                             Use definition from https://www.itophub.io/wiki/page?id=latest:customization:form_prefill
                                                                         </xs:documentation>
                                                                     </xs:annotation>
@@ -358,8 +419,19 @@
                                                                             <xs:element name="argument">
                                                                                 <xs:complexType>
                                                                                     <xs:all>
-                                                                                        <xs:element name="type" type="argumentTypeEnumeration" minOccurs="0" />
-                                                                                        <xs:element name="mandatory" minOccurs="0" />
+                                                                                        <xs:element name="type" minOccurs="0">
+                                                                                            <xs:simpleType>
+                                                                                                <xs:restriction base="xs:string">
+                                                                                                    <xs:enumeration value="attcode" />
+                                                                                                    <xs:enumeration value="class" />
+                                                                                                    <xs:enumeration value="current_stimulus_code" />
+                                                                                                    <xs:enumeration value="int" />
+                                                                                                    <xs:enumeration value="reference" />
+                                                                                                    <xs:enumeration value="string" />
+                                                                                                </xs:restriction>
+                                                                                            </xs:simpleType>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="mandatory" type="xs:boolean" minOccurs="0" />
                                                                                     </xs:all>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
                                                                                     <xs:attributeGroup ref="alteredNode" />
@@ -389,23 +461,33 @@
                                                                             <xs:element name="neighbour">
                                                                                 <xs:complexType>
                                                                                     <xs:all>
-                                                                                        <xs:element name="query_down" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="query_up" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="attribute" type="xs:string" minOccurs="0" />
-                                                                                        <xs:element name="direction" type="xs:string" minOccurs="0" />
+                                                                                        <xs:element name="query_down" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="query_up" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="attribute" type="alteredString" minOccurs="0" />
+                                                                                        <xs:element name="direction" minOccurs="0">
+                                                                                            <xs:simpleType>
+                                                                                                <xs:restriction base="xs:string">
+                                                                                                    <xs:enumeration value="both" />
+                                                                                                    <xs:enumeration value="down" />
+                                                                                                </xs:restriction>
+                                                                                            </xs:simpleType>
+                                                                                        </xs:element>
                                                                                     </xs:all>
                                                                                     <xs:attribute name="id" type="xs:string" use="required" />
                                                                                     <xs:attributeGroup ref="alteredNode" />
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
+                                                <xs:attributeGroup ref="alteredNode" />
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="presentation" minOccurs="0">
@@ -503,6 +585,7 @@
                                                                             </xs:element>
                                                                         </xs:sequence>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -670,16 +753,7 @@
                                                     <xs:element name="imports" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                                <xs:element name="import">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="xs:string">
-                                                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                                                <xs:attributeGroup ref="alteredNode" />
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="import" type="ThemeImportsImportBase" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -730,16 +804,7 @@
                                         <xs:element name="imports" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                    <xs:element name="import">
-                                                        <xs:complexType>
-                                                            <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
-                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
-                                                                </xs:extension>
-                                                            </xs:simpleContent>
-                                                        </xs:complexType>
-                                                    </xs:element>
+                                                    <xs:element name="import" type="ThemeImportsImportBase" />
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -1020,6 +1085,7 @@
                                     <xs:all>
                                         <xs:element name="name" type="xs:string" minOccurs="0" />
                                         <xs:element name="description" type="xs:string" minOccurs="0" />
+                                        <xs:element name="internal" type="xs:boolean" minOccurs="0" />
                                         <xs:element name="sources" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -1115,6 +1181,14 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:complexType name="alteredString">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attributeGroup ref="alteredNode" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:complexType name="alteredFloat">
         <xs:simpleContent>
             <xs:extension base="xs:float">
@@ -1122,17 +1196,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-
-    <xs:simpleType name="argumentTypeEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="attcode" />
-            <xs:enumeration value="class" />
-            <xs:enumeration value="current_stimulus_code" />
-            <xs:enumeration value="int" />
-            <xs:enumeration value="reference" />
-            <xs:enumeration value="string" />
-        </xs:restriction>
-    </xs:simpleType>
 
     <xs:simpleType name="trackingLevelEnumeration">
         <xs:restriction base="xs:string">
@@ -1244,11 +1307,19 @@
     </xs:complexType>
 
     <!-- ########################### Stimuli ########################### -->
-    <xs:complexType name="StimulusUserAction">
+    <xs:complexType name="StimulusBase" abstract="true">
         <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attributeGroup ref="alteredNode" />
+    </xs:complexType>
+    <xs:complexType name="StimulusUserAction">
+        <xs:complexContent>
+            <xs:extension base="StimulusBase" />
+        </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="StimulusInternal">
-        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:complexContent>
+            <xs:extension base="StimulusBase" />
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /Stimuli ########################### -->
 
@@ -1256,7 +1327,6 @@
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
-
 
     <!-- ########################### action parameters ########################### -->
     <xs:simpleType name="string">
@@ -1275,6 +1345,32 @@
         <xs:restriction base="string" />
     </xs:simpleType>
     <!-- ########################### /action parameters ########################### -->
+
+    <!-- ########################### itop_design/branding/themes/theme/imports/import ########################### -->
+    <xs:complexType name="ThemeImportsImportBase" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Used in itop_design/branding/themes/theme/imports/import
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+                <xs:attributeGroup ref="alteredNode" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="variables">
+        <xs:complexContent>
+            <xs:extension base="ThemeImportsImportBase" />
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="utilities">
+        <xs:complexContent>
+            <xs:extension base="ThemeImportsImportBase" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /itop_design/branding/themes/theme/imports/import ########################### -->
 
     <!-- ########################### AttributeBlob ########################### -->
     <xs:complexType name="AttributeBlob">
@@ -1315,6 +1411,7 @@
             <xs:extension base="AttributeDefinition">
                 <xs:all>
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
+                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
@@ -1490,7 +1587,7 @@
                     <xs:element name="sort_type" type="enumSortEnumeration" minOccurs="0" />
                     <xs:element name="values" minOccurs="0">
                         <xs:complexType>
-                            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:sequence maxOccurs="unbounded">
                                 <xs:element name="value">
                                     <xs:complexType>
                                         <xs:all>
@@ -1503,6 +1600,7 @@
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="default_style" type="styleType" minOccurs="0" />
@@ -1816,7 +1914,7 @@
                                 <xs:element name="mapping">
                                     <xs:complexType>
                                         <xs:choice maxOccurs="unbounded">
-                                            <xs:element name="attcode" type="xs:string" />
+                                            <xs:element name="attcode" type="alteredString" />
                                             <xs:element name="metavalues">
                                                 <xs:complexType>
                                                     <xs:sequence maxOccurs="unbounded">
@@ -1829,23 +1927,29 @@
                                                                                 <xs:element name="value">
                                                                                     <xs:complexType>
                                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                                     </xs:complexType>
                                                                                 </xs:element>
                                                                             </xs:sequence>
+                                                                            <xs:attributeGroup ref="alteredNode" />
                                                                         </xs:complexType>
                                                                     </xs:element>
                                                                 </xs:all>
                                                                 <xs:attribute name="id" type="xs:string" use="required" />
+                                                                <xs:attributeGroup ref="alteredNode" />
                                                             </xs:complexType>
                                                         </xs:element>
                                                     </xs:sequence>
+                                                    <xs:attributeGroup ref="alteredNode" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:choice>
                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                        <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
+                            <xs:attributeGroup ref="alteredNode" />
                         </xs:complexType>
                     </xs:element>
                 </xs:all>
@@ -2252,7 +2356,7 @@
                                                         <xs:element name="rank" minOccurs="0" />
                                                         <xs:element name="dashlets" minOccurs="0">
                                                             <xs:complexType>
-                                                                <xs:sequence maxOccurs="unbounded">
+                                                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                     <xs:element name="dashlet" />
                                                                 </xs:sequence>
                                                             </xs:complexType>
@@ -2277,7 +2381,6 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashboardMenuNode ########################### -->
-
 
     <!-- ########################### NewObjectMenuNode ########################### -->
     <xs:complexType name="NewObjectMenuNode">
@@ -2336,25 +2439,6 @@
     </xs:complexType>
     <!-- ########################### /TemplateMenuNode ########################### -->
 
-    <!-- ########################### WebPageMenuNode ########################### -->
-    <xs:complexType name="WebPageMenuNode">
-        <xs:complexContent>
-            <xs:extension base="MenuBase">
-                <xs:all>
-                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
-                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
-                    <xs:element name="parent" type="xs:string" minOccurs="0" />
-                    <xs:element name="url" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
-                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
-                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
-                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
-                </xs:all>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <!-- ########################### /WebPageMenuNode ########################### -->
-
     <!-- ########################### OQLMenuNode ########################### -->
     <xs:complexType name="OQLMenuNode">
         <xs:complexContent>
@@ -2376,6 +2460,43 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /OQLMenuNode ########################### -->
+
+    <!-- ########################### WebPageMenuNode ########################### -->
+    <xs:complexType name="WebPageMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" />
+                    <xs:element name="url" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
+                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /WebPageMenuNode ########################### -->
+
+    <!-- ########################### ShortcutContainerMenuNode ########################### -->
+    <xs:complexType name="ShortcutContainerMenuNode">
+        <xs:complexContent>
+            <xs:extension base="MenuBase">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="enable_admin_only" type="xs:byte" minOccurs="0" />
+                    <xs:element name="parent" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="enable_action" type="MenuEnableAction" minOccurs="0" />
+                    <xs:element name="enable_permission" type="MenuEnablePermission" minOccurs="0" default="UR_ALLOWED_YES" />
+                    <xs:element name="enable_stimulus" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /ShortcutContainerMenuNode ########################### -->
 
     <!-- ########################### DashletBadge ########################### -->
     <xs:complexType name="DashletBadge">
