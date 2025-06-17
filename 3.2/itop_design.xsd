@@ -1146,7 +1146,6 @@
                                                         <xs:complexType>
                                                             <xs:choice maxOccurs="unbounded">
                                                                 <xs:element name="id" type="xs:string" />
-                                                                <xs:any processContents="lax" />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
                                                             <xs:attributeGroup ref="alteredNode" />
