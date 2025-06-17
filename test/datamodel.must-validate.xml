@@ -19,7 +19,8 @@
         <class id="TestClass1">
             <parent>ParentClass</parent>
             <php_parent>
-                <name>PhpParent</name>
+                <name>namespace\MyPhpClass</name>
+                <file>file_path_in_the_extension/file.php</file>
             </php_parent>
             <properties>
                 <is_link>1</is_link>

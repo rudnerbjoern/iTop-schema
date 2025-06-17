@@ -17,9 +17,10 @@
                                         <xs:element name="parent" type="xs:string" minOccurs="0" />
                                         <xs:element name="php_parent" minOccurs="0">
                                             <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="name" type="xs:string" />
-                                                </xs:sequence>
+                                                <xs:all>
+                                                    <xs:element name="name" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="file" type="xs:string" minOccurs="0" />
+                                                </xs:all>
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="properties" minOccurs="0">
