@@ -27,10 +27,11 @@ jobs:
 
     - name: Validate datamodel.must-validate.xml against itop_design.xsd
       run: |
-        python -c "
+        python -c '
         import lxml.etree as ET
-        schema = ET.XMLSchema(file='3.2/itop_design.xsd')
+        schema = ET.XMLSchema(file="3.2/itop_design.xsd")
         parser = ET.XMLParser(schema=schema)
-        with open('test/datamodel.must-validate.xml', 'rb') as f:
+        with open("test/datamodel.must-validate.xml", "rb") as f:
             ET.parse(f, parser)
-        print('XML is valid.')"
+        print("XML is valid.")
+        '
