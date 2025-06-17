@@ -1283,7 +1283,22 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- #######################################################################
+         ########################### alterable types ###########################
+         ####################################################################### -->
+
     <xs:attributeGroup name="alteredNode">
+        <xs:annotation>
+            <xs:documentation>
+                Metadata attributes for tracking modifications to XML nodes within iTop datamodel delta files.
+                - _delta: Controls how the node should be merged or modified during import.
+                - _rename_from: If present, indicates the node was renamed from another identifier.
+                - _created_in: Marks the module or context where the node was initially created.
+                - _revision_id: Internal revision tracking number.
+                - _altered_in: Identifies the module or source responsible for the change.
+                - _alteration: Describes the type of change (e.g., added, removed, forced).
+            </xs:documentation>
+        </xs:annotation>
         <xs:attribute name="_delta" use="optional" default="merge">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
@@ -1318,6 +1333,13 @@
     </xs:attributeGroup>
 
     <xs:complexType name="alteredString">
+        <xs:annotation>
+            <xs:documentation>
+                A string value with metadata for tracking modifications in delta XML files.
+                This type extends a plain string (xs:string) with attributes from the alteredNode group,
+                allowing to describe how and when the string was changed, created, renamed, or deleted.
+            </xs:documentation>
+        </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
                 <xs:attributeGroup ref="alteredNode" />
@@ -1326,38 +1348,19 @@
     </xs:complexType>
 
     <xs:complexType name="alteredFloat">
+        <xs:annotation>
+            <xs:documentation>
+                A float value extended with metadata for tracking changes in delta XML files.
+                This type allows numeric content (xs:float) to carry alteration attributes from the alteredNode group,
+                indicating how the value was introduced, modified, or removed in the datamodel.
+            </xs:documentation>
+        </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:float">
                 <xs:attributeGroup ref="alteredNode" />
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-
-    <xs:simpleType name="trackingLevelEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="none" />
-            <xs:enumeration value="all" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="displayStyleEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="list" />
-            <xs:enumeration value="select" />
-            <xs:enumeration value="radio" />
-            <xs:enumeration value="radio_horizontal" />
-            <xs:enumeration value="radio_vertical" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="onTargetDeleteEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="DEL_MANUAL" />
-            <xs:enumeration value="DEL_AUTO" />
-            <xs:enumeration value="DEL_MOVEUP" />
-            <xs:enumeration value="DEL_SILENT" />
-        </xs:restriction>
-    </xs:simpleType>
 
     <xs:complexType name="presentationZlist">
         <xs:all>
@@ -1403,7 +1406,6 @@
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
 
-
     <xs:simpleType name="profileGroupActionEnumeration">
         <xs:union>
             <xs:simpleType>
@@ -1424,16 +1426,6 @@
         </xs:union>
     </xs:simpleType>
 
-    <xs:complexType name="dependenciesType">
-        <xs:sequence maxOccurs="unbounded">
-            <xs:element name="attribute">
-                <xs:complexType>
-                    <xs:attribute name="id" type="xs:string" use="required" />
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:complexType name="styleType">
         <xs:sequence maxOccurs="unbounded">
             <xs:element name="main_color" type="xs:string" />
@@ -1444,46 +1436,186 @@
 
     <!-- ########################### Stimuli ########################### -->
     <xs:complexType name="StimulusBase" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Abstract base type for state transition stimuli in iTop lifecycle.
+                Defines the common structure: a required 'id' and metadata via alteredNode.
+            </xs:documentation>
+        </xs:annotation>
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
+
     <xs:complexType name="StimulusUserAction">
+        <xs:annotation>
+            <xs:documentation>
+                A stimulus representing an action explicitly triggered by the end-user.
+                It is shown in the Actions menu when the object is in a compatible state.
+            </xs:documentation>
+        </xs:annotation>
         <xs:complexContent>
             <xs:extension base="StimulusBase" />
         </xs:complexContent>
     </xs:complexType>
+
     <xs:complexType name="StimulusInternal">
+        <xs:annotation>
+            <xs:documentation>
+                A stimulus that is triggered programmatically by the application,
+                not visible or directly accessible to the end-user.
+            </xs:documentation>
+        </xs:annotation>
         <xs:complexContent>
             <xs:extension base="StimulusBase" />
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /Stimuli ########################### -->
 
+    <!-- ########################### action parameters ########################### -->
+    <xs:simpleType name="string">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for xs:string.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+
+    <xs:simpleType name="int">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for xs:integer.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer" />
+    </xs:simpleType>
+
+    <xs:simpleType name="float">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for xs:float.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:float" />
+    </xs:simpleType>
+
+    <xs:simpleType name="reference">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for a string representing an object reference.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string" />
+    </xs:simpleType>
+
+    <xs:simpleType name="attcode">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for a string representing an attribute code.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string" />
+    </xs:simpleType>
+
+    <xs:simpleType name="variables">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for a string containing variable placeholders or expressions.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string" />
+    </xs:simpleType>
+    <!-- ########################### /action parameters ########################### -->
+
+    <!-- ##################################################################
+         ########################### Attributes ###########################
+         ################################################################## -->
+
     <xs:complexType name="AttributeDefinition">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all attribute definitions in the iTop datamodel.
+                Includes a required 'id' and alteration metadata from the alteredNode group.
+            </xs:documentation>
+        </xs:annotation>
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
 
-    <!-- ########################### action parameters ########################### -->
-    <xs:simpleType name="string">
-        <xs:restriction base="xs:string" />
+    <xs:complexType name="dependenciesType">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a list of attribute dependencies within the iTop datamodel.
+                Each dependency refers to an attribute by its 'id'.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="attribute">
+                <xs:complexType>
+                    <xs:attribute name="id" type="xs:string" use="required" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="trackingLevelEnumeration">
+        <xs:annotation>
+            <xs:documentation>
+                Adjusts the recording of changes (history tab) in iTop.
+                Possible values: 'none' (no history), 'all' (full history). Defaults to 'all'.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="none" />
+            <xs:enumeration value="all" />
+        </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="int">
-        <xs:restriction base="xs:integer" />
+
+    <xs:simpleType name="enumSortEnumeration">
+        <xs:annotation>
+            <xs:documentation>
+                Determines how enumeration values are sorted in the user interface.
+                Allowed values: 'code' (sort by internal value), 'label' (sort by display label), 'rank' (custom order).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="code" />
+            <xs:enumeration value="label" />
+            <xs:enumeration value="rank" />
+        </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="float">
-        <xs:restriction base="xs:float" />
+
+    <xs:simpleType name="displayStyleEnumeration">
+        <xs:annotation>
+            <xs:documentation>
+                Defines how a field with multiple choices is rendered in the iTop user interface.
+                Allowed values: 'list', 'select' (same as 'list'), 'radio_horizontal', 'radio_vertical', or 'radio' (same as 'radio_vertical').
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="list" />
+            <xs:enumeration value="select" />
+            <xs:enumeration value="radio" />
+            <xs:enumeration value="radio_horizontal" />
+            <xs:enumeration value="radio_vertical" />
+        </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="reference">
-        <xs:restriction base="string" />
+
+    <xs:simpleType name="onTargetDeleteEnumeration">
+        <xs:annotation>
+            <xs:documentation>
+                Defines how the deletion of the target object impacts the current object.
+                Allowed values: 'DEL_MANUAL' (manual cleanup), 'DEL_AUTO' (automatic deletion).
+                Other values like 'DEL_MOVEUP' and 'DEL_SILENT' are reserved for internal use.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DEL_MANUAL" />
+            <xs:enumeration value="DEL_AUTO" />
+            <xs:enumeration value="DEL_MOVEUP" />
+            <xs:enumeration value="DEL_SILENT" />
+        </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="attcode">
-        <xs:restriction base="string" />
-    </xs:simpleType>
-    <xs:simpleType name="variables">
-        <xs:restriction base="string" />
-    </xs:simpleType>
-    <!-- ########################### /action parameters ########################### -->
 
     <!-- ########################### AttributeBlob ########################### -->
     <xs:complexType name="AttributeBlob">
@@ -1728,14 +1860,6 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-
-    <xs:simpleType name="enumSortEnumeration">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="code" />
-            <xs:enumeration value="label" />
-            <xs:enumeration value="rank" />
-        </xs:restriction>
-    </xs:simpleType>
     <!-- ########################### /AttributeEnum ########################### -->
 
     <!-- ########################### AttributeEnumSet ########################### -->
@@ -1811,6 +1935,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+
     <!-- ########################### /AttributeExternalKey ########################### -->
 
     <!-- ########################### AttributeHierarchicalKey ########################### -->
@@ -2279,7 +2404,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    -->
+       -->
     <!-- ########################### /AttributeApplicationLanguage ########################### -->
 
     <!-- ########################### AttributeSubItem ########################### -->
@@ -2406,6 +2531,10 @@
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
+
+    <!-- ############################################################
+         ########################### Menu ###########################
+         ############################################################ -->
 
     <xs:complexType name="MenuBase">
         <xs:attribute name="id" type="xs:string" use="required" />
@@ -2618,6 +2747,10 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /ShortcutContainerMenuNode ########################### -->
+
+    <!-- ###############################################################
+         ########################### Dashlet ###########################
+         ############################################################### -->
 
     <!-- ########################### DashletBadge ########################### -->
     <xs:complexType name="DashletBadge">
