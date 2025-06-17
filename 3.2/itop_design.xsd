@@ -1555,6 +1555,24 @@
         <xs:restriction base="xs:integer" />
     </xs:simpleType>
 
+    <xs:simpleType name="integer">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for xs:integer.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer" />
+    </xs:simpleType>
+
+    <xs:simpleType name="boolean">
+        <xs:annotation>
+            <xs:documentation>
+                iTop-specific alias for xs:boolean.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
+
     <xs:simpleType name="float">
         <xs:annotation>
             <xs:documentation>
@@ -1618,6 +1636,7 @@
             <xs:element name="attribute">
                 <xs:complexType>
                     <xs:attribute name="id" type="xs:string" use="required" />
+                    <xs:attributeGroup ref="alteredNode" />
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
@@ -1807,8 +1826,8 @@
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
                     <xs:element name="default_value" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
-                    <xs:element name="digits" type="xs:byte" minOccurs="0" />
-                    <xs:element name="decimals" type="xs:byte" minOccurs="0" />
+                    <xs:element name="digits" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="decimals" type="xs:unsignedByte" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
@@ -1950,7 +1969,7 @@
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
                     <xs:element name="default_value" type="xs:string" minOccurs="0" />
-                    <xs:element name="max_items" type="xs:byte" minOccurs="0" />
+                    <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
@@ -1985,8 +2004,8 @@
                     <xs:element name="target_class" type="xs:string" minOccurs="0" />
                     <xs:element name="filter" type="xs:string" minOccurs="0" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
-                    <xs:element name="max_combo_length" type="xs:integer" minOccurs="0" />
-                    <xs:element name="min_autocomplete_chars" type="xs:integer" minOccurs="0" />
+                    <xs:element name="max_combo_length" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="min_autocomplete_chars" type="xs:unsignedByte" minOccurs="0" />
                     <xs:element name="allow_target_creation" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
@@ -2013,8 +2032,8 @@
                     <xs:element name="on_target_delete" type="onTargetDeleteEnumeration" minOccurs="0" />
                     <xs:element name="filter" type="xs:string" minOccurs="0" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
-                    <xs:element name="max_combo_length" type="xs:integer" minOccurs="0" />
-                    <xs:element name="min_autocomplete_chars" type="xs:integer" minOccurs="0" />
+                    <xs:element name="max_combo_length" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="min_autocomplete_chars" type="xs:unsignedByte" minOccurs="0" />
                     <xs:element name="allow_target_creation" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
@@ -2033,7 +2052,11 @@
                     <xs:element name="default_value" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
-                    <xs:element name="width" type="xs:string" minOccurs="0" />
+                    <xs:element name="width" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>This tag has no effect.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element name="height" type="xs:string" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
@@ -2162,21 +2185,28 @@
     <xs:complexType name="AttributeLinkedSetIndirect">
         <xs:complexContent>
             <xs:extension base="AttributeDefinition">
-                <xs:choice maxOccurs="unbounded">
-                    <xs:element name="linked_class" type="xs:string" maxOccurs="1" />
-                    <xs:element name="ext_key_to_me" type="xs:string" maxOccurs="1" />
-                    <xs:element name="ext_key_to_remote" type="xs:string" maxOccurs="1" />
-                    <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" maxOccurs="1" />
-                    <xs:element name="edit_when" type="editWhenEnumeration" maxOccurs="1" />
-                    <xs:element name="duplicates" type="xs:boolean" maxOccurs="1" default="false" />
-                    <xs:element name="count_min" type="xs:integer" maxOccurs="1" />
-                    <xs:element name="count_max" type="xs:integer" maxOccurs="1" />
-                    <xs:element name="display_style" type="xs:string" maxOccurs="1" />
-                    <xs:element name="with_php_constraint" type="xs:boolean" maxOccurs="1" />
-                    <xs:element name="with_php_computation" type="xs:boolean" maxOccurs="1" />
-                    <xs:element name="filter" type="xs:string" maxOccurs="1" />
-                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" maxOccurs="1" />
-                </xs:choice>
+                <xs:all>
+                    <xs:element name="linked_class" type="xs:string" minOccurs="0" />
+                    <xs:element name="ext_key_to_me" type="xs:string" minOccurs="0" />
+                    <xs:element name="ext_key_to_remote" type="xs:string" minOccurs="0" />
+                    <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" minOccurs="0" />
+                    <xs:element name="edit_when" type="editWhenEnumeration" minOccurs="0" />
+                    <xs:element name="duplicates" type="xs:boolean" minOccurs="0" default="false" />
+                    <xs:element name="count_min" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="count_max" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="display_style" minOccurs="0" default="tab">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="tab" />
+                                <xs:enumeration value="property" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="with_php_constraint" type="xs:boolean" minOccurs="0" />
+                    <xs:element name="with_php_computation" type="xs:boolean" minOccurs="0" />
+                    <xs:element name="filter" type="xs:string" minOccurs="0" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
+                </xs:all>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -2194,11 +2224,11 @@
                             <xs:sequence minOccurs="1" maxOccurs="unbounded">
                                 <xs:element name="value">
                                     <xs:complexType>
-                                        <xs:choice maxOccurs="unbounded">
+                                        <xs:all>
                                             <xs:element name="code" type="xs:string" minOccurs="0" />
                                             <xs:element name="rank" type="xs:string" minOccurs="0" />
-                                            <xs:element name="style" type="styleType" />
-                                        </xs:choice>
+                                            <xs:element name="style" type="styleType" minOccurs="0" />
+                                        </xs:all>
                                         <xs:attribute name="id" type="xs:string" use="required" />
                                         <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
@@ -2216,9 +2246,9 @@
                             <xs:sequence>
                                 <xs:element name="mapping">
                                     <xs:complexType>
-                                        <xs:choice maxOccurs="unbounded">
-                                            <xs:element name="attcode" type="alteredString" />
-                                            <xs:element name="metavalues">
+                                        <xs:all>
+                                            <xs:element name="attcode" type="alteredString" minOccurs="0" />
+                                            <xs:element name="metavalues" minOccurs="0">
                                                 <xs:complexType>
                                                     <xs:sequence maxOccurs="unbounded">
                                                         <xs:element name="metavalue">
@@ -2246,7 +2276,7 @@
                                                     <xs:attributeGroup ref="alteredNode" />
                                                 </xs:complexType>
                                             </xs:element>
-                                        </xs:choice>
+                                        </xs:all>
                                         <xs:attribute name="id" type="xs:string" use="required" />
                                         <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
@@ -2380,14 +2410,14 @@
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
-                    <xs:element name="goal" type="xs:string" minOccurs="0" />
-                    <xs:element name="working_time" type="xs:string" minOccurs="0" />
+                    <xs:element name="goal" type="xs:string" minOccurs="0" default="DefaultMetricComputer" />
+                    <xs:element name="working_time" type="xs:string" minOccurs="0" default="DefaultWorkingTimeComputer" />
                     <xs:element name="thresholds" minOccurs="0">
                         <xs:complexType>
                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                 <xs:element name="threshold">
                                     <xs:complexType>
-                                        <xs:choice maxOccurs="unbounded">
+                                        <xs:all>
                                             <xs:element name="actions" minOccurs="0">
                                                 <xs:complexType>
                                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -2398,15 +2428,7 @@
                                                                     <xs:element name="params" minOccurs="0">
                                                                         <xs:complexType>
                                                                             <xs:sequence maxOccurs="unbounded">
-                                                                                <xs:element name="param">
-                                                                                    <xs:complexType>
-                                                                                        <xs:simpleContent>
-                                                                                            <xs:extension base="xs:string">
-                                                                                                <xs:anyAttribute processContents="lax" />
-                                                                                            </xs:extension>
-                                                                                        </xs:simpleContent>
-                                                                                    </xs:complexType>
-                                                                                </xs:element>
+                                                                                <xs:element name="param" />
                                                                             </xs:sequence>
                                                                         </xs:complexType>
                                                                     </xs:element>
@@ -2416,16 +2438,16 @@
                                                     </xs:sequence>
                                                 </xs:complexType>
                                             </xs:element>
-                                            <xs:element name="highlight">
+                                            <xs:element name="highlight" minOccurs="0">
                                                 <xs:complexType>
-                                                    <xs:choice maxOccurs="unbounded">
+                                                    <xs:all>
                                                         <xs:element name="code" type="xs:string" minOccurs="0" />
                                                         <xs:element name="persistent" type="xs:boolean" minOccurs="0" />
-                                                    </xs:choice>
+                                                    </xs:all>
                                                 </xs:complexType>
                                             </xs:element>
-                                        </xs:choice>
-                                        <xs:attribute name="id" type="xs:integer" use="required" />
+                                        </xs:all>
+                                        <xs:attribute name="id" type="xs:unsignedByte" use="required" />
                                         <xs:attributeGroup ref="alteredNode" />
                                     </xs:complexType>
                                 </xs:element>
@@ -2478,7 +2500,28 @@
             <xs:extension base="AttributeDefinition">
                 <xs:all>
                     <xs:element name="target_attcode" type="xs:string" minOccurs="0" />
-                    <xs:element name="item_code" type="xs:string" minOccurs="0" />
+                    <xs:element name="item_code" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:union>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="timespent" />
+                                        <xs:enumeration value="started" />
+                                        <xs:enumeration value="laststart" />
+                                        <xs:enumeration value="stopped" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="(\d+)_deadline" />
+                                        <xs:pattern value="(\d+)_passed" />
+                                        <xs:pattern value="(\d+)_triggered" />
+                                        <xs:pattern value="(\d+)_overrun" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:union>
+                        </xs:simpleType>
+                    </xs:element>
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
                 </xs:all>
             </xs:extension>
@@ -2493,8 +2536,8 @@
                 <xs:all>
                     <xs:element name="sql" type="xs:string" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
-                    <xs:element name="max_items" type="xs:byte" minOccurs="0" default="12" />
-                    <xs:element name="tag_code_max_len" type="xs:byte" minOccurs="0" default="20" />
+                    <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0" default="12" />
+                    <xs:element name="tag_code_max_len" type="xs:unsignedByte" minOccurs="0" default="20" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                 </xs:all>
             </xs:extension>
