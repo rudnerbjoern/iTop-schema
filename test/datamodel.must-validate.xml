@@ -441,7 +441,7 @@
             </profile>
         </profiles>
     </user_rights>
-    <!-- ***************** Files  ***************** -->
+    <!-- ***************** Files ***************** -->
     <files>
         <file id="cron_c8b5" xsi:type="File" _delta="define">
             <name>cron.png</name>
@@ -452,8 +452,22 @@
             <data>iVBORw0KGgoAAAANSUhEUgAAAL...</data>
         </file>
     </files>
-    <!-- ***************** Dictionaries  ***************** -->
-    <!-- ***************** Branding  ***************** -->
+    <!-- ***************** Dictionaries ***************** -->
+    <dictionaries>
+        <dictionary id="EN US" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+        <dictionary id="DE DE" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+    </dictionaries>
+    <!-- ***************** Branding ***************** -->
     <branding>
         <login_favicon>
             <fileref ref="cron_c8b5" />
@@ -521,20 +535,73 @@
             </stylesheets>
         </themes_common>
     </branding>
-    <!-- ***************** Constants  ***************** -->
+    <!-- ***************** Constants ***************** -->
     <constants />
-    <!-- ***************** Portals  ***************** -->
+    <!-- ***************** Portals ***************** -->
     <portals />
-    <!-- ***************** Module Parameters  ***************** -->
-    <module_parameters />
-    <!-- ***************** Module Designs  ***************** -->
+    <!-- ***************** Module Parameters ***************** -->
+    <module_parameters>
+        <parameters id="itop-object-copier" _delta="define">
+            <rules>
+                <rule id="0" type="hash">
+                    <source_scope>SELECT UserRequest WHERE status IN ("assigned", "pending")</source_scope>
+                    <allowed_profiles>Administrator,Support Agent</allowed_profiles>
+                    <menu_label>Issue a change ticket...</menu_label>
+                    <form_label>Issue a change from request %1$s. Please review the description before create the change ticket. After creation of the change ticket, the request ticket will be automatically updated. </form_label>
+                    <report_label>Issued from the request %1$s. The request has been updated.</report_label>
+                    <dest_class>Change</dest_class>
+                    <preset type="array">
+                        <action id="0"> clone(contacts_list,functionalcis_list,org_id,title,caller_id)</action>
+                        <action id="1">set(description,Original description:\n$this->description$)</action>
+                    </preset>
+                    <retrofit type="array">
+                        <action id="0">copy(id, parent_change_id)'</action>
+                        <action id="1">set(private_log,Issued change $this->ref$)'</action>
+                    </retrofit>
+                </rule>
+            </rules>
+        </parameters>
+    </module_parameters>
+    <!-- ***************** Module Designs ***************** -->
     <module_designs />
-    <!-- ***************** Snippets  ***************** -->
-    <snippets />
-    <!-- ***************** Meta  ***************** -->
+    <!-- ***************** Snippets ***************** -->
+    <snippets>
+        <snippet id="snippet-1">
+            <placement>module</placement>
+            <module>module</module>
+            <rank>10</rank>
+            <content>content</content>
+        </snippet>
+        <snippet id="snippet-2">
+            <placement>core</placement>
+            <rank>20</rank>
+            <content>content</content>
+        </snippet>
+    </snippets>
+    <!-- ***************** Meta ***************** -->
     <meta />
-    <!-- ***************** Events  ***************** -->
-    <events />
-    <!-- ***************** Event Listeners  ***************** -->
+    <!-- ***************** Events ***************** -->
+    <events>
+        <event id="event-1" _delta="define">
+            <description>description</description>
+            <sources>
+                <source id="source-1">cmdbAbstractObject</source>
+                <source id="source-2">source2</source>
+            </sources>
+            <replaces>DBObject::OnInsert</replaces>
+            <event_data>
+                <event_datum id="event-datum-1">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+                <event_datum id="event-datum-2">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+            </event_data>
+        </event>
+        <event id="event-2" _delta="delete" />
+    </events>
+    <!-- ***************** Event Listeners ***************** -->
     <event_listeners />
 </itop_design>
