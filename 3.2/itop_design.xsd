@@ -1279,7 +1279,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:all>
-            <xs:attribute name="version" type="xs:string" fixed="3.2" />
+            <xs:attribute name="version" type="xs:token" use="required" fixed="3.2" />
         </xs:complexType>
     </xs:element>
 
