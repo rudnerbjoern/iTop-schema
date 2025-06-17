@@ -923,7 +923,7 @@
                                         <xs:element name="properties" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:choice maxOccurs="unbounded">
-                                                    <xs:any />
+                                                    <xs:any processContents="lax" />
                                                 </xs:choice>
                                             </xs:complexType>
                                         </xs:element>
@@ -1146,17 +1146,14 @@
                                                         <xs:complexType>
                                                             <xs:choice maxOccurs="unbounded">
                                                                 <xs:element name="id" type="xs:string" />
-                                                                <xs:any />
                                                             </xs:choice>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
                                                             <xs:attributeGroup ref="alteredNode" />
-                                                            <xs:anyAttribute />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-
                                     </xs:all>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attributeGroup ref="alteredNode" />
@@ -1209,7 +1206,7 @@
                             <xs:element name="presentation" minOccurs="0">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
-                                        <xs:any />
+                                        <xs:any processContents="lax" />
                                     </xs:choice>
                                 </xs:complexType>
                             </xs:element>
@@ -1295,7 +1292,7 @@
                             <xs:element name="listener" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:choice maxOccurs="unbounded">
-                                        <xs:any />
+                                        <xs:any processContents="lax" />
                                     </xs:choice>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attributeGroup ref="alteredNode" />
