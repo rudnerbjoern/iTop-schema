@@ -98,7 +98,7 @@ Here is a minimal example:
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <!-- Include the official base schema -->
-  <xs:include schemaLocation="https://raw.githubusercontent.com/rudnerbjoern/iTop-schema/refs/heads/main/3.2/itop_design.xsd"/>
+  <xs:include schemaLocation="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd"/>
 
   <!-- Add your custom type definition -->
   <xs:complexType name="AttributeMyOwnDefinition">
