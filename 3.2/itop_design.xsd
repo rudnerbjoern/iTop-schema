@@ -354,7 +354,7 @@
                                                     <xs:element name="event_listener">
                                                         <xs:complexType>
                                                             <xs:all>
-                                                                <xs:element name="event" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="event" type="eventEnumeration" minOccurs="0" />
                                                                 <xs:element name="callback" type="xs:string" minOccurs="0" />
                                                                 <xs:element name="code" type="xs:string" minOccurs="0" />
                                                                 <xs:element name="rank" type="xs:string" minOccurs="0" />
@@ -1288,12 +1288,22 @@
                 </xs:element>
                 <xs:element name="event_listeners" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="listener" minOccurs="0" maxOccurs="unbounded">
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="event_listener">
                                 <xs:complexType>
-                                    <xs:choice maxOccurs="unbounded">
-                                        <xs:any processContents="lax" />
-                                    </xs:choice>
+                                    <xs:all>
+                                        <xs:element name="event" type="eventEnumeration" minOccurs="0" />
+                                        <xs:element name="filters" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence maxOccurs="unbounded">
+                                                    <xs:element name="filter" type="alteredString" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="rank" type="alteredFloat" minOccurs="0" />
+                                        <xs:element name="callback" type="xs:string" minOccurs="0" />
+                                        <xs:element name="code" type="xs:string" minOccurs="0" />
+                                    </xs:all>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
@@ -1464,6 +1474,30 @@
             <xs:element name="decoration_classes" type="xs:string" />
         </xs:sequence>
     </xs:complexType>
+
+    <xs:simpleType name="eventEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EVENT_DB_COMPUTE_VALUES" />
+            <xs:enumeration value="EVENT_DB_BEFORE_WRITE" />
+            <xs:enumeration value="EVENT_DB_ABOUT_TO_DELETE" />
+            <xs:enumeration value="EVENT_DB_CHECK_TO_WRITE" />
+            <xs:enumeration value="EVENT_DB_CHECK_TO_DELETE" />
+            <xs:enumeration value="EVENT_DB_AFTER_WRITE" />
+            <xs:enumeration value="EVENT_DB_AFTER_DELETE" />
+            <xs:enumeration value="EVENT_DB_LINKS_CHANGED" />
+            <xs:enumeration value="EVENT_DB_ARCHIVE" />
+            <xs:enumeration value="EVENT_DB_UNARCHIVE" />
+            <xs:enumeration value="EVENT_DB_SET_INITIAL_ATTRIBUTES_FLAGS" />
+            <xs:enumeration value="EVENT_DB_SET_ATTRIBUTES_FLAGS" />
+            <xs:enumeration value="EVENT_DB_OBJECT_RELOAD" />
+            <xs:enumeration value="EVENT_ENUM_TRANSITIONS" />
+            <xs:enumeration value="EVENT_DISPLAY_OBJECT_DETAILS" />
+            <xs:enumeration value="EVENT_LOGIN" />
+            <xs:enumeration value="EVENT_ADD_ATTACHMENT_TO_OBJECT" />
+            <xs:enumeration value="EVENT_REMOVE_ATTACHMENT_FROM_OBJECT" />
+            <xs:enumeration value="EVENT_DOWNLOAD_DOCUMENT" />
+        </xs:restriction>
+    </xs:simpleType>
 
     <!-- ########################### Stimuli ########################### -->
     <xs:complexType name="StimulusBase" abstract="true">
