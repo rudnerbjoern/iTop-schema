@@ -266,6 +266,9 @@
                                         </item>
                                         <item id="5" _delta="define_if_not_exists">
                                             <rank>30</rank>
+                                            <items>
+                                                <item id="20" />
+                                            </items>
                                         </item>
                                     </items>
                                 </item>
@@ -631,6 +634,69 @@
                     <with_php_computation>true</with_php_computation>
                     <filter>filter</filter>
                 </field>
+                <field id="meta1" xsi:type="AttributeMetaEnum">
+                    <sql>meta1</sql>
+                    <sort_type>label</sort_type>
+                    <values>
+                        <value id="v1">
+                            <code>value 1</code>
+                            <rank>10</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                        <value id="v2" _delta="delete_if_exists" />
+                    </values>
+                    <default_value>v1</default_value>
+                    <default_style>
+                        <main_color>#4E79A5</main_color>
+                        <complementary_color>#FFFFFF</complementary_color>
+                        <decoration_classes>fas fa-user-tag</decoration_classes>
+                    </default_style>
+                    <mappings>
+                        <mapping id="1" _delta="must_exist">
+                            <attcode>attcode</attcode>
+                            <metavalues>
+                                <metavalue id="meta1">
+                                    <values>
+                                        <value id="item1" _delta="define" />
+                                        <value id="item2" />
+                                    </values>
+                                </metavalue>
+                                <metavalue id="meta1" _delta="delete" />
+                            </metavalues>
+                        </mapping>
+                    </mappings>
+                </field>
+                <field id="obj1" xsi:type="AttributeObjectKey">
+                    <sql>obj1</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <class_attcode>attcode</class_attcode>
+                </field>
+                <field id="p1" xsi:type="AttributePercentage">
+                    <sql>p1</sql>
+                    <default_value>10</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="phone1" xsi:type="AttributePhoneNumber">
+                    <sql>phone1</sql>
+                    <default_value>+49</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <validation_pattern>[0-9.\-\ \+\(\)]+</validation_pattern>
+                </field>
+                <field id="r1" xsi:type="AttributeRedundancySettings">
+                    <sql>r1</sql>
+                    <relation_code>impacts</relation_code>
+                    <from_class>class1</from_class>
+                    <neighbour_id>id</neighbour_id>
+                    <enabled>true</enabled>
+                    <enabled_mode>fixed</enabled_mode>
+                    <min_up>10</min_up>
+                    <min_up_type>percent</min_up_type>
+                    <min_up_mode>user</min_up_mode>
+                </field>
                 <field id="watch1" xsi:type="AttributeStopWatch">
                     <states>
                         <state id="state1" />
@@ -679,6 +745,18 @@
                         </threshold>
                     </thresholds>
                 </field>
+                <field id="string1" xsi:type="AttributeString" _delta="define">
+                    <sql>string1</sql>
+                    <default_value>nothing</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </dependencies>
+                </field>
                 <field id="item3" xsi:type="AttributeSubItem">
                     <target_attcode>watch1</target_attcode>
                     <item_code>100_passed</item_code>
@@ -698,6 +776,17 @@
                     <is_null_allowed>false</is_null_allowed>
                     <max_items>5</max_items>
                     <tag_code_max_len>255</tag_code_max_len>
+                </field>
+                <field id="text" xsi:type="AttributeText">
+                    <sql>text</sql>
+                    <width>800px</width>
+                    <height>200px</height>
+                    <format>text</format>
+                </field>
+                <field id="text2" xsi:type="AttributeLongText">
+                    <sql>text2</sql>
+                    <width>800px</width>
+                    <height>200px</height>
                 </field>
                 <field id="url" xsi:type="AttributeURL">
                     <sql>url</sql>
@@ -743,6 +832,61 @@
                 </cells>
             </definition>
             <definition_file>filename</definition_file>
+        </menu>
+        <menu id="3" xsi:type="NewObjectMenuNode" _delta="define">
+            <rank>123.45</rank>
+            <enable_admin_only>1</enable_admin_only>
+            <parent>parent</parent>
+            <class>class1</class>
+            <enable_class>class2</enable_class>
+            <enable_action>UR_ACTION_BULK_READ</enable_action>
+            <enable_permission>UR_ALLOWED_YES</enable_permission>
+        </menu>
+        <menu id="4" xsi:type="SearchMenuNode">
+            <rank>12.3</rank>
+            <enable_admin_only>0</enable_admin_only>
+            <parent>1</parent>
+            <class>class3</class>
+            <enable_class>class4</enable_class>
+            <enable_action>UR_ACTION_DELETE</enable_action>
+        </menu>
+        <menu id="5" xsi:type="TemplateMenuNode">
+            <rank>1.2</rank>
+            <parent>1</parent>
+            <template_file>filename</template_file>
+            <enable_class>class3</enable_class>
+            <enable_action>UR_ACTION_BULK_MODIFY</enable_action>
+        </menu>
+        <menu id="6" xsi:type="OQLMenuNode">
+            <rank>6.2</rank>
+            <parent>1</parent>
+            <auto_reload>none</auto_reload>
+            <oql>SELECT</oql>
+            <do_search>1</do_search>
+            <search_form_open>1</search_form_open>
+            <enable_class>class2</enable_class>
+            <enable_admin_only>0</enable_admin_only>
+        </menu>
+        <menu id="6.3" xsi:type="OQLMenuNode">
+            <rank>6.3</rank>
+            <parent>1</parent>
+            <auto_reload>120</auto_reload>
+            <oql>SELECT</oql>
+            <do_search>1</do_search>
+            <search_form_open>1</search_form_open>
+            <enable_class>class2</enable_class>
+            <enable_admin_only>1</enable_admin_only>
+        </menu>
+        <menu id="7" xsi:type="WebPageMenuNode">
+            <rank>7</rank>
+            <parent>1</parent>
+            <url>$$https://www.openitop.com/</url>
+            <in_new_window>true</in_new_window>
+            <enable_admin_only>1</enable_admin_only>
+        </menu>
+        <menu id="8" xsi:type="ShortcutContainerMenuNode">
+            <parent>1</parent>
+            <rank>8</rank>
         </menu>
     </menus>
     <!-- ***************** User Rights ***************** -->
