@@ -1280,6 +1280,14 @@
                 </xs:element>
             </xs:all>
             <xs:attribute name="version" type="xs:token" use="required" fixed="3.2" />
+            <xs:attribute name="load">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="lax" />
+                        <xs:enumeration value="strict" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
