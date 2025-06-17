@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../3.2/itop_design.xsd">
+    <!--
+    This file serves as a quick reference for the iTop datamodel structure.
+    It is intended solely for schema validation and must never produce any errors.
+    The content will evolve gradually as new elements are introduced into the schema.
+    -->
+    <!-- ***************** Classes ***************** -->
+    <classes>
+        <class id="Delta1" _delta="define" />
+        <class id="Delta2" _delta="define_if_not_exists" />
+        <class id="Delta3" _delta="delete" />
+        <class id="Delta4" _delta="delete_if_exists" />
+        <class id="Delta5" _delta="force" />
+        <class id="Delta6" _delta="if_exists" />
+        <class id="Delta7" _delta="merge" />
+        <class id="Delta8" _delta="must_exist" />
+        <class id="Delta9" _delta="redefine" />
+        <class id="TestClass1">
+            <parent>ParentClass</parent>
+            <php_parent>
+                <name>PhpParent</name>
+            </php_parent>
+            <properties>
+                <is_link>1</is_link>
+                <comment>Comment</comment>
+                <category>bizmodel</category>
+                <abstract>false</abstract>
+                <key_type>autoincrement</key_type>
+                <db_table>dbtable</db_table>
+                <db_key_field>id</db_key_field>
+                <db_final_class_field>finalclass</db_final_class_field>
+                <naming>
+                    <attributes>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </attributes>
+                    <complementary_attributes>
+                        <attribute id="3" />
+                        <attribute id="4" />
+                    </complementary_attributes>
+                </naming>
+                <fields_semantic>
+                    <image_attribute>Image</image_attribute>
+                    <state_attribute>State</state_attribute>
+                </fields_semantic>
+                <order>
+                    <columns>
+                        <column id="1" ascending="true" />
+                        <column id="2" ascending="false" />
+                    </columns>
+                </order>
+                <style>
+                    <icon>icon</icon>
+                    <main_color>#FFF</main_color>
+                    <complementary_color>#000</complementary_color>
+                </style>
+                <reconciliation>
+                    <attributes>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </attributes>
+                </reconciliation>
+                <indexes>
+                    <index id="1">
+                        <attributes>
+                            <attribute id="1" />
+                            <attribute id="2" />
+                        </attributes>
+                    </index>
+                    <index id="2">
+                        <attributes>
+                            <attribute id="3" />
+                            <attribute id="4" />
+                        </attributes>
+                    </index>
+                </indexes>
+                <archive>
+                    <enabled>true</enabled>
+                </archive>
+                <obsolescence>
+                    <condition><![CDATA[status='closed']]></condition>
+                </obsolescence>
+                <uniqueness_rules>
+                    <rule id="1">
+                        <attributes>
+                            <attribute id="1" />
+                            <attribute id="2" />
+                        </attributes>
+                        <filter><![CDATA[status = 'active']]></filter>
+                        <disabled>true</disabled>
+                        <is_blocking>true</is_blocking>
+                    </rule>
+                    <rule id="2">
+                        <attributes>
+                            <attribute id="3" />
+                            <attribute id="4" />
+                        </attributes>
+                        <filter><![CDATA[status = 'active']]></filter>
+                        <disabled>false</disabled>
+                        <is_blocking>false</is_blocking>
+                    </rule>
+                </uniqueness_rules>
+            </properties>
+            <fields>
+                <field id="11" xsi:type="AttributeString" />
+                <field id="2" _delta="delete" />
+            </fields>
+            <lifecycle>
+                <highlight_scale>
+                    <item id="none">
+                        <rank>1</rank>
+                        <color>HIGHLIGHT_NONE</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="warning">
+                        <rank>2</rank>
+                        <color>HIGHLIGHT_WARNING</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="critical">
+                        <rank>3</rank>
+                        <color>HIGHLIGHT_CRITICAL</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="ok">
+                        <rank>4</rank>
+                        <color>HIGHLIGHT_OK</color>
+                        <icon>icon</icon>
+                    </item>
+                </highlight_scale>
+                <stimuli>
+                    <stimulus id="1" xsi:type="StimulusUserAction" _delta="define" />
+                    <stimulus id="2" xsi:type="StimulusInternal" _delta="delete" />
+                </stimuli>
+                <states>
+                    <state id="111">
+                        <initial_state_path>
+                            <state_ref>new</state_ref>
+                        </initial_state_path>
+                        <inherit_flags_from>*another_state*</inherit_flags_from>
+                        <highlight>
+                            <code>code</code>
+                        </highlight>
+                        <flags>
+                            <attribute id="1">
+                                <mandatory />
+                                <must_prompt />
+                            </attribute>
+                            <attribute id="2">
+                                <hidden />
+                            </attribute>
+                        </flags>
+                        <transitions>
+                            <transition id="1">
+                                <target>target</target>
+                                <flags>
+                                    <attribute id="1">
+                                        <mandatory />
+                                    </attribute>
+                                    <attribute id="2">
+                                        <read_only />
+                                    </attribute>
+                                </flags>
+                                <actions>
+                                    <action id="1">
+                                        <verb>name</verb>
+                                        <params>
+                                            <param xsi:type="string">value</param>
+                                            <param xsi:type="int">5</param>
+                                            <param xsi:type="float">2.2</param>
+                                            <param xsi:type="reference">value</param>
+                                        </params>
+                                    </action>
+                                </actions>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
+            <event_listeners>
+                <event_listener id="1">
+                    <event>EVENT_DB_CREATE_DONE</event>
+                    <callback>callback</callback>
+                    <code>code</code>
+                    <rank>1</rank>
+                </event_listener>
+            </event_listeners>
+            <methods>
+                <method id="1">
+                    <comment>comment</comment>
+                    <static>false</static>
+                    <access>public</access>
+                    <type>Overload-cmdbAbstractObject</type>
+                    <arguments>
+                        <argument id="1">
+                            <mandatory>true</mandatory>
+                            <type>reference</type>
+                        </argument>
+                        <argument id="2">
+                            <mandatory>false</mandatory>
+                            <type>current_stimulus_code</type>
+                        </argument>
+                        <argument id="3">
+                            <type>attcode</type>
+                        </argument>
+                    </arguments>
+                    <code><![CDATA[public function PrefillCreationForm(&$aContextParam)
+                        {       // code of the function    }]]>
+                    </code>
+                </method>
+                <method id="2" />
+            </methods>
+            <relations>
+                <relation id="impacts">
+                    <neighbours>
+                        <neighbour id="1" _delta="must_exist">
+                            <query_down _delta="define">SELECT</query_down>
+                            <query_up _delta="if_exists">SELECT</query_up>
+                            <attribute _delta="force">something</attribute>
+                            <direction>both</direction>
+                        </neighbour>
+                        <neighbour id="2" />
+                    </neighbours>
+                </relation>
+                <relation id="contains">
+                    <neighbours>
+                        <neighbour id="2">
+                            <attribute>2</attribute>
+                        </neighbour>
+                    </neighbours>
+                </relation>
+                <relation id="networkflow" _delta="define">
+                    <neighbours>
+                        <neighbour id="3">
+                            <query_up>SELECT</query_up>
+                            <query_down>SELECT </query_down>
+                            <direction>down</direction>
+                        </neighbour>
+                    </neighbours>
+                </relation>
+            </relations>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="col:col1">
+                            <rank>10</rank>
+                            <items>
+                                <item id="2">
+                                    <rank>11</rank>
+                                    <items>
+                                        <item id="3">
+                                            <rank>10</rank>
+                                        </item>
+                                        <item id="4" _delta="define">
+                                            <rank>20</rank>
+                                        </item>
+                                        <item id="5" _delta="define_if_not_exists">
+                                            <rank>30</rank>
+                                        </item>
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>2</rank>
+                        </item>
+                    </items>
+                </search>
+                <default_search>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </default_search>
+                <list>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </list>
+                <summary>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </summary>
+            </presentation>
+        </class>
+        <class id="TestClass2" _delta="define">
+            <parent>test</parent>
+            <properties>
+                <category>bizmodel,searchable</category>
+                <abstract>false</abstract>
+
+                <key_type>autoincrement</key_type>
+
+                <db_table>test</db_table>
+                <db_key_field>id</db_key_field>
+                <db_final_class_field />
+                <naming>
+                    <attributes>
+                        <attribute id="name" />
+                    </attributes>
+                </naming>
+                <fields_semantic>
+                    <state_attribute>status</state_attribute>
+                </fields_semantic>
+                <order>
+                    <columns>
+                        <column id="column1" ascending="true" />
+                        <column id="column2" ascending="true" />
+                    </columns>
+                </order>
+                <style>
+                    <icon>images/test.png</icon>
+                </style>
+                <reconciliation>
+                    <attributes>
+                        <attribute id="name" />
+                        <attribute id="org_id" />
+                        <attribute id="organization_name" />
+                    </attributes>
+                </reconciliation>
+                <obsolescence>
+                    <condition>
+                        <![CDATA[status = 'obsolete']]>
+                    </condition>
+                </obsolescence>
+            </properties>
+            <fields>
+                <field id="123" xsi:type="AttributeString">
+                    <sql>string</sql>
+                    <default_value>none</default_value>
+                    <validation_pattern>pattern</validation_pattern>
+                    <is_null_allowed>false</is_null_allowed>
+                    <dependencies>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </dependencies>
+                </field>
+            </fields>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="test" />
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="111" />
+                    </items>
+                </search>
+                <list>
+                    <items>
+                        <item id="123" />
+                        <item id="554" />
+                    </items>
+                </list>
+                <summary>
+                    <items>
+                        <item id="443" />
+                    </items>
+                </summary>
+            </presentation>
+        </class>
+    </classes>
+    <!-- ***************** Menus ***************** -->
+    <menus>
+        <menu id="1" xsi:type="MenuGroup">
+            <rank>1.2</rank>
+            <enable_admin_only>1</enable_admin_only>
+            <enable_class>name</enable_class>
+            <enable_action>UR_ACTION_MODIFY</enable_action>
+            <enable_permission>UR_ALLOWED_YES</enable_permission>
+            <enable_stimulus>ev_assign</enable_stimulus>
+            <style>
+                <decoration_classes>aaa</decoration_classes>
+            </style>
+        </menu>
+        <menu id="2" xsi:type="DashboardMenuNode">
+            <enable_action>UR_ACTION_BULK_READ</enable_action>
+            <enable_admin_only>1</enable_admin_only>
+            <enable_class>class</enable_class>
+            <enable_permission>UR_ALLOWED_NO</enable_permission>
+            <enable_stimulus>aaa</enable_stimulus>
+            <parent>123</parent>
+            <rank>22.3</rank>
+            <definition>
+                <cells>
+                    <cell id="1" />
+                </cells>
+            </definition>
+            <definition_file>filename</definition_file>
+        </menu>
+    </menus>
+    <!-- ***************** User Rights ***************** -->
+    <user_rights>
+        <groups>
+            <group id="1">
+                <classes>
+                    <class id="TestClass" />
+                    <class id="Test2Class" />
+                </classes>
+            </group>
+        </groups>
+        <profiles>
+            <profile id="123">
+                <name>Test Name</name>
+                <description>Test Description</description>
+                <groups>
+                    <group id="122">
+                        <actions>
+                            <action id="action:read">allow</action>
+                            <action id="stimulus:arch_forrest">allow</action>
+                        </actions>
+                    </group>
+                </groups>
+            </profile>
+        </profiles>
+    </user_rights>
+    <!-- ***************** Files  ***************** -->
+    <files>
+        <file id="cron_c8b5" xsi:type="File" _delta="define">
+            <name>cron.png</name>
+            <mime_type>image/png</mime_type>
+            <width>37</width>
+            <height>37</height>
+            <!-- In tag 'data' provide the image encoded in base 64 -->
+            <data>iVBORw0KGgoAAAANSUhEUgAAAL...</data>
+        </file>
+    </files>
+    <!-- ***************** Dictionaries  ***************** -->
+    <!-- ***************** Branding  ***************** -->
+    <branding>
+        <login_favicon>
+            <fileref ref="cron_c8b5" />
+        </login_favicon>
+        <login_logo>
+            <fileref ref="123" />
+        </login_logo>
+        <main_favicon>
+            <fileref ref="123" />
+        </main_favicon>
+        <main_logo>
+            <fileref ref="123" />
+        </main_logo>
+        <main_logo_compact>
+            <fileref ref="123" />
+        </main_logo_compact>
+        <portal_favicon>
+            <fileref ref="123" />
+        </portal_favicon>
+        <portal_logo>
+            <fileref ref="123" />
+        </portal_logo>
+        <themes>
+            <theme id="theme-1">
+                <variables>
+                    <variable id="1" _delta="define">#C53030</variable>
+                    <variable id="2" _delta="define">#F7FAFC</variable>
+                </variables>
+                <imports>
+                    <import id="css-variables">css-variables</import>
+                </imports>
+                <stylesheets>
+                    <stylesheet id="1">compat.scss</stylesheet>
+                    <stylesheet id="2">compat.scss</stylesheet>
+                    <stylesheet id="3">main.scss</stylesheet>
+                </stylesheets>
+            </theme>
+            <theme id="test-red" _delta="must_exist">
+                <variables>
+                    <variable id="backoffice-environment-banner-background-color" _delta="define">#C53030</variable>
+                    <variable id="backoffice-environment-banner-text-color" _delta="define">#F7FAFC</variable>
+                    <variable id="backoffice-environment-banner-text-content" _delta="define">"THIS IS A TEST INSTANCE"</variable>
+                </variables>
+                <imports>
+                    <import id="css-variables" _delta="define">itop-themes-compat/assets/css/css-variables.scss</import>
+                </imports>
+                <stylesheets>
+                    <stylesheet id="jqueryui" _delta="define">compat.scss</stylesheet>
+                    <stylesheet id="main" _delta="define">compat.scss</stylesheet>
+                </stylesheets>
+            </theme>
+        </themes>
+        <themes_common>
+            <variables>
+                <variable id="color-1" _delta="define">#fff</variable>
+                <variable id="color-2" _delta="delete_if_exists">#000</variable>
+            </variables>
+            <imports>
+                <import id="1" _delta="merge">111</import>
+                <import id="2">222</import>
+                <import id="111" _delta="define">filename</import>
+            </imports>
+            <stylesheets>
+                <stylesheet id="123">test</stylesheet>
+            </stylesheets>
+        </themes_common>
+    </branding>
+    <!-- ***************** Constants  ***************** -->
+    <constants />
+    <!-- ***************** Portals  ***************** -->
+    <portals />
+    <!-- ***************** Module Parameters  ***************** -->
+    <module_parameters />
+    <!-- ***************** Module Designs  ***************** -->
+    <module_designs />
+    <!-- ***************** Snippets  ***************** -->
+    <snippets />
+    <!-- ***************** Meta  ***************** -->
+    <meta />
+    <!-- ***************** Events  ***************** -->
+    <events />
+    <!-- ***************** Event Listeners  ***************** -->
+    <event_listeners />
+</itop_design>
