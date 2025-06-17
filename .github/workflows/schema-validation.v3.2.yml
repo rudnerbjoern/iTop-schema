@@ -1,0 +1,36 @@
+name: Validate iTop datamodel XML version 3.2
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-xml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install lxml
+      run: pip install lxml
+
+    - name: Verify files exist
+      run: |
+        test -f 3.2/itop_design.xsd || (echo "XSD file missing!" && exit 1)
+        test -f test/datamodel.must-validate.xml || (echo "XML file missing!" && exit 1)
+
+    - name: Validate datamodel.must-validate.xml against itop_design.xsd
+      run: |
+        python -c "
+        import lxml.etree as ET
+        schema = ET.XMLSchema(file='3.2/itop_design.xsd')
+        parser = ET.XMLParser(schema=schema)
+        with open('test/datamodel.must-validate.xml', 'rb') as f:
+            ET.parse(f, parser)
+        print('XML is valid.')"
