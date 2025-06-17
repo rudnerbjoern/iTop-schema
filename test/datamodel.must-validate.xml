@@ -441,7 +441,7 @@
             </profile>
         </profiles>
     </user_rights>
-    <!-- ***************** Files  ***************** -->
+    <!-- ***************** Files ***************** -->
     <files>
         <file id="cron_c8b5" xsi:type="File" _delta="define">
             <name>cron.png</name>
@@ -452,8 +452,8 @@
             <data>iVBORw0KGgoAAAANSUhEUgAAAL...</data>
         </file>
     </files>
-    <!-- ***************** Dictionaries  ***************** -->
-    <!-- ***************** Branding  ***************** -->
+    <!-- ***************** Dictionaries ***************** -->
+    <!-- ***************** Branding ***************** -->
     <branding>
         <login_favicon>
             <fileref ref="cron_c8b5" />
@@ -521,19 +521,31 @@
             </stylesheets>
         </themes_common>
     </branding>
-    <!-- ***************** Constants  ***************** -->
+    <!-- ***************** Constants ***************** -->
     <constants />
-    <!-- ***************** Portals  ***************** -->
+    <!-- ***************** Portals ***************** -->
     <portals />
-    <!-- ***************** Module Parameters  ***************** -->
+    <!-- ***************** Module Parameters ***************** -->
     <module_parameters />
-    <!-- ***************** Module Designs  ***************** -->
+    <!-- ***************** Module Designs ***************** -->
     <module_designs />
-    <!-- ***************** Snippets  ***************** -->
-    <snippets />
-    <!-- ***************** Meta  ***************** -->
+    <!-- ***************** Snippets ***************** -->
+    <snippets>
+        <snippet id="snippet-1">
+            <placement>module</placement>
+            <module>module</module>
+            <rank>10</rank>
+            <content>content</content>
+        </snippet>
+        <snippet id="snippet-2">
+            <placement>core</placement>
+            <rank>20</rank>
+            <content>content</content>
+        </snippet>
+    </snippets>
+    <!-- ***************** Meta ***************** -->
     <meta />
-    <!-- ***************** Events  ***************** -->
+    <!-- ***************** Events ***************** -->
     <events>
         <event id="event-1" _delta="define">
             <description>description</description>
@@ -555,6 +567,6 @@
         </event>
         <event id="event-2" _delta="delete" />
     </events>
-    <!-- ***************** Event Listeners  ***************** -->
+    <!-- ***************** Event Listeners ***************** -->
     <event_listeners />
 </itop_design>

@@ -1157,12 +1157,22 @@
                 </xs:element>
                 <xs:element name="snippets" minOccurs="0">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="snippet" minOccurs="0" maxOccurs="unbounded">
+                        <xs:sequence maxOccurs="unbounded">
+                            <xs:element name="snippet">
                                 <xs:complexType>
-                                    <xs:choice maxOccurs="unbounded">
-                                        <xs:any />
-                                    </xs:choice>
+                                    <xs:all>
+                                        <xs:element name="placement" minOccurs="0">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="module" />
+                                                    <xs:enumeration value="core" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="module" type="xs:string" minOccurs="0" />
+                                        <xs:element name="rank" type="alteredFloat" minOccurs="0" />
+                                        <xs:element name="content" type="xs:string" minOccurs="0" />
+                                    </xs:all>
                                     <xs:attribute name="id" type="xs:string" use="required" />
                                     <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
