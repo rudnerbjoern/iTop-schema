@@ -24,10 +24,10 @@
             <properties>
                 <is_link>1</is_link>
                 <comment>Comment</comment>
-                <category>bizmodel</category>
+                <category>category</category>
                 <abstract>false</abstract>
                 <key_type>autoincrement</key_type>
-                <db_table>dbtable</db_table>
+                <db_table>table</db_table>
                 <db_key_field>id</db_key_field>
                 <db_final_class_field>finalclass</db_final_class_field>
                 <naming>
@@ -180,10 +180,15 @@
             </lifecycle>
             <event_listeners>
                 <event_listener id="1">
-                    <event>EVENT_DB_CREATE_DONE</event>
+                    <event>EVENT_DB_BEFORE_WRITE</event>
                     <callback>callback</callback>
                     <code>code</code>
                     <rank>1</rank>
+                </event_listener>
+                <event_listener id="OnUserRequestUpdateDone" _delta="define">
+                    <event>EVENT_DB_AFTER_WRITE</event>
+                    <callback>OnUserRequestUpdateDone</callback>
+                    <rank>2</rank>
                 </event_listener>
             </event_listeners>
             <methods>
@@ -312,11 +317,9 @@
         <class id="TestClass2" _delta="define">
             <parent>test</parent>
             <properties>
-                <category>bizmodel,searchable</category>
+                <category>category1,category2</category>
                 <abstract>false</abstract>
-
                 <key_type>autoincrement</key_type>
-
                 <db_table>test</db_table>
                 <db_key_field>id</db_key_field>
                 <db_final_class_field />
@@ -434,7 +437,7 @@
                     <group id="122">
                         <actions>
                             <action id="action:read">allow</action>
-                            <action id="stimulus:arch_forrest">allow</action>
+                            <action id="stimulus:ev_done">allow</action>
                         </actions>
                     </group>
                 </groups>
@@ -449,7 +452,7 @@
             <width>37</width>
             <height>37</height>
             <!-- In tag 'data' provide the image encoded in base 64 -->
-            <data>iVBORw0KGgoAAAANSUhEUgAAAL...</data>
+            <data>base64String...</data>
         </file>
     </files>
     <!-- ***************** Dictionaries ***************** -->
@@ -551,8 +554,8 @@
                     <report_label>Issued from the request %1$s. The request has been updated.</report_label>
                     <dest_class>Change</dest_class>
                     <preset type="array">
-                        <action id="0"> clone(contacts_list,functionalcis_list,org_id,title,caller_id)</action>
-                        <action id="1">set(description,Original description:\n$this->description$)</action>
+                        <action id="0"> clone(...)</action>
+                        <action id="1">set(...)</action>
                     </preset>
                     <retrofit type="array">
                         <action id="0">copy(id, parent_change_id)'</action>
@@ -600,8 +603,61 @@
                 </event_datum>
             </event_data>
         </event>
-        <event id="event-2" _delta="delete" />
+        <event id="EVENT_DOWNLOAD_DOCUMENT" _delta="define">
+            <description>A document has been downloaded from the GUI</description>
+            <sources>
+                <source id="Document">Document</source>
+            </sources>
+            <event_data>
+                <event_datum id="object">
+                    <description>The object containing the document</description>
+                    <type>DBObject</type>
+                </event_datum>
+                <event_datum id="document">
+                    <description>The document downloaded</description>
+                    <type>ormDocument</type>
+                </event_datum>
+                <event_datum id="att_code">
+                    <description>Attribute code of the object, containing the document</description>
+                    <type>string</type>
+                </event_datum>
+                <event_datum id="content_disposition">
+                    <description>To differentiate if the document was displayed in preview or truly downloaded</description>
+                    <type>string</type>
+                </event_datum>
+                <event_datum id="debug_info">
+                    <description>Debug string</description>
+                    <type>string</type>
+                </event_datum>
+            </event_data>
+        </event>
     </events>
     <!-- ***************** Event Listeners ***************** -->
-    <event_listeners />
+    <event_listeners>
+        <event_listener id="listener-1">
+            <event>EVENT_DISPLAY_OBJECT_DETAILS</event>
+            <filters>
+                <filter>FAQ</filter>
+            </filters>
+            <rank>10</rank>
+            <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
+        </event_listener>
+        <event_listener id="listener-2">
+            <event>EVENT_DB_COMPUTE_VALUES</event>
+            <filters>
+                <filter>FAQ</filter>
+            </filters>
+            <rank>20</rank>
+            <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
+        </event_listener>
+        <event_listener id="OnAttachmentDownloadActivateTriggers" _delta="define">
+            <event>EVENT_DOWNLOAD_DOCUMENT</event>
+            <filters>
+                <filter>Attachment</filter>
+            </filters>
+            <rank>0</rank>
+            <code><![CDATA[function(Combodo\iTop\Service\Events\EventData $oEventData){ ... }]]>
+                </code>
+        </event_listener>
+    </event_listeners>
 </itop_design>
