@@ -25,6 +25,7 @@
         "noout",
         "stylesheet",
         "teemip",
+        "timespent",
         "Zlist"
     ],
     "xml.codeLens.enabled": true,

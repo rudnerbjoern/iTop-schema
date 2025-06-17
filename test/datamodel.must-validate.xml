@@ -389,6 +389,331 @@
                 </summary>
             </presentation>
         </class>
+        <class id="TestAttributes">
+            <fields>
+                <field id="blob" xsi:type="AttributeBlob" _delta="define">
+                    <sql>blob</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <tracking_level>none</tracking_level>
+                    <dependencies>
+                        <attribute id="item1" _delta="define" />
+                        <attribute id="item2" _delta="delete" />
+                    </dependencies>
+                </field>
+                <field id="log" xsi:type="AttributeCaseLog" _delta="define_if_not_exists">
+                    <sql>log</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="item" _delta="merge" />
+                    </dependencies>
+                </field>
+                <field id="custom" xsi:type="AttributeCustomFields" _delta="define">
+                    <handler_class>MyClass</handler_class>
+                    <tracking_level>none</tracking_level>
+                </field>
+                <field id="date" xsi:type="AttributeDate">
+                    <sql>date</sql>
+                    <default_value>nothing</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="define" />
+                    </dependencies>
+                </field>
+                <field id="datetime" xsi:type="AttributeDateTime" _delta="must_exist">
+                    <sql>datetime</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="redefine" />
+                    </dependencies>
+                </field>
+                <field id="decimal" xsi:type="AttributeDecimal" _delta="define">
+                    <sql>decimal</sql>
+                    <default_value>10.2</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <digits>6</digits>
+                    <decimals>2</decimals>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="if_exists" />
+                    </dependencies>
+                </field>
+                <field id="duration" xsi:type="AttributeDuration" _delta="define">
+                    <sql>duration</sql>
+                    <default_value>value</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="item-2" />
+                    </dependencies>
+                </field>
+                <field id="email" xsi:type="AttributeEmailAddress" _delta="define">
+                    <sql>email</sql>
+                    <default_value>aaa@example.tld</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <validation_pattern>[a-z]+@[a-z]+</validation_pattern>
+                    <dependencies>
+                        <attribute id="123" />
+                    </dependencies>
+                </field>
+                <field id="pwd" xsi:type="AttributeEncryptedPassword">
+                    <sql>pwd</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="123" _delta="must_exist" />
+                    </dependencies>
+                </field>
+                <field id="string1" xsi:type="AttributeEncryptedString" _delta="define">
+                    <sql>string1</sql>
+                    <default_value>value</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="12" />
+                    </dependencies>
+                </field>
+                <field id="enum" xsi:type="AttributeEnum" _delta="define_if_not_exists">
+                    <sql>enum</sql>
+                    <sort_type>rank</sort_type>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <values>
+                        <value id="value1" _delta="define">
+                            <code>value1</code>
+                            <rank>10.2</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                        <value id="value2" _delta="define">
+                            <code>value2</code>
+                            <rank>20</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                    </values>
+                    <default_value>value1</default_value>
+                    <default_style>
+                        <main_color>#4E79A5</main_color>
+                        <complementary_color>#FFFFFF</complementary_color>
+                        <decoration_classes>fas fa-user-tag</decoration_classes>
+                    </default_style>
+                    <display_style>select</display_style>
+                    <dependencies>
+                        <attribute id="1" />
+                    </dependencies>
+                </field>
+                <field id="enumSet" xsi:type="AttributeEnumSet" _delta="define">
+                    <sql>enumSet</sql>
+                    <values>
+                        <value id="1">
+                            <code>1</code>
+                        </value>
+                    </values>
+                    <max_items>255</max_items>
+                </field>
+                <field id="external1" xsi:type="AttributeExternalField" _delta="define">
+                    <extkey_attcode>attcode</extkey_attcode>
+                    <target_attcode>attcode</target_attcode>
+                </field>
+                <field id="external2" xsi:type="AttributeExternalKey" _delta="define">
+                    <sql>external2</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <on_target_delete>DEL_AUTO</on_target_delete>
+                    <target_class>class1</target_class>
+                    <filter><![CDATA[SELECT Location AS L WHERE L.org_id = :this->org_id]]></filter>
+                    <dependencies>
+                        <attribute id="org_id" />
+                    </dependencies>
+                    <max_combo_length>10</max_combo_length>
+                    <min_autocomplete_chars>3</min_autocomplete_chars>
+                    <allow_target_creation>true</allow_target_creation>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <display_style>select</display_style>
+                    <create_temporary_object>true</create_temporary_object>
+                </field>
+                <field id="key2" xsi:type="AttributeHierarchicalKey" _delta="define">
+                    <sql>key2</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <on_target_delete>DEL_MANUAL</on_target_delete>
+                    <filter><![CDATA[SELECT Location AS L WHERE L.org_id = :this->org_id]]></filter>
+                    <dependencies>
+                        <attribute id="org_id" />
+                        <attribute id="org_name" />
+                    </dependencies>
+                    <max_combo_length>50</max_combo_length>
+                    <min_autocomplete_chars>4</min_autocomplete_chars>
+                    <allow_target_creation>false</allow_target_creation>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                </field>
+                <field id="html" xsi:type="AttributeHTML">
+                    <sql>html</sql>
+                    <default_value />
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <width>800px</width>
+                    <height>200px</height>
+                </field>
+                <field id="image" xsi:type="AttributeImage">
+                    <sql>image</sql>
+                    <display_max_width>4096</display_max_width>
+                    <display_max_height>1024</display_max_height>
+                    <storage_max_width>4096</storage_max_width>
+                    <storage_max_height>1024</storage_max_height>
+                    <default_image>nobody.png</default_image>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                </field>
+                <field id="int" xsi:type="AttributeInteger">
+                    <sql>int</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="ip" xsi:type="AttributeIPAddress">
+                    <sql>ip</sql>
+                    <default_value>0.0.0.0</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="item_list" xsi:type="AttributeLinkedSet">
+                    <linked_class>name</linked_class>
+                    <filter>SELECT Person AS P</filter>
+                    <ext_key_to_me>name</ext_key_to_me>
+                    <tracking_level>list</tracking_level>
+                    <edit_mode>actions</edit_mode>
+                    <edit_when>always</edit_when>
+                    <count_min>0</count_min>
+                    <count_max>0</count_max>
+                    <with_php_constraint>false</with_php_constraint>
+                    <with_php_computation>false</with_php_computation>
+                    <dependencies>
+                        <attribute id="name1" />
+                        <attribute id="name2" />
+                    </dependencies>
+                </field>
+                <field id="item2_list" xsi:type="AttributeLinkedSetIndirect">
+                    <linked_class>class2</linked_class>
+                    <ext_key_to_me>key1</ext_key_to_me>
+                    <ext_key_to_remote>key2</ext_key_to_remote>
+                    <tracking_level>list</tracking_level>
+                    <edit_when>always</edit_when>
+                    <duplicates>true</duplicates>
+                    <count_min>0</count_min>
+                    <count_max>0</count_max>
+                    <display_style>property</display_style>
+                    <with_php_constraint>false</with_php_constraint>
+                    <with_php_computation>true</with_php_computation>
+                    <filter>filter</filter>
+                </field>
+                <field id="watch1" xsi:type="AttributeStopWatch">
+                    <states>
+                        <state id="state1" />
+                        <state id="state2" />
+                    </states>
+                    <goal>DefaultMetricComputer</goal>
+                    <working_time>DefaultWorkingTimeComputer</working_time>
+                    <thresholds>
+                        <threshold id="50">
+                            <actions>
+                                <action>
+                                    <verb>DoThis</verb>
+                                    <params>
+                                        <param xsi:type="string">ev_close</param>
+                                        <param xsi:type="integer">10</param>
+                                        <param xsi:type="float">10</param>
+                                        <param xsi:type="boolean">true</param>
+                                        <param xsi:type="reference">other</param>
+                                    </params>
+                                </action>
+                                <action>
+                                    <verb>DoThat</verb>
+                                </action>
+                            </actions>
+                            <highlight>
+                                <code>warning</code>
+                                <persistent>true</persistent>
+                            </highlight>
+                        </threshold>
+                        <threshold id="80">
+                            <actions>
+                                <action>
+                                    <verb>DoThis</verb>
+                                    <params>
+                                        <param xsi:type="string">ev_close</param>
+                                    </params>
+                                </action>
+                                <action>
+                                    <verb>DoThat</verb>
+                                </action>
+                            </actions>
+                            <highlight>
+                                <code>critical</code>
+                                <persistent>false</persistent>
+                            </highlight>
+                        </threshold>
+                    </thresholds>
+                </field>
+                <field id="item3" xsi:type="AttributeSubItem">
+                    <target_attcode>watch1</target_attcode>
+                    <item_code>100_passed</item_code>
+                    <dependencies>
+                        <attribute id="watch1" />
+                    </dependencies>
+                </field>
+                <field id="item4" xsi:type="AttributeSubItem">
+                    <target_attcode>attcode</target_attcode>
+                    <item_code>stopped</item_code>
+                    <dependencies>
+                        <attribute id="watch2" />
+                    </dependencies>
+                </field>
+                <field id="tag" xsi:type="AttributeTagSet">
+                    <sql>tag</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <max_items>5</max_items>
+                    <tag_code_max_len>255</tag_code_max_len>
+                </field>
+                <field id="url" xsi:type="AttributeURL">
+                    <sql>url</sql>
+                    <default_value />
+                    <is_null_allowed>true</is_null_allowed>
+                    <target>_blank</target>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                </field>
+                <field id="dashboard" xsi:type="AttributeDashboard" _delta="define">
+                    <is_user_editable>true</is_user_editable>
+                    <definition_file>filename</definition_file>
+                    <definition>
+                        <something />
+                    </definition>
+                </field>
+            </fields>
+        </class>
     </classes>
     <!-- ***************** Menus ***************** -->
     <menus>
