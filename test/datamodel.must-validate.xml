@@ -1101,6 +1101,23 @@
                 </event_datum>
             </event_data>
         </event>
+        <event id="EVENT_DISPLAY_OBJECT_DETAILS" _delta="define">
+            <name>Portal object displayed</name>
+            <description><![CDATA[An object details is about to be displayed to a user on a portal]]></description>
+            <sources>
+                <source id="cmdbAbstractObject">cmdbAbstractObject</source>
+            </sources>
+            <arguments>
+                <argument id="object">
+                    <description>The object displayed</description>
+                    <type>DBObject</type>
+                </argument>
+                <argument id="debug_info">
+                    <description>Debug string</description>
+                    <type>string</type>
+                </argument>
+            </arguments>
+        </event>
     </events>
     <!-- ***************** Event Listeners ***************** -->
     <event_listeners>
