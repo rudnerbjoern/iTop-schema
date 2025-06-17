@@ -453,6 +453,20 @@
         </file>
     </files>
     <!-- ***************** Dictionaries ***************** -->
+    <dictionaries>
+        <dictionary id="EN US" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+        <dictionary id="DE DE" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+    </dictionaries>
     <!-- ***************** Branding ***************** -->
     <branding>
         <login_favicon>
