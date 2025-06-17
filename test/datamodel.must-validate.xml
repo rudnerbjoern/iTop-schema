@@ -534,7 +534,27 @@
     <!-- ***************** Meta  ***************** -->
     <meta />
     <!-- ***************** Events  ***************** -->
-    <events />
+    <events>
+        <event id="event-1" _delta="define">
+            <description>description</description>
+            <sources>
+                <source id="source-1">cmdbAbstractObject</source>
+                <source id="source-2">source2</source>
+            </sources>
+            <replaces>DBObject::OnInsert</replaces>
+            <event_data>
+                <event_datum id="event-datum-1">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+                <event_datum id="event-datum-2">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+            </event_data>
+        </event>
+        <event id="event-2" _delta="delete" />
+    </events>
     <!-- ***************** Event Listeners  ***************** -->
     <event_listeners />
 </itop_design>

@@ -1225,7 +1225,7 @@
                                         <xs:element name="internal" type="xs:boolean" minOccurs="0" />
                                         <xs:element name="sources" minOccurs="0">
                                             <xs:complexType>
-                                                <xs:sequence>
+                                                <xs:sequence maxOccurs="unbounded">
                                                     <xs:element name="source">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
