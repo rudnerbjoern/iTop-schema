@@ -540,7 +540,28 @@
     <!-- ***************** Portals ***************** -->
     <portals />
     <!-- ***************** Module Parameters ***************** -->
-    <module_parameters />
+    <module_parameters>
+        <parameters id="itop-object-copier" _delta="define">
+            <rules>
+                <rule id="0" type="hash">
+                    <source_scope>SELECT UserRequest WHERE status IN ("assigned", "pending")</source_scope>
+                    <allowed_profiles>Administrator,Support Agent</allowed_profiles>
+                    <menu_label>Issue a change ticket...</menu_label>
+                    <form_label>Issue a change from request %1$s. Please review the description before create the change ticket. After creation of the change ticket, the request ticket will be automatically updated. </form_label>
+                    <report_label>Issued from the request %1$s. The request has been updated.</report_label>
+                    <dest_class>Change</dest_class>
+                    <preset type="array">
+                        <action id="0"> clone(contacts_list,functionalcis_list,org_id,title,caller_id)</action>
+                        <action id="1">set(description,Original description:\n$this->description$)</action>
+                    </preset>
+                    <retrofit type="array">
+                        <action id="0">copy(id, parent_change_id)'</action>
+                        <action id="1">set(private_log,Issued change $this->ref$)'</action>
+                    </retrofit>
+                </rule>
+            </rules>
+        </parameters>
+    </module_parameters>
     <!-- ***************** Module Designs ***************** -->
     <module_designs />
     <!-- ***************** Snippets ***************** -->
