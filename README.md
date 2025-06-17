@@ -87,6 +87,41 @@ or use a tool like `xmllint`:
 xmllint --noout --schema https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd datamodel.xml
 ```
 
+## Extending the Schema for Your Own Definitions
+
+You can extend the provided base schema with your own types by creating a local `itop_design.xsd` file in your project and including the base schema.
+
+Here is a minimal example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Include the official base schema -->
+  <xs:include schemaLocation="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd"/>
+
+  <!-- Add your custom type definition -->
+  <xs:complexType name="AttributeMyOwnDefinition">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:sequence>
+          <xs:element name="sql" type="xs:string"/>
+          <xs:element name="default_value" type="xs:string"/>
+          <xs:element name="is_null_allowed" type="xs:boolean"/>
+          <xs:element name="own_value" type="xs:nonNegativeInteger" minOccurs="0" default="150"/>
+          <xs:element name="other_value" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+```
+
+This technique allows you to create additional schema constraints or custom attributes while still relying on the iTop structure.
+
+Take a look at [this example by @Hipska](https://github.com/Super-Visions/sv-geolocation/blob/master/doc/itop_design.xsd) to see it in action.
+
 ## Known Issues
 
 ### constants/constant
