@@ -26,7 +26,7 @@
                                         <xs:element name="properties" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:all>
-                                                    <xs:element name="is_link" type="xs:byte" minOccurs="0" />
+                                                    <xs:element name="is_link" type="zeroOrOneEnumeration" minOccurs="0" />
                                                     <xs:element name="comment" type="xs:string" minOccurs="0" />
                                                     <xs:element name="category" type="xs:string" minOccurs="0" />
                                                     <xs:element name="abstract" type="xs:boolean" minOccurs="0" />
@@ -1257,6 +1257,22 @@
                                                                     <xs:attribute name="id" type="xs:string" use="required" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="arguments" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence maxOccurs="unbounded">
+                                                    <xs:element name="argument">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="description" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="type" type="xs:string" minOccurs="0" />
+                                                            </xs:all>
+                                                            <xs:attribute name="id" type="xs:string" use="required" />
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
