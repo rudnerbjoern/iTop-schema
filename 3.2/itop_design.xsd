@@ -2932,78 +2932,101 @@
          ########################### Dashlet ###########################
          ############################################################### -->
 
-    <!-- ########################### DashletBadge ########################### -->
-    <xs:complexType name="DashletBadge">
-        <xs:all>
-            <xs:element name="rank" type="xs:decimal" minOccurs="0" />
-            <xs:element name="class" type="xs:string" minOccurs="0" />
-        </xs:all>
+    <!-- ########################### Dashlet ########################### -->
+    <xs:complexType name="Dashlet" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all dashlet definitions in the iTop datamodel.
+                Includes a required 'id' and alteration metadata from the alteredNode group.
+            </xs:documentation>
+        </xs:annotation>
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
+    </xs:complexType>
+    <!-- ########################### /Dashlet ########################### -->
+
+    <!-- ########################### DashletBadge ########################### -->
+    <xs:complexType name="DashletBadge">
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="class" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletBadge ########################### -->
 
     <!-- ########################### DashletBadge ########################### -->
     <xs:complexType name="DashletEmptyCell">
-        <xs:all>
-            <xs:element name="rank" type="xs:decimal" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:decimal" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletBadge ########################### -->
 
     <!-- ########################### DashletPlainText ########################### -->
     <xs:complexType name="DashletPlainText">
-        <xs:all>
-            <xs:element name="rank" type="xs:string" minOccurs="0" />
-            <xs:element name="text" type="xs:string" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:string" minOccurs="0" />
+                    <xs:element name="text" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletPlainText ########################### -->
 
     <!-- ########################### DashletHeaderDynamic ########################### -->
     <xs:complexType name="DashletHeaderDynamic">
-        <xs:all>
-            <xs:element name="rank" type="xs:string" minOccurs="0" />
-            <xs:element name="title" type="xs:string" minOccurs="0" />
-            <xs:element name="icon" type="xs:string" minOccurs="0" />
-            <xs:element name="subtitle" type="xs:string" minOccurs="0" />
-            <xs:element name="query" type="xs:string" minOccurs="0" />
-            <xs:element name="group_by" type="xs:string" minOccurs="0" />
-            <xs:element name="values" type="xs:string" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:string" minOccurs="0" />
+                    <xs:element name="title" type="xs:string" minOccurs="0" />
+                    <xs:element name="icon" type="xs:string" minOccurs="0" />
+                    <xs:element name="subtitle" type="xs:string" minOccurs="0" />
+                    <xs:element name="query" type="xs:string" minOccurs="0" />
+                    <xs:element name="group_by" type="xs:string" minOccurs="0" />
+                    <xs:element name="values" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletHeaderDynamic ########################### -->
 
     <!-- ########################### DashletGroupBy ########################### -->
     <xs:complexType name="DashletGroupBy">
-        <xs:all>
-            <xs:element name="rank" type="xs:string" minOccurs="0" />
-            <xs:element name="title" type="xs:string" minOccurs="0" />
-            <xs:element name="query" type="xs:string" minOccurs="0" />
-            <xs:element name="group_by" type="xs:string" minOccurs="0" />
-            <xs:element name="style" minOccurs="0">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="pie" />
-                        <xs:enumeration value="bars" />
-                        <xs:enumeration value="table" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="aggregation_function" type="xs:string" minOccurs="0" />
-            <xs:element name="aggregation_attribute" type="xs:string" minOccurs="0" />
-            <xs:element name="limit" type="xs:string" minOccurs="0" />
-            <xs:element name="order_by" type="xs:string" minOccurs="0" />
-            <xs:element name="order_direction" type="xs:string" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:string" minOccurs="0" />
+                    <xs:element name="title" type="xs:string" minOccurs="0" />
+                    <xs:element name="query" type="xs:string" minOccurs="0" />
+                    <xs:element name="group_by" type="xs:string" minOccurs="0" />
+                    <xs:element name="style" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="pie" />
+                                <xs:enumeration value="bars" />
+                                <xs:enumeration value="table" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="aggregation_function" type="xs:string" minOccurs="0" />
+                    <xs:element name="aggregation_attribute" type="xs:string" minOccurs="0" />
+                    <xs:element name="limit" type="xs:string" minOccurs="0" />
+                    <xs:element name="order_by" type="xs:string" minOccurs="0" />
+                    <xs:element name="order_direction" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletGroupBy ########################### -->
 
@@ -3033,27 +3056,31 @@
 
     <!-- ########################### DashletHeaderStatic ########################### -->
     <xs:complexType name="DashletHeaderStatic">
-        <xs:all>
-            <xs:element name="rank" type="xs:string" minOccurs="0" />
-            <xs:element name="title" type="xs:string" minOccurs="0" />
-            <xs:element name="subtitle" type="xs:string" minOccurs="0" />
-            <xs:element name="icon" type="xs:string" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:string" minOccurs="0" />
+                    <xs:element name="title" type="xs:string" minOccurs="0" />
+                    <xs:element name="subtitle" type="xs:string" minOccurs="0" />
+                    <xs:element name="icon" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletHeaderStatic ########################### -->
 
     <!-- ########################### DashletObjectList ########################### -->
     <xs:complexType name="DashletObjectList">
-        <xs:all>
-            <xs:element name="rank" type="xs:string" minOccurs="0" />
-            <xs:element name="title" type="xs:string" minOccurs="0" />
-            <xs:element name="query" type="xs:string" minOccurs="0" />
-            <xs:element name="menu" type="xs:boolean" minOccurs="0" />
-        </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:complexContent>
+            <xs:extension base="Dashlet">
+                <xs:all>
+                    <xs:element name="rank" type="xs:string" minOccurs="0" />
+                    <xs:element name="title" type="xs:string" minOccurs="0" />
+                    <xs:element name="query" type="xs:string" minOccurs="0" />
+                    <xs:element name="menu" type="xs:boolean" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /DashletObjectList ########################### -->
 
