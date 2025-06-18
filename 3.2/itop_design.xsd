@@ -1524,6 +1524,20 @@
                 Defines the common structure: a required 'id' and metadata via alteredNode.
             </xs:documentation>
         </xs:annotation>
+        <xs:sequence minOccurs="0">
+            <xs:element name="denied_profiles">
+                <xs:complexType>
+                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="denied_profile">
+                            <xs:complexType>
+                                <xs:attribute name="id" type="xs:string" use="required" />
+                                <xs:attributeGroup ref="alteredNode" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
