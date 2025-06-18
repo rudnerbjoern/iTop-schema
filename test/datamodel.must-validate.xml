@@ -398,6 +398,11 @@
                 </summary>
             </presentation>
         </class>
+        <class id="TestDeleteIfExists" _delta="define_if_not_exists">
+            <properties>
+                <obsolescence _delta="delete_if_exists" />
+            </properties>
+        </class>
         <class id="TestAttributes">
             <fields>
                 <field id="blob" xsi:type="AttributeBlob" _delta="define">
