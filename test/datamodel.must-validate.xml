@@ -133,6 +133,11 @@
                 <stimuli>
                     <stimulus id="1" xsi:type="StimulusUserAction" _delta="define" />
                     <stimulus id="2" xsi:type="StimulusInternal" _delta="delete" />
+                    <stimulus id="3" xsi:type="StimulusUserAction">
+                        <denied_profiles>
+                            <denied_profile id="Support Agent" />
+                        </denied_profiles>
+                    </stimulus>
                 </stimuli>
                 <states>
                     <state id="111">
@@ -828,7 +833,15 @@
             <rank>22.3</rank>
             <definition>
                 <cells>
-                    <cell id="1" />
+                    <cell id="1">
+                        <rank>10</rank>
+                        <dashlets>
+                            <dashlet id="badge1" xsi:type="DashletBadge">
+                                <rank>10</rank>
+                                <class>class1</class>
+                            </dashlet>
+                        </dashlets>
+                    </cell>
                 </cells>
             </definition>
             <definition_file>filename</definition_file>
@@ -887,6 +900,28 @@
         <menu id="8" xsi:type="ShortcutContainerMenuNode">
             <parent>1</parent>
             <rank>8</rank>
+        </menu>
+        <menu id="Typology" xsi:type="DashboardMenuNode" _delta="if_exists">
+            <rank>80</rank>
+            <parent>Catalogs</parent>
+            <definition>
+                <layout>DashboardLayoutOneCol</layout>
+                <title>Menu:ConfigManagement:Typology</title>
+                <cells>
+                    <cell id="0" _delta="if_exists">
+                        <dashlets>
+                            <dashlet id="20" xsi:type="DashletBadge" _delta="define">
+                                <rank>20</rank>
+                                <class>class1</class>
+                            </dashlet>
+                            <dashlet id="21" xsi:type="DashletBadge" _delta="define">
+                                <rank>21</rank>
+                                <class>class2</class>
+                            </dashlet>
+                        </dashlets>
+                    </cell>
+                </cells>
+            </definition>
         </menu>
     </menus>
     <!-- ***************** User Rights ***************** -->
@@ -1011,7 +1046,17 @@
     <!-- ***************** Constants ***************** -->
     <constants />
     <!-- ***************** Portals ***************** -->
-    <portals />
+    <portals>
+        <portal id="itop-portal" _delta="define">
+            <!-- ID must match module_design[id] -->
+            <url>url</url>
+            <!-- portal_id must match module_design[id] -->
+            <rank>1.0</rank>
+            <handler />
+            <allow />
+            <deny />
+        </portal>
+    </portals>
     <!-- ***************** Module Parameters ***************** -->
     <module_parameters>
         <parameters id="itop-object-copier" _delta="define">
@@ -1033,6 +1078,9 @@
                     </retrofit>
                 </rule>
             </rules>
+        </parameters>
+        <parameters id="itop-portal" _delta="define">
+            <lazy_loading_threshold>500</lazy_loading_threshold>
         </parameters>
     </module_parameters>
     <!-- ***************** Module Designs ***************** -->
@@ -1121,7 +1169,7 @@
     </events>
     <!-- ***************** Event Listeners ***************** -->
     <event_listeners>
-        <event_listener id="listener-1">
+        <event_listener id="listener-1" _delta="define">
             <event>EVENT_DISPLAY_OBJECT_DETAILS</event>
             <filters>
                 <filter>FAQ</filter>
@@ -1129,10 +1177,10 @@
             <rank>10</rank>
             <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
         </event_listener>
-        <event_listener id="listener-2">
+        <event_listener id="listener-2" _delta="if_exists">
             <event>EVENT_DB_COMPUTE_VALUES</event>
             <filters>
-                <filter>FAQ</filter>
+                <filter _delta="define">FAQ</filter>
             </filters>
             <rank>20</rank>
             <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
@@ -1143,8 +1191,7 @@
                 <filter>Attachment</filter>
             </filters>
             <rank>0</rank>
-            <code><![CDATA[function(Combodo\iTop\Service\Events\EventData $oEventData){ ... }]]>
-                </code>
+            <code><![CDATA[function(Combodo\iTop\Service\Events\EventData $oEventData){ ... }]]></code>
         </event_listener>
     </event_listeners>
 </itop_design>
