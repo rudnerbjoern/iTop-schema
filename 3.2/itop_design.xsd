@@ -149,9 +149,10 @@
                                                     </xs:element>
                                                     <xs:element name="obsolescence" minOccurs="0">
                                                         <xs:complexType>
-                                                            <xs:sequence>
+                                                            <xs:sequence minOccurs="0">
                                                                 <xs:element name="condition" type="xs:string" />
                                                             </xs:sequence>
+                                                            <xs:attributeGroup ref="alteredNode" />
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="uniqueness_rules" minOccurs="0">
