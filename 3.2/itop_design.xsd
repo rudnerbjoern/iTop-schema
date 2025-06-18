@@ -2741,7 +2741,15 @@
                     <xs:element name="definition" minOccurs="0">
                         <xs:complexType>
                             <xs:all>
-                                <xs:element name="layout" type="xs:string" minOccurs="0" />
+                                <xs:element name="layout" minOccurs="0">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DashboardLayoutOneCol" />
+                                            <xs:enumeration value="DashboardLayoutTwoCols" />
+                                            <xs:enumeration value="DashboardLayoutThreeCols" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
                                 <xs:element name="title" type="xs:string" minOccurs="0" />
                                 <xs:element name="cells" minOccurs="0">
                                     <xs:complexType>
