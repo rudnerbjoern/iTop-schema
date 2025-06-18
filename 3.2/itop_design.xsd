@@ -1524,6 +1524,20 @@
                 Defines the common structure: a required 'id' and metadata via alteredNode.
             </xs:documentation>
         </xs:annotation>
+        <xs:sequence minOccurs="0">
+            <xs:element name="denied_profiles">
+                <xs:complexType>
+                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="denied_profile">
+                            <xs:complexType>
+                                <xs:attribute name="id" type="xs:string" use="required" />
+                                <xs:attributeGroup ref="alteredNode" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
@@ -2727,7 +2741,15 @@
                     <xs:element name="definition" minOccurs="0">
                         <xs:complexType>
                             <xs:all>
-                                <xs:element name="layout" type="xs:string" minOccurs="0" />
+                                <xs:element name="layout" minOccurs="0">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DashboardLayoutOneCol" />
+                                            <xs:enumeration value="DashboardLayoutTwoCols" />
+                                            <xs:enumeration value="DashboardLayoutThreeCols" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
                                 <xs:element name="title" type="xs:string" minOccurs="0" />
                                 <xs:element name="cells" minOccurs="0">
                                     <xs:complexType>
