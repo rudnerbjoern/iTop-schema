@@ -398,10 +398,17 @@
                 </summary>
             </presentation>
         </class>
-        <class id="TestDeleteIfExists" _delta="define_if_not_exists">
+        <class id="TestDelta" _delta="define_if_not_exists">
             <properties>
                 <obsolescence _delta="delete_if_exists" />
             </properties>
+            <fields>
+                <field id="functionalci_id" xsi:type="AttributeExternalKey" _delta="must_exist">
+                    <!-- Issue: Tag filter of an AttributeExternalKey may be redefined
+                     https://github.com/rudnerbjoern/iTop-schema/issues/71 -->
+                    <filter _delta="redefine"><![CDATA[SELECT FunctionalCI WHERE finalclass IN ('NetworkDevice', 'Server', 'VirtualMachine')]]></filter>
+                </field>
+            </fields>
         </class>
         <class id="TestAttributes">
             <fields>
