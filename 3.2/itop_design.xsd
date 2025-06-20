@@ -230,7 +230,7 @@
                                                     <xs:element name="stimuli" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
-                                                                <xs:element name="stimulus" type="StimulusBase" />
+                                                                <xs:element name="stimulus" type="ObjectStimulus" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1518,7 +1518,7 @@
     </xs:simpleType>
 
     <!-- ########################### Stimuli ########################### -->
-    <xs:complexType name="StimulusBase" abstract="true">
+    <xs:complexType name="ObjectStimulus" abstract="true">
         <xs:annotation>
             <xs:documentation>
                 Abstract base type for state transition stimuli in iTop lifecycle.
@@ -1551,7 +1551,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="StimulusBase" />
+            <xs:extension base="ObjectStimulus" />
         </xs:complexContent>
     </xs:complexType>
 
@@ -1563,7 +1563,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="StimulusBase" />
+            <xs:extension base="ObjectStimulus" />
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /Stimuli ########################### -->
