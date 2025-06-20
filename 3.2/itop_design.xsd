@@ -2347,6 +2347,24 @@
     </xs:complexType>
     <!-- ########################### /AttributeObjectKey ########################### -->
 
+    <!-- ########################### AttributeOneWayPassword ########################### -->
+    <xs:complexType name="AttributeOneWayPassword">
+        <xs:complexContent>
+            <xs:extension base="AttributeDefinition">
+                <xs:all>
+                    <xs:element name="sql" type="xs:string" minOccurs="0" />
+                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
+                    <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
+                    <xs:element name="validation_pattern" type="xs:string" minOccurs="0" />
+                    <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
+                    <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeOneWayPassword ########################### -->
+
     <!-- ########################### AttributePassword ########################### -->
     <xs:complexType name="AttributePassword">
         <xs:complexContent>
