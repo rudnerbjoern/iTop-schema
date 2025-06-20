@@ -121,7 +121,7 @@
                                                             <xs:sequence maxOccurs="unbounded">
                                                                 <xs:element name="index" minOccurs="1">
                                                                     <xs:complexType>
-                                                                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                                                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                             <xs:element name="attributes">
                                                                                 <xs:complexType>
                                                                                     <xs:sequence maxOccurs="unbounded">
@@ -135,6 +135,7 @@
                                                                             </xs:element>
                                                                         </xs:sequence>
                                                                         <xs:attribute name="id" type="xs:string" use="required" />
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -230,7 +231,7 @@
                                                     <xs:element name="stimuli" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence maxOccurs="unbounded">
-                                                                <xs:element name="stimulus" type="StimulusBase" />
+                                                                <xs:element name="stimulus" type="ObjectStimulus" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -286,7 +287,7 @@
                                                                                                     <xs:element name="target" type="xs:string" minOccurs="0" />
                                                                                                     <xs:element name="flags" minOccurs="0">
                                                                                                         <xs:complexType>
-                                                                                                            <xs:sequence maxOccurs="unbounded">
+                                                                                                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                                                                 <xs:element name="attribute">
                                                                                                                     <xs:complexType>
                                                                                                                         <xs:all>
@@ -754,15 +755,7 @@
                                                     <xs:element name="imports" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                                <xs:element name="import">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="alteredString">
-                                                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="import" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1518,7 +1511,7 @@
     </xs:simpleType>
 
     <!-- ########################### Stimuli ########################### -->
-    <xs:complexType name="StimulusBase" abstract="true">
+    <xs:complexType name="ObjectStimulus" abstract="true">
         <xs:annotation>
             <xs:documentation>
                 Abstract base type for state transition stimuli in iTop lifecycle.
@@ -1551,7 +1544,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="StimulusBase" />
+            <xs:extension base="ObjectStimulus" />
         </xs:complexContent>
     </xs:complexType>
 
@@ -1563,7 +1556,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="StimulusBase" />
+            <xs:extension base="ObjectStimulus" />
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /Stimuli ########################### -->
@@ -1640,6 +1633,14 @@
         </xs:annotation>
         <xs:restriction base="string" />
     </xs:simpleType>
+
+    <xs:complexType name="utilities">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
     <!-- ########################### /action parameters ########################### -->
 
     <!-- ##################################################################
@@ -1664,7 +1665,7 @@
                 Each dependency refers to an attribute by its 'id'.
             </xs:documentation>
         </xs:annotation>
-        <xs:sequence maxOccurs="unbounded">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="attribute">
                 <xs:complexType>
                     <xs:attribute name="id" type="xs:string" use="required" />
@@ -1849,6 +1850,14 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /AttributeDateTime ########################### -->
+
+    <!-- ########################### AttributeDeadline ########################### -->
+    <xs:complexType name="AttributeDeadline">
+        <xs:complexContent>
+            <xs:extension base="AttributeDateTime" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeDeadline ########################### -->
 
     <!-- ########################### AttributeDecimal ########################### -->
     <xs:complexType name="AttributeDecimal">
@@ -2337,6 +2346,24 @@
         </xs:complexContent>
     </xs:complexType>
     <!-- ########################### /AttributeObjectKey ########################### -->
+
+    <!-- ########################### AttributeOneWayPassword ########################### -->
+    <xs:complexType name="AttributeOneWayPassword">
+        <xs:complexContent>
+            <xs:extension base="AttributeDefinition">
+                <xs:all>
+                    <xs:element name="sql" type="xs:string" minOccurs="0" />
+                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
+                    <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
+                    <xs:element name="validation_pattern" type="xs:string" minOccurs="0" />
+                    <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
+                    <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeOneWayPassword ########################### -->
 
     <!-- ########################### AttributePassword ########################### -->
     <xs:complexType name="AttributePassword">

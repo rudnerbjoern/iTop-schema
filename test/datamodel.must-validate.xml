@@ -75,6 +75,7 @@
                             <attribute id="4" />
                         </attributes>
                     </index>
+                    <index id="3" _delta="delete_if_exists" />
                 </indexes>
                 <archive>
                     <enabled>true</enabled>
@@ -691,6 +692,17 @@
                     <sql>obj1</sql>
                     <is_null_allowed>false</is_null_allowed>
                     <class_attcode>attcode</class_attcode>
+                </field>
+                <field id="password1" xsi:type="AttributeOneWayPassword">
+                    <sql>pwd1</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <default_value>pwd1</default_value>
+                </field>
+                <field id="password2" xsi:type="AttributePassword">
+                    <sql>pwd2</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <default_value />
+                    <validation_pattern>pattern</validation_pattern>
                 </field>
                 <field id="p1" xsi:type="AttributePercentage">
                     <sql>p1</sql>
