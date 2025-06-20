@@ -2642,24 +2642,6 @@
     </xs:complexType>
     <!-- ########################### /AttributeURL ########################### -->
 
-    <!-- ########################### AttributeMacAddress ########################### -->
-    <!-- introduced by: teemip-ip-mgmt -->
-    <xs:complexType name="AttributeMacAddress">
-        <xs:complexContent>
-            <xs:extension base="AttributeDefinition">
-                <xs:all>
-                    <xs:element name="sql" type="xs:string" minOccurs="0" />
-                    <xs:element name="default_value" type="xs:string" minOccurs="0" />
-                    <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0" />
-                    <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
-                    <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false" />
-                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
-                </xs:all>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <!-- ########################### /AttributeMacAddress ########################### -->
-
     <xs:complexType name="File">
         <xs:all>
             <xs:element name="name" type="xs:string" minOccurs="0" />
