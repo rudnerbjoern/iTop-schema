@@ -1851,6 +1851,14 @@
     </xs:complexType>
     <!-- ########################### /AttributeDateTime ########################### -->
 
+    <!-- ########################### AttributeDeadline ########################### -->
+    <xs:complexType name="AttributeDeadline">
+        <xs:complexContent>
+            <xs:extension base="AttributeDateTime" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeDeadline ########################### -->
+
     <!-- ########################### AttributeDecimal ########################### -->
     <xs:complexType name="AttributeDecimal">
         <xs:complexContent>
