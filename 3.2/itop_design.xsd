@@ -47,6 +47,7 @@
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
+                                                                        <xs:attributeGroup ref="alteredNode"/>
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                                 <xs:element name="complementary_attributes" minOccurs="0">
@@ -59,9 +60,11 @@
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
+                                                                        <xs:attributeGroup ref="alteredNode"/>
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
+                                                            <xs:attributeGroup ref="alteredNode"/>
                                                         </xs:complexType>
                                                     </xs:element>
                                                     <xs:element name="fields_semantic" minOccurs="0">
