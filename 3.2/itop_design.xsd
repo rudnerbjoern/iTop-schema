@@ -2658,7 +2658,7 @@
          ########################### Menu ###########################
          ############################################################ -->
 
-    <xs:complexType name="MenuBase">
+    <xs:complexType name="MenuNode">
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
@@ -2691,7 +2691,7 @@
     <!-- ########################### MenuGroup ########################### -->
     <xs:complexType name="MenuGroup">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2715,7 +2715,7 @@
     <!-- ########################### DashboardMenuNode ########################### -->
     <xs:complexType name="DashboardMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2772,7 +2772,7 @@
     <!-- ########################### NewObjectMenuNode ########################### -->
     <xs:complexType name="NewObjectMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2791,7 +2791,7 @@
     <!-- ########################### SearchMenuNode ########################### -->
     <xs:complexType name="SearchMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2810,7 +2810,7 @@
     <!-- ########################### TemplateMenuNode ########################### -->
     <xs:complexType name="TemplateMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2829,7 +2829,7 @@
     <!-- ########################### OQLMenuNode ########################### -->
     <xs:complexType name="OQLMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="auto_reload" minOccurs="0" default="none">
@@ -2866,7 +2866,7 @@
     <!-- ########################### WebPageMenuNode ########################### -->
     <xs:complexType name="WebPageMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
@@ -2895,7 +2895,7 @@
     <!-- ########################### ShortcutContainerMenuNode ########################### -->
     <xs:complexType name="ShortcutContainerMenuNode">
         <xs:complexContent>
-            <xs:extension base="MenuBase">
+            <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="xs:decimal" minOccurs="0" />
                     <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0" />
