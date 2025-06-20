@@ -375,11 +375,11 @@
                                                     <xs:element name="method">
                                                         <xs:complexType>
                                                             <xs:all>
-                                                                <xs:element name="comment" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="comment" type="alteredString" minOccurs="0" />
                                                                 <xs:element name="static" type="xs:boolean" minOccurs="0" />
                                                                 <xs:element name="access" minOccurs="0">
                                                                     <xs:simpleType>
-                                                                        <xs:restriction base="xs:string">
+                                                                        <xs:restriction base="alteredString">
                                                                             <xs:enumeration value="public" />
                                                                             <xs:enumeration value="protected" />
                                                                             <xs:enumeration value="private" />
@@ -388,7 +388,7 @@
                                                                 </xs:element>
                                                                 <xs:element name="type" minOccurs="0">
                                                                     <xs:simpleType>
-                                                                        <xs:restriction base="xs:string">
+                                                                        <xs:restriction base="alteredString">
                                                                             <xs:enumeration value="LifecycleAction" />
                                                                             <xs:enumeration value="EventListener" />
                                                                             <xs:enumeration value="StimulusUserAction" />
@@ -433,9 +433,10 @@
                                                                                 </xs:complexType>
                                                                             </xs:element>
                                                                         </xs:sequence>
+                                                                        <xs:attributeGroup ref="alteredNode" />
                                                                     </xs:complexType>
                                                                 </xs:element>
-                                                                <xs:element name="code" type="xs:string" minOccurs="0" />
+                                                                <xs:element name="code" type="alteredString" minOccurs="0" />
                                                             </xs:all>
                                                             <xs:attribute name="id" type="xs:string" use="required" />
                                                             <xs:attributeGroup ref="alteredNode" />
