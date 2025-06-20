@@ -121,7 +121,7 @@
                                                             <xs:sequence maxOccurs="unbounded">
                                                                 <xs:element name="index" minOccurs="1">
                                                                     <xs:complexType>
-                                                                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                                                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                             <xs:element name="attributes">
                                                                                 <xs:complexType>
                                                                                     <xs:sequence maxOccurs="unbounded">
