@@ -286,7 +286,7 @@
                                                                                                     <xs:element name="target" type="xs:string" minOccurs="0" />
                                                                                                     <xs:element name="flags" minOccurs="0">
                                                                                                         <xs:complexType>
-                                                                                                            <xs:sequence maxOccurs="unbounded">
+                                                                                                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
                                                                                                                 <xs:element name="attribute">
                                                                                                                     <xs:complexType>
                                                                                                                         <xs:all>
@@ -754,15 +754,7 @@
                                                     <xs:element name="imports" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                                <xs:element name="import">
-                                                                    <xs:complexType>
-                                                                        <xs:simpleContent>
-                                                                            <xs:extension base="alteredString">
-                                                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                                            </xs:extension>
-                                                                        </xs:simpleContent>
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="import" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -1640,6 +1632,14 @@
         </xs:annotation>
         <xs:restriction base="string" />
     </xs:simpleType>
+
+    <xs:complexType name="utilities">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
     <!-- ########################### /action parameters ########################### -->
 
     <!-- ##################################################################
@@ -1664,7 +1664,7 @@
                 Each dependency refers to an attribute by its 'id'.
             </xs:documentation>
         </xs:annotation>
-        <xs:sequence maxOccurs="unbounded">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="attribute">
                 <xs:complexType>
                     <xs:attribute name="id" type="xs:string" use="required" />
