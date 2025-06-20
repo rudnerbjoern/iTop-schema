@@ -378,30 +378,34 @@
                                                                 <xs:element name="comment" type="alteredString" minOccurs="0" />
                                                                 <xs:element name="static" type="xs:boolean" minOccurs="0" />
                                                                 <xs:element name="access" minOccurs="0">
-                                                                    <xs:simpleType>
-                                                                        <xs:restriction base="alteredString">
-                                                                            <xs:enumeration value="public" />
-                                                                            <xs:enumeration value="protected" />
-                                                                            <xs:enumeration value="private" />
-                                                                        </xs:restriction>
-                                                                    </xs:simpleType>
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:restriction base="alteredString">
+                                                                                <xs:enumeration value="public" />
+                                                                                <xs:enumeration value="protected" />
+                                                                                <xs:enumeration value="private" />
+                                                                            </xs:restriction>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
                                                                 </xs:element>
                                                                 <xs:element name="type" minOccurs="0">
-                                                                    <xs:simpleType>
-                                                                        <xs:restriction base="alteredString">
-                                                                            <xs:enumeration value="LifecycleAction" />
-                                                                            <xs:enumeration value="EventListener" />
-                                                                            <xs:enumeration value="StimulusUserAction" />
-                                                                            <xs:enumeration value="Overload-cmdbAbstractObject" />
-                                                                            <xs:enumeration value="Overload-iDisplay" />
-                                                                            <xs:enumeration value="Overload-DBObject" />
-                                                                            <xs:enumeration value="Overload-ExNihilo" />
-                                                                            <xs:enumeration value="Factory" />
-                                                                            <xs:enumeration value="Internal" />
-                                                                            <xs:enumeration value="Helper" />
-                                                                            <xs:enumeration value="Custom" />
-                                                                        </xs:restriction>
-                                                                    </xs:simpleType>
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:restriction base="alteredString">
+                                                                                <xs:enumeration value="LifecycleAction" />
+                                                                                <xs:enumeration value="EventListener" />
+                                                                                <xs:enumeration value="StimulusUserAction" />
+                                                                                <xs:enumeration value="Overload-cmdbAbstractObject" />
+                                                                                <xs:enumeration value="Overload-iDisplay" />
+                                                                                <xs:enumeration value="Overload-DBObject" />
+                                                                                <xs:enumeration value="Overload-ExNihilo" />
+                                                                                <xs:enumeration value="Factory" />
+                                                                                <xs:enumeration value="Internal" />
+                                                                                <xs:enumeration value="Helper" />
+                                                                                <xs:enumeration value="Custom" />
+                                                                            </xs:restriction>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
                                                                 </xs:element>
                                                                 <xs:element name="arguments" minOccurs="0">
                                                                     <xs:annotation>
