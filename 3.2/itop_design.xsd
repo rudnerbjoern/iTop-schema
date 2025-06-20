@@ -513,7 +513,7 @@
                 <xs:element name="menus" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="menu" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element name="menu" type="MenuNode" minOccurs="0" maxOccurs="unbounded" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -2658,7 +2658,7 @@
          ########################### Menu ###########################
          ############################################################ -->
 
-    <xs:complexType name="MenuNode">
+    <xs:complexType name="MenuNode" abstract="true">
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:complexType>
