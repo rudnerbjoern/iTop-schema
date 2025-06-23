@@ -15,7 +15,8 @@
         <class id="Delta6" _delta="if_exists" />
         <class id="Delta7" _delta="merge" />
         <class id="Delta8" _delta="must_exist" />
-        <class id="Delta9" _delta="redefine" />
+        <class id="Delta9" _delta="redefine" _rename_from="DeltaFrom" />
+        <class id="AttributesClass" _delta="define" _created_in="module1" _altered_in="module2" _alteration="replaced" _revision_id="1" />
         <class id="TestClass1">
             <parent>ParentClass</parent>
             <php_parent>
@@ -401,6 +402,14 @@
         </class>
         <class id="TestDelta" _delta="define_if_not_exists">
             <properties>
+                <naming _delta="define">
+                    <attributes _delta="define">
+                        <attribute id="name1" _delta="delete" />
+                    </attributes>
+                    <complementary_attributes _delta="define">
+                        <attribute id="name2" _delta="if_exists" />
+                    </complementary_attributes>
+                </naming>
                 <obsolescence _delta="delete_if_exists" />
             </properties>
             <fields>
@@ -410,6 +419,40 @@
                     <filter _delta="redefine"><![CDATA[SELECT FunctionalCI WHERE finalclass IN ('NetworkDevice', 'Server', 'VirtualMachine')]]></filter>
                 </field>
             </fields>
+            <methods>
+                <method id="TestMethod1">
+                    <comment _delta="define">comment</comment>
+                    <access _delta="define">public</access>
+                    <type _delta="define">Overload-cmdbAbstractObject</type>
+                    <arguments _delta="force">
+                        <argument id="argument1" _delta="delete" />
+                    </arguments>
+                    <code _delta="define"><![CDATA[function TestFunction()]]> </code>
+                </method>
+                <method id="TestMethod2" _delta="delete_if_exists" />
+            </methods>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="item1" _delta="define">
+                            <rank _delta="force">10</rank>
+                            <items>
+                                <item id="item2" _delta="define">
+                                    <rank _delta="define">20</rank>
+                                    <items>
+                                        <item id="item3" _delta="define">
+                                            <rank _delta="define">30</rank>
+                                            <items>
+                                                <item id="item4" _delta="define" />
+                                            </items>
+                                        </item>
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+            </presentation>
         </class>
         <class id="TestAttributes">
             <fields>
@@ -1038,15 +1081,15 @@
                 </stylesheets>
             </theme>
             <theme id="test-red" _delta="must_exist">
-                <variables>
+                <variables _delta="redefine">
                     <variable id="backoffice-environment-banner-background-color" _delta="define">#C53030</variable>
                     <variable id="backoffice-environment-banner-text-color" _delta="define">#F7FAFC</variable>
                     <variable id="backoffice-environment-banner-text-content" _delta="define">"THIS IS A TEST INSTANCE"</variable>
                 </variables>
-                <imports>
+                <imports _delta="redefine">
                     <import id="css-variables" _delta="define">itop-themes-compat/assets/css/css-variables.scss</import>
                 </imports>
-                <stylesheets>
+                <stylesheets _delta="redefine">
                     <stylesheet id="jqueryui" _delta="define">compat.scss</stylesheet>
                     <stylesheet id="main" _delta="define">compat.scss</stylesheet>
                 </stylesheets>
