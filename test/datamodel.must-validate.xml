@@ -994,10 +994,11 @@
     <!-- ***************** User Rights ***************** -->
     <user_rights>
         <groups>
-            <group id="1">
+            <group id="1" _delta="define">
                 <classes>
                     <class id="TestClass" />
                     <class id="Test2Class" />
+                    <class id="RemoveClass" _delta="delete_if_exists" />
                 </classes>
             </group>
         </groups>
@@ -1012,6 +1013,20 @@
                             <action id="stimulus:ev_done">allow</action>
                         </actions>
                     </group>
+                </groups>
+            </profile>
+            <profile id="124" _delta="delete" />
+            <profile id="125">
+                <name _delta="define">Test Name 2</name>
+                <description _delta="redefine">description</description>
+                <groups>
+                    <group id="123" _delta="define">
+                        <actions>
+                            <action id="action:read" _delta="define" />
+                            <action id="action:write" _delta="delete" />
+                        </actions>
+                    </group>
+                    <group id="125" _delta="delete" />
                 </groups>
             </profile>
         </profiles>
