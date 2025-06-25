@@ -66,8 +66,7 @@
                 <xs:element name="dictionaries" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#dictionaries">
-                            For adding localizations into the XML.
-                        </xs:documentation>
+                            For adding localizations into the XML.</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence minOccurs="0" maxOccurs="unbounded">
