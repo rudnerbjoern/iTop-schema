@@ -3,20 +3,26 @@
 #
 # This workflow runs on every push to the 'main' branch.
 # It combines modular XSD files into a single file, formats the result
-# using xmlstarlet, uploads it as an artifact, and commits it to the repository.
+# using xmlstarlet, uploads it as an artifact, and creates a pull request.
 #
 
 name: Combine XSD Schema v3.2
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - '3.2/**'
+      - 'scripts/**'
+      - '.github/workflows/combine-schema.yml'
 
 jobs:
   combine-schema:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     env:
       INPUT_FILE: 3.2/itop_design.xsd
       OUTPUT_FILE: dist/3.2/itop_design.xsd
@@ -43,10 +49,11 @@ jobs:
         run: |
           xmlstarlet fo --omit-decl $OUTPUT_FILE > tmp.xml && mv tmp.xml $OUTPUT_FILE
           xmlstarlet ed -P -L -u "//xs:documentation/text()" -x "normalize-space(.)" $OUTPUT_FILE
+          rm -f tmp.xml
 
       - name: Set artifact path
         id: vars
-        run: echo "path=$OUTPUT_FILE" >> $GITHUB_OUTPUT
+        run: echo "path=$OUTPUT_FILE" >> "$GITHUB_OUTPUT"
 
       - name: Upload merged XSD as artifact
         uses: actions/upload-artifact@v4
@@ -54,18 +61,29 @@ jobs:
           name: combined-xsd
           path: ${{ steps.vars.outputs.path }}
 
-      - name: Commit combined schema to repository
+      - name: Commit combined schema
+        id: commit
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
+          git checkout -b auto/schema-update
           git add $OUTPUT_FILE || echo "No changes to add"
           git status
           if ! git diff --cached --quiet; then
             git commit -m "Auto-update combined schema"
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-            git push
+            echo "changes_present=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes to commit."
+            echo "changes_present=false" >> "$GITHUB_OUTPUT"
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request with updated schema
+        if: success() && steps.commit.outputs.changes_present == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Auto-update combined schema
+          branch: auto/schema-update
+          title: 'Auto-update combined schema'
+          body: 'This PR was automatically created by the Combine XSD Schema workflow.'
+          base: main
