@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "addprevious",
         "attcode",
         "autoincrement",
         "cmdb",
@@ -7,6 +8,7 @@
         "Combodo",
         "dashlet",
         "dashlets",
+        "datamodels",
         "extkey",
         "fileref",
         "finalclass",
@@ -15,6 +17,7 @@
         "ITSM",
         "jointype",
         "jqueryui",
+        "lxml",
         "metavalue",
         "metavalues",
         "mgmt",
@@ -24,6 +27,7 @@
         "networkflow",
         "Nihilo",
         "noout",
+        "NSMAP",
         "stylesheet",
         "teemip",
         "timespent",

@@ -1,3 +1,11 @@
+#
+# GitHub Actions Workflow: Validate iTop datamodel XML v3.2
+#
+# This workflow runs on every pull request to the 'main' branch.
+# It validates an XML data model against the corresponding XSD schema.
+# The validation logic is implemented in a separate Python script.
+#
+
 name: Validate iTop datamodel XML version 3.2
 
 on:
@@ -7,31 +15,21 @@ on:
 jobs:
   validate-xml:
     runs-on: ubuntu-latest
+    env:
+      XSD_PATH: 3.2/itop_design.xsd
+      XML_PATH: test/datamodel.must-validate.xml
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      - name: Prepare Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-    - name: Install lxml
-      run: pip install lxml
+      - name: Install XML validation dependencies
+        run: pip install -r scripts/requirements.txt
 
-    - name: Verify files exist
-      run: |
-        test -f 3.2/itop_design.xsd || (echo "XSD file missing!" && exit 1)
-        test -f test/datamodel.must-validate.xml || (echo "XML file missing!" && exit 1)
-
-    - name: Validate datamodel.must-validate.xml against itop_design.xsd
-      run: |
-        python -c '
-        import lxml.etree as ET
-        schema = ET.XMLSchema(file="3.2/itop_design.xsd")
-        parser = ET.XMLParser(schema=schema)
-        with open("test/datamodel.must-validate.xml", "rb") as f:
-            ET.parse(f, parser)
-        print("XML is valid.")
-        '
+      - name: Validate XML datamodel against schema
+        run: python scripts/validate_xml.py $XSD_PATH $XML_PATH
