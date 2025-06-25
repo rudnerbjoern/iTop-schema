@@ -1,0 +1,71 @@
+#
+# GitHub Actions Workflow: Combine XSD Schema v3.2
+#
+# This workflow runs on every push to the 'main' branch.
+# It combines modular XSD files into a single file, formats the result
+# using xmlstarlet, uploads it as an artifact, and commits it to the repository.
+#
+
+name: Combine XSD Schema v3.2
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  combine-schema:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      INPUT_FILE: 3.2/itop_design.xsd
+      OUTPUT_FILE: dist/3.2/itop_design.xsd
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Install xmlstarlet
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+
+      - name: Combine XSD schema into single file
+        run: python scripts/combine_schema.py $INPUT_FILE $OUTPUT_FILE
+
+      - name: Beautify and normalize XSD with xmlstarlet
+        run: |
+          xmlstarlet fo --omit-decl $OUTPUT_FILE > tmp.xml && mv tmp.xml $OUTPUT_FILE
+          xmlstarlet ed -P -L -u "//xs:documentation/text()" -x "normalize-space(.)" $OUTPUT_FILE
+
+      - name: Set artifact path
+        id: vars
+        run: echo "path=$OUTPUT_FILE" >> $GITHUB_OUTPUT
+
+      - name: Upload merged XSD as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: combined-xsd
+          path: ${{ steps.vars.outputs.path }}
+
+      - name: Commit combined schema to repository
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add $OUTPUT_FILE || echo "No changes to add"
+          git status
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-update combined schema"
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+            git push
+          else
+            echo "No changes to commit."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
