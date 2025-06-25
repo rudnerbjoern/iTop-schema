@@ -1,0 +1,35 @@
+#
+# GitHub Actions Workflow: Validate iTop datamodel XML v3.2
+#
+# This workflow runs on every pull request to the 'main' branch.
+# It validates an XML data model against the corresponding XSD schema.
+# The validation logic is implemented in a separate Python script.
+#
+
+name: Validate iTop datamodel XML version 3.2
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-xml:
+    runs-on: ubuntu-latest
+    env:
+      XSD_PATH: 3.2/itop_design.xsd
+      XML_PATH: test/datamodel.must-validate.xml
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Prepare Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install XML validation dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Validate XML datamodel against schema
+        run: python scripts/validate_xml.py $XSD_PATH $XML_PATH
