@@ -71,6 +71,7 @@ jobs:
           git status
           if ! git diff --cached --quiet; then
             git commit -m "Auto-update combined schema"
+            git push origin auto/schema-update
             echo "changes_present=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes to commit."
