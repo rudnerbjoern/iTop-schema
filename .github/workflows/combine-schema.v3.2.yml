@@ -98,17 +98,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Wait for PR checks to succeed
+      - name: Wait for required status check to pass
         run: |
-          echo "Waiting for all status checks to pass..."
+          echo "Waiting for required status check 'validate-xml' to pass..."
           for i in {1..30}; do
-            STATES=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json statusCheckRollup --jq '[.statusCheckRollup[].state]' || echo "[]")
-            echo "statusCheckRollup states = $STATES"
-            if echo "$STATES" | jq -e 'all(. == "SUCCESS")' > /dev/null; then
-              echo "All checks passed."
+            STATE=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --check validate-xml --json conclusion --jq .conclusion || echo "")
+            echo "validate-xml = $STATE"
+            if [[ "$STATE" == "SUCCESS" ]]; then
+              echo "validate-xml check passed."
               break
             fi
-            echo "Checks not successful yet, retrying in 10s... ($i/30)"
+            echo "validate-xml not successful yet, retrying in 10s... ($i/30)"
             sleep 10
           done
         env:
