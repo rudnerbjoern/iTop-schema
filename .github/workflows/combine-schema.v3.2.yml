@@ -98,21 +98,32 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Wait for required status check to pass
+
+      - name: Wait for PR checks (ignore error if none)
+        id: check-pr-checks
         run: |
-          echo "Pausing before status checks..."
-          sleep 10
-          echo "Waiting for required status check 'validate-xml' to pass..."
-          for i in {1..30}; do
-            STATE=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --json name,state --jq ".[] | select(.name==\"validate-xml\") | .state" 2>/dev/null || echo "none")
-            echo "validate-xml = $STATE"
-            if [[ "$STATE" == "success" || "$STATE" == "none" ]]; then
-              echo "validate-xml check passed."
-              break
-            fi
-            echo "validate-xml not successful yet, retrying in 10s... ($i/30)"
-            sleep 10
-          done
+          CHECK_OUTPUT=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} 2>&1 || true)
+          echo "CHECK_OUTPUT = $CHECK_OUTPUT"
+          if echo "$CHECK_OUTPUT" | grep -q 'no checks reported'; then
+            echo "checks_present=false" >> $GITHUB_OUTPUT
+          else
+            echo "checks_present=true" >> $GITHUB_OUTPUT
+            gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --watch || echo "Check watch failed."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail if any required check failed
+        if: steps.check-pr-checks.outputs.checks_present == 'true'
+        run: |
+          gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} > checks.txt
+          if grep -E '(X|Failed|failure)' checks.txt; then
+            echo "Some checks failed."
+            cat checks.txt
+            exit 1
+          else
+            echo "All checks passed."
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
