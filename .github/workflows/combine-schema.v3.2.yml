@@ -83,6 +83,21 @@ jobs:
           draft: false
           delete-branch: true
 
+      - name: Wait for PR to be mergeable
+        run: |
+          echo "Waiting for PR to be mergeable..."
+          for i in {1..30}; do
+            MERGEABLE=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json mergeable --jq .mergeable)
+            echo "MERGEABLE = $MERGEABLE"
+            if [[ "$MERGEABLE" == "MERGEABLE" || "$MERGEABLE" == "mergeable" ]]; then
+              break
+            fi
+            echo "Still not mergeable, retrying in 10s... ($i/30)"
+            sleep 10
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable automerge
         uses: "peter-evans/enable-pull-request-automerge@v3"
         with:

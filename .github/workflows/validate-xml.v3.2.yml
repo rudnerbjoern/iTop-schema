@@ -11,6 +11,8 @@ name: Validate iTop datamodel XML version 3.2
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - '3.2/**'
 
 jobs:
   validate-xml:
@@ -22,14 +24,34 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check if files in 3.2 changed
+        id: changes
+        run: |
+          git fetch origin main
+          CHANGED=$(git diff --name-only origin/main...HEAD | grep '^3.2/' || true)
+          if [ -z "$CHANGED" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Prepare Python environment
+        if: steps.changes.outputs.skip == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install XML validation dependencies
+        if: steps.changes.outputs.skip == 'false'
         run: pip install -r scripts/requirements.txt
 
       - name: Validate XML datamodel against schema
+        if: steps.changes.outputs.skip == 'false'
         run: python scripts/validate_xml.py $XSD_PATH $XML_PATH
+
+      - name: Skip validation (no relevant changes)
+        if: steps.changes.outputs.skip == 'true'
+        run: echo "No relevant changes in /3.2. Skipping validation."
