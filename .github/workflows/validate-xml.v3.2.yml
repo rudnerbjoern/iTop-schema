@@ -11,7 +11,7 @@ name: Validate iTop datamodel XML version 3.2
 on:
   pull_request:
     branches:
-      - main
+      - '*'
 
 jobs:
   validate-xml:
