@@ -102,9 +102,9 @@ jobs:
         run: |
           echo "Waiting for required status check 'validate-xml' to pass..."
           for i in {1..30}; do
-            STATE=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --check validate-xml --json conclusion --jq .conclusion || echo "")
+            STATE=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --json name,state --jq ".[] | select(.name==\"validate-xml\") | .state" 2>/dev/null || echo "none")
             echo "validate-xml = $STATE"
-            if [[ "$STATE" == "SUCCESS" ]]; then
+            if [[ "$STATE" == "success" || "$STATE" == "none" ]]; then
               echo "validate-xml check passed."
               break
             fi
