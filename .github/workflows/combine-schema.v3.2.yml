@@ -100,6 +100,8 @@ jobs:
 
       - name: Wait for required status check to pass
         run: |
+          echo "Pausing before status checks..."
+          sleep 10
           echo "Waiting for required status check 'validate-xml' to pass..."
           for i in {1..30}; do
             STATE=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --json name,state --jq ".[] | select(.name==\"validate-xml\") | .state" 2>/dev/null || echo "none")
@@ -116,6 +118,8 @@ jobs:
 
       - name: Merge PR manually
         run: |
+          echo "Pausing before manual merge..."
+          sleep 10
           echo "Merging PR manually via gh CLI..."
           gh pr merge ${{ steps.create-pull-request.outputs.pull-request-url }} --squash --admin
         env:
