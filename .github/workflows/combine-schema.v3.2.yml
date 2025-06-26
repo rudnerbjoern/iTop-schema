@@ -88,11 +88,27 @@ jobs:
           echo "Waiting for PR to be mergeable..."
           for i in {1..30}; do
             MERGEABLE=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json mergeable --jq .mergeable)
-            echo "MERGEABLE = $MERGEABLE"
+            echo "mergeable = $MERGEABLE"
             if [[ "$MERGEABLE" == "MERGEABLE" || "$MERGEABLE" == "mergeable" ]]; then
               break
             fi
             echo "Still not mergeable, retrying in 10s... ($i/30)"
+            sleep 10
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for PR checks to succeed
+        run: |
+          echo "Waiting for all status checks to pass..."
+          for i in {1..30}; do
+            STATES=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json statusCheckRollup --jq '[.statusCheckRollup[].state]' || echo "[]")
+            echo "statusCheckRollup states = $STATES"
+            if echo "$STATES" | jq -e 'all(. == "SUCCESS")' > /dev/null; then
+              echo "All checks passed."
+              break
+            fi
+            echo "Checks not successful yet, retrying in 10s... ($i/30)"
             sleep 10
           done
         env:
