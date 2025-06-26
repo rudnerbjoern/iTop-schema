@@ -114,12 +114,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable automerge
-        uses: "peter-evans/enable-pull-request-automerge@v3"
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create-pull-request.outputs.pull-request-number }}
-          merge-method: squash
+      - name: Merge PR manually
+        run: |
+          echo "Merging PR manually via gh CLI..."
+          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-url }} --squash --admin
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete branch after merge
         if: ${{ steps.create-pull-request.outputs.pull-request-operation == 'updated' || steps.create-pull-request.outputs.pull-request-operation == 'created' }}
