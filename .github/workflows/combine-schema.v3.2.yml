@@ -17,8 +17,13 @@ on:
       - 'scripts/**'
       - '.github/workflows/combine-schema.v3.2.yml'
 
+concurrency:
+  group: combine-schema-v3.2
+  cancel-in-progress: true
+
 jobs:
-  combine-schema:
+  combine_schema_v3_2:
+    name: Combine Schema v3.2
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,125 +35,137 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Git
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+          cache: 'pip'
 
-      - name: Install dependencies
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install system and Python dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y xmlstarlet
+          sudo apt-get update
+          sudo apt-get install -y xmlstarlet
           pip install -r scripts/requirements.txt
 
-      - name: Combine and clean XSD schema
+      - name: Combine and format schema
+        shell: bash
         run: |
-          set -e
-          echo "Combining input schema: $INPUT_FILE"
-          python scripts/combine_schema.py $INPUT_FILE $OUTPUT_FILE
-
-          echo "Cleaning and formatting schema file..."
+          set -euxo pipefail
+          python scripts/combine_schema.py "$INPUT_FILE" "$OUTPUT_FILE"
           xmlstarlet ed -N xs="http://www.w3.org/2001/XMLSchema" \
             -u '//xs:documentation' -x 'normalize-space(.)' "$OUTPUT_FILE" | \
           xmlstarlet fo > "${OUTPUT_FILE}.tmp"
           mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
 
-      - name: Show file content before pull request
-        run: |
-          echo "Head:"
-          head -n 20 "$OUTPUT_FILE"
-          echo "Tail:"
-          tail -n 20 "$OUTPUT_FILE"
+      - name: Upload combined schema artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: itop_design-combined-xsd
+          path: ${{ env.OUTPUT_FILE }}
 
-      - name: Create pull request
-        id: create-pull-request
+      - name: Create or update pull request
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Auto: Update itop_design.xsd"
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           branch: auto/update-schema
           base: main
           title: "Auto: Update itop_design.xsd"
-          body: "This PR was automatically created by a GitHub Action."
+          body: |
+            This PR was automatically created by a GitHub Action.
+
+            - [Workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - Commit: ${{ github.sha }}
           labels: auto-update
           draft: false
           delete-branch: true
 
       - name: Wait for PR to be mergeable
+        shell: bash
         run: |
-          echo "Waiting for PR to be mergeable..."
+          echo "Waiting for PR to become mergeable (GitHub may delay mergeability calculation)..."
+          sleep 10  # Give GitHub some time to compute mergeability
           for i in {1..30}; do
-            MERGEABLE=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json mergeable --jq .mergeable)
-            echo "mergeable = $MERGEABLE"
+            MERGEABLE=$(gh pr view "${{ steps.cpr.outputs.pull-request-url }}" --json mergeable --jq .mergeable)
+            echo "Attempt $i: mergeable = $MERGEABLE"
             if [[ "$MERGEABLE" == "MERGEABLE" || "$MERGEABLE" == "mergeable" ]]; then
+              echo "PR is mergeable!"
               break
             fi
-            echo "Still not mergeable, retrying in 10s... ($i/30)"
             sleep 10
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
       - name: Wait for PR checks (ignore error if none)
         id: check-pr-checks
+        shell: bash
         run: |
-          CHECK_OUTPUT=$(gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} 2>&1 || true)
-          echo "CHECK_OUTPUT = $CHECK_OUTPUT"
+          CHECK_OUTPUT=$(gh pr checks "${{ steps.cpr.outputs.pull-request-url }}" 2>&1 || true)
           if echo "$CHECK_OUTPUT" | grep -q 'no checks reported'; then
             echo "checks_present=false" >> $GITHUB_OUTPUT
           else
             echo "checks_present=true" >> $GITHUB_OUTPUT
-            gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} --watch || echo "Check watch failed."
+            gh pr checks "${{ steps.cpr.outputs.pull-request-url }}" --watch || echo "Check watch failed."
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if any required check failed
         if: steps.check-pr-checks.outputs.checks_present == 'true'
+        shell: bash
         run: |
-          gh pr checks ${{ steps.create-pull-request.outputs.pull-request-url }} > checks.txt
+          gh pr checks "${{ steps.cpr.outputs.pull-request-url }}" > checks.txt
           if grep -E '(X|Failed|failure)' checks.txt; then
-            echo "Some checks failed."
+            echo "❌ Some required PR checks failed:"
             cat checks.txt
             exit 1
           else
-            echo "All checks passed."
+            echo "✅ All PR checks passed."
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge PR manually
+        shell: bash
         run: |
-          echo "Pausing before manual merge..."
           sleep 10
-          echo "Merging PR manually via gh CLI..."
-          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-url }} --squash --admin
+          gh pr merge "${{ steps.cpr.outputs.pull-request-url }}" --squash --admin
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete branch after merge
-        if: ${{ steps.create-pull-request.outputs.pull-request-operation == 'updated' || steps.create-pull-request.outputs.pull-request-operation == 'created' }}
+      - name: Delete PR branch after merge
+        if: ${{ steps.cpr.outputs.pull-request-operation == 'updated' || steps.cpr.outputs.pull-request-operation == 'created' }}
         run: |
-          echo "Waiting for merge..."
-          for i in {1..30}; do
-            MERGED_AT=$(gh pr view ${{ steps.create-pull-request.outputs.pull-request-url }} --json mergedAt --jq .mergedAt)
-            if [ "$MERGED_AT" != "null" ]; then
-              echo "PR merged at $MERGED_AT, deleting branch..."
-              git push origin --delete auto/update-schema
-              break
-            fi
-            echo "Not merged yet, retrying in 10s... ($i/30)"
-            sleep 10
-          done
+          gh api -X DELETE repos/${{ github.repository }}/git/refs/heads/auto/update-schema
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add workflow summary
+        run: |
+          echo "## Workflow Summary: Combine XSD Schema v3.2" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This workflow automates the process of combining and formatting the iTop XSD schema for version 3.2." >> $GITHUB_STEP_SUMMARY
+          echo "It triggers on changes to schema files, scripts, or the workflow itself on the \`main\` branch." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Key Features:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Detects and runs only on relevant changes for efficiency." >> $GITHUB_STEP_SUMMARY
+          echo "- Caches Python dependencies for faster execution." >> $GITHUB_STEP_SUMMARY
+          echo "- Installs system dependencies and formats the combined schema using Python and \`xmlstarlet\`." >> $GITHUB_STEP_SUMMARY
+          echo "- Uploads the resulting combined schema as a build artifact." >> $GITHUB_STEP_SUMMARY
+          echo "- Automatically creates or updates a pull request with the updated schema." >> $GITHUB_STEP_SUMMARY
+          echo "- Waits for PR checks and mergeability, merges the PR, and deletes the update branch post-merge." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Details:**" >> $GITHUB_STEP_SUMMARY
+          echo "- PR: ${{ steps.cpr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
