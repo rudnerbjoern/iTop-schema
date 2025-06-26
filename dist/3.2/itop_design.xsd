@@ -1,0 +1,2835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This schema file was automatically generated from modular XSD components.
+  Provided by the iTop-schema project by Björn Rudner.
+
+  Project website: https://rudnerbjoern.github.io/iTop-schema/
+  GitHub repository: https://github.com/rudnerbjoern/iTop-schema
+
+  Generated on: 2025-06-26 08:36:18 UTC
+
+  Use this file to validate your iTop datamodels with confidence and consistency.
+    -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="3.2" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="itop_design">
+    <xs:annotation>
+      <xs:documentation source="https://www.itophub.io/wiki/page?id=3_2_0:customization:xml_reference#xml_general_structure">Structural node. No comments are allowed before this tag.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="classes" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Declared classes</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="class" type="classNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="menus" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Declaration of the menus shown in the main GUI (left pane)</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="menu" type="MenuNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_rights" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Implementation of the user rights policy: users will have one or more profiles, granting them access rights.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="groups" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="group" type="userRightsGroupNode"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="profiles" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="profile" type="userRightsProfileNode"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="files" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#files">The “files” structure allow to embed binary files (for examples image files used for the object's icons) directly in an XML delta definition file.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="file"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dictionaries" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#dictionaries">For adding localizations into the XML.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="dictionary" type="dictionaryNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="branding" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Appearance of the GUI</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="main_logo" type="logoNode" minOccurs="0"/>
+              <xs:element name="main_logo_compact" type="logoNode" minOccurs="0"/>
+              <xs:element name="login_logo" type="logoNode" minOccurs="0"/>
+              <xs:element name="portal_logo" type="logoNode" minOccurs="0"/>
+              <xs:element name="main_favicon" type="logoNode" minOccurs="0"/>
+              <xs:element name="portal_favicon" type="logoNode" minOccurs="0"/>
+              <xs:element name="login_favicon" type="logoNode" minOccurs="0"/>
+              <xs:element name="themes" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="theme" type="themeNode"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="themes_common" minOccurs="0">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="variables" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="variable" type="alteredIdString"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="imports" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="import">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:anySimpleType">
+                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                  <xs:attributeGroup ref="alteredNode"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="stylesheets" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="stylesheet" type="alteredIdString"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="constants" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Constants to be compiled as PHP defines</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="constant" type="alteredIdString"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="portals" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Definition of entry points for the user interface</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="portal" type="portalNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="module_parameters" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Definition of module specific parameters</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="parameters">
+                <xs:complexType>
+                  <xs:choice maxOccurs="unbounded">
+                    <xs:any processContents="lax"/>
+                  </xs:choice>
+                  <xs:attribute name="id" type="xs:string" use="required"/>
+                  <xs:attributeGroup ref="alteredNode"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="module_designs" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Module specific design data</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="module_design" type="moduleDesignNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="snippets" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Snippets of PHP code to be injected in the PHP model files</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="snippet" type="snippetNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="meta" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#meta">Usage of this tag is restricted to Combodo for driving ITSM Designer behavior. It is used to declare in XML stuff which are in PHP code and need to be known and manipulate by the ITSM Designer.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="classes" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence maxOccurs="unbounded">
+                    <xs:element name="class"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="presentation" minOccurs="0">
+                <xs:complexType>
+                  <xs:choice maxOccurs="unbounded">
+                    <xs:any processContents="lax"/>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="attribute_properties_definition" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element name="properties">
+                      <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded">
+                          <xs:element name="property">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element name="php_param" type="xs:string" minOccurs="0"/>
+                                <xs:element name="mandatory" type="xs:boolean" minOccurs="0"/>
+                                <xs:element name="type" type="xs:string" minOccurs="0"/>
+                                <xs:element name="default" type="xs:string" minOccurs="0"/>
+                              </xs:all>
+                              <xs:attribute name="id" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attributeGroup ref="alteredNode"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="events" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Event definition list</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="event" type="eventNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="event_listeners" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Global event listeners</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="event_listener" type="globalEventListenerNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="version" type="xs:token" use="required" fixed="3.2"/>
+      <xs:attribute name="load">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="lax"/>
+            <xs:enumeration value="strict"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- #############################################################
+         ########################### nodes ###########################
+         ############################################################# -->
+  <xs:complexType name="classNode">
+    <xs:all>
+      <xs:element name="parent" type="xs:string" minOccurs="0"/>
+      <xs:element name="php_parent" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="file" type="xs:string" minOccurs="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="properties" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="is_link" type="zeroOrOneEnumeration" minOccurs="0"/>
+            <xs:element name="comment" type="xs:string" minOccurs="0"/>
+            <xs:element name="category" type="xs:string" minOccurs="0"/>
+            <xs:element name="abstract" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="key_type" type="xs:string" minOccurs="0" fixed="autoincrement"/>
+            <xs:element name="db_table" type="xs:string" minOccurs="0"/>
+            <xs:element name="db_key_field" type="xs:string" minOccurs="0"/>
+            <xs:element name="db_final_class_field" type="xs:string" minOccurs="0"/>
+            <xs:element name="naming" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="attributes" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="complementary_attributes" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="fields_semantic" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="image_attribute" type="xs:string" minOccurs="0"/>
+                  <xs:element name="state_attribute" type="alteredString" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="order" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="columns">
+                    <xs:complexType>
+                      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="column">
+                          <xs:complexType>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attribute name="ascending" type="xs:boolean" use="required"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="style" minOccurs="0">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="icon" type="xs:string" minOccurs="0"/>
+                  <xs:element name="main_color" type="xs:string" minOccurs="0"/>
+                  <xs:element name="complementary_color" type="xs:string" minOccurs="0"/>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="reconciliation" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="attributes" minOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="attribute" type="alteredIdString"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="indexes" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="index" minOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="attributes">
+                          <xs:complexType>
+                            <xs:sequence maxOccurs="unbounded">
+                              <xs:element name="attribute" type="alteredIdString"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="id" type="xs:string" use="required"/>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="archive" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="enabled" type="xs:boolean"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="obsolescence" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence minOccurs="0">
+                  <xs:element name="condition" type="xs:string"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="uniqueness_rules" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="rule">
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="attributes" minOccurs="0">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                              <xs:element name="attribute">
+                                <xs:complexType>
+                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                  <xs:attributeGroup ref="alteredNode"/>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="filter" type="alteredString" minOccurs="0"/>
+                        <xs:element name="disabled" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="is_blocking" type="xs:boolean" minOccurs="0" default="true"/>
+                      </xs:all>
+                      <xs:attribute name="id" type="xs:string" use="required"/>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="fields" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="field"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lifecycle" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="highlight_scale" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="item">
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+                        <xs:element name="color" minOccurs="0">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="HIGHLIGHT_NONE"/>
+                              <xs:enumeration value="HIGHLIGHT_WARNING"/>
+                              <xs:enumeration value="HIGHLIGHT_CRITICAL"/>
+                              <xs:enumeration value="HIGHLIGHT_OK"/>
+                              <xs:enumeration value="HIGHLIGHT_CLASS_NONE"/>
+                              <xs:enumeration value="HIGHLIGHT_CLASS_WARNING"/>
+                              <xs:enumeration value="HIGHLIGHT_CLASS_CRITICAL"/>
+                              <xs:enumeration value="HIGHLIGHT_CLASS_OK"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="icon" type="xs:string" minOccurs="0"/>
+                      </xs:all>
+                      <xs:attribute name="id" type="xs:string" use="required"/>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="stimuli" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="stimulus" type="ObjectStimulus"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="states" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="state">
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="initial_state_path" minOccurs="0"/>
+                        <xs:element name="inherit_flags_from" type="xs:string" minOccurs="0"/>
+                        <xs:element name="highlight" minOccurs="0">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="code" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="flags" minOccurs="0">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                              <xs:element name="attribute">
+                                <xs:complexType>
+                                  <xs:all>
+                                    <xs:element name="hidden" minOccurs="0">
+                                      <xs:complexType/>
+                                    </xs:element>
+                                    <xs:element name="read_only" minOccurs="0">
+                                      <xs:complexType/>
+                                    </xs:element>
+                                    <xs:element name="must_prompt" minOccurs="0">
+                                      <xs:complexType/>
+                                    </xs:element>
+                                    <xs:element name="must_change" minOccurs="0">
+                                      <xs:complexType/>
+                                    </xs:element>
+                                    <xs:element name="mandatory" minOccurs="0">
+                                      <xs:complexType/>
+                                    </xs:element>
+                                  </xs:all>
+                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="transitions" minOccurs="0">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                              <xs:element name="transition">
+                                <xs:complexType>
+                                  <xs:all>
+                                    <xs:element name="target" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="flags" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                          <xs:element name="attribute">
+                                            <xs:complexType>
+                                              <xs:all>
+                                                <xs:element name="mandatory" minOccurs="0">
+                                                  <xs:complexType/>
+                                                </xs:element>
+                                                <xs:element name="must_change" minOccurs="0">
+                                                  <xs:complexType/>
+                                                </xs:element>
+                                                <xs:element name="must_prompt" minOccurs="0">
+                                                  <xs:complexType/>
+                                                </xs:element>
+                                                <xs:element name="read_only" minOccurs="0">
+                                                  <xs:complexType/>
+                                                </xs:element>
+                                              </xs:all>
+                                              <xs:attribute name="id" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="actions" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                          <xs:element name="action">
+                                            <xs:complexType>
+                                              <xs:sequence>
+                                                <xs:element name="verb" type="xs:string"/>
+                                                <xs:element name="params">
+                                                  <xs:complexType>
+                                                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:element name="param"/>
+                                                    </xs:sequence>
+                                                  </xs:complexType>
+                                                </xs:element>
+                                              </xs:sequence>
+                                              <xs:attribute name="id" type="xs:string" use="optional"/>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:sequence>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:all>
+                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                  <xs:attributeGroup ref="alteredNode"/>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:all>
+                      <xs:attribute name="id" type="xs:string" use="required"/>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="event_listeners" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="event_listener">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="event" type="eventEnumeration" minOccurs="0"/>
+                  <xs:element name="callback" type="xs:string" minOccurs="0"/>
+                  <xs:element name="code" type="xs:string" minOccurs="0"/>
+                  <xs:element name="rank" type="xs:string" minOccurs="0"/>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="methods" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="method">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="comment" type="alteredString" minOccurs="0"/>
+                  <xs:element name="static" type="xs:boolean" minOccurs="0"/>
+                  <xs:element name="access" minOccurs="0">
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:restriction base="alteredString">
+                          <xs:enumeration value="public"/>
+                          <xs:enumeration value="protected"/>
+                          <xs:enumeration value="private"/>
+                        </xs:restriction>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="type" minOccurs="0">
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:restriction base="alteredString">
+                          <xs:enumeration value="LifecycleAction"/>
+                          <xs:enumeration value="EventListener"/>
+                          <xs:enumeration value="StimulusUserAction"/>
+                          <xs:enumeration value="Overload-cmdbAbstractObject"/>
+                          <xs:enumeration value="Overload-iDisplay"/>
+                          <xs:enumeration value="Overload-DBObject"/>
+                          <xs:enumeration value="Overload-ExNihilo"/>
+                          <xs:enumeration value="Factory"/>
+                          <xs:enumeration value="Internal"/>
+                          <xs:enumeration value="Helper"/>
+                          <xs:enumeration value="Custom"/>
+                        </xs:restriction>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="arguments" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:form_prefill">Use definition from https://www.itophub.io/wiki/page?id=latest:customization:form_prefill</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="argument">
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element name="type" minOccurs="0">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="attcode"/>
+                                    <xs:enumeration value="class"/>
+                                    <xs:enumeration value="current_stimulus_code"/>
+                                    <xs:enumeration value="int"/>
+                                    <xs:enumeration value="reference"/>
+                                    <xs:enumeration value="string"/>
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                              <xs:element name="mandatory" type="xs:boolean" minOccurs="0"/>
+                            </xs:all>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="code" type="alteredString" minOccurs="0"/>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="relation">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="neighbours">
+                    <xs:complexType>
+                      <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="neighbour">
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element name="query_down" type="alteredString" minOccurs="0"/>
+                              <xs:element name="query_up" type="alteredString" minOccurs="0"/>
+                              <xs:element name="attribute" type="alteredString" minOccurs="0"/>
+                              <xs:element name="direction" minOccurs="0">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="both"/>
+                                    <xs:enumeration value="down"/>
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                            </xs:all>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="presentation" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="details" type="presentationZlist" minOccurs="0"/>
+            <xs:element name="search" type="flatZlist" minOccurs="0"/>
+            <xs:element name="default_search" type="flatZlist" minOccurs="0"/>
+            <xs:element name="list" type="flatZlist" minOccurs="0"/>
+            <xs:element name="summary" type="flatZlist" minOccurs="0"/>
+            <xs:element name="custom_presentations" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="custom_presentation" type="presentationZlist"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="userRightsGroupNode">
+    <xs:sequence>
+      <xs:element name="classes">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="class">
+              <xs:complexType>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="userRightsProfileNode">
+    <xs:all>
+      <xs:element name="name" type="alteredString" minOccurs="0"/>
+      <xs:element name="description" type="alteredString" minOccurs="0"/>
+      <xs:element name="groups" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="group">
+              <xs:complexType>
+                <xs:sequence minOccurs="0">
+                  <xs:element name="actions">
+                    <xs:complexType>
+                      <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="action">
+                          <xs:complexType>
+                            <xs:simpleContent>
+                              <xs:extension base="alteredString">
+                                <xs:attribute name="id" type="profileGroupActionEnumeration" use="required"/>
+                              </xs:extension>
+                            </xs:simpleContent>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="dictionaryNode">
+    <xs:sequence>
+      <xs:element name="english_description" type="xs:string" minOccurs="0"/>
+      <xs:element name="localized_description" type="xs:string" minOccurs="0"/>
+      <xs:element name="entries">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="entry" type="alteredIdString"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="logoNode">
+    <xs:all>
+      <xs:element name="fileref">
+        <xs:complexType>
+          <xs:attribute name="ref" type="xs:string" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="themeNode">
+    <xs:all>
+      <xs:element name="variables" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="variable" type="alteredIdString"/>
+          </xs:sequence>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="imports" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="import"/>
+          </xs:sequence>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="stylesheets" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="stylesheet" type="alteredIdString"/>
+          </xs:sequence>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="precompiled_stylesheet" type="xs:string" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="portalNode">
+    <xs:all>
+      <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="url" type="xs:string" minOccurs="0"/>
+      <xs:element name="handler" type="xs:string" minOccurs="0"/>
+      <xs:element name="allow" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="profile">
+              <xs:complexType>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deny" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="profile">
+              <xs:complexType>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="moduleDesignNode">
+    <xs:all>
+      <xs:element name="properties" minOccurs="0">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:any processContents="lax"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="bricks" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="brick">
+              <xs:complexType>
+                <xs:choice maxOccurs="unbounded">
+                  <xs:any processContents="lax"/>
+                </xs:choice>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="forms" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="form">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="class" type="xs:string" minOccurs="0"/>
+                  <xs:element name="properties" minOccurs="0">
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element name="display_mode" type="xs:string" minOccurs="0"/>
+                        <xs:element name="always_show_submit" type="xs:boolean" minOccurs="0"/>
+                        <xs:element name="navigation_rules" minOccurs="0">
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element name="submit" type="navRuleButtonNode" minOccurs="0"/>
+                              <xs:element name="cancel" type="navRuleButtonNode" minOccurs="0"/>
+                            </xs:all>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:all>
+                      <xs:attributeGroup ref="alteredNode"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="fields" minOccurs="0"/>
+                  <xs:element name="twig" minOccurs="0"/>
+                  <xs:element name="modes" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="mode">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0">
+                              <xs:element name="stimuli">
+                                <xs:complexType>
+                                  <xs:sequence maxOccurs="unbounded">
+                                    <xs:element name="stimulus">
+                                      <xs:complexType>
+                                        <xs:attribute name="id" type="xs:string" use="required"/>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="classes" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="class">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="scopes" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="scope">
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element name="oql_view" type="alteredString" minOccurs="0"/>
+                              <xs:element name="oql_edit" type="alteredString" minOccurs="0"/>
+                              <xs:element name="ignore_silos" type="xs:boolean" minOccurs="0"/>
+                              <xs:element name="allowed_profiles" minOccurs="0">
+                                <xs:complexType>
+                                  <xs:sequence maxOccurs="unbounded">
+                                    <xs:element name="allowed_profile">
+                                      <xs:complexType>
+                                        <xs:attribute name="id" type="xs:string" use="required"/>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:all>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="lists" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="list">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="items">
+                                <xs:complexType>
+                                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xs:element name="item">
+                                      <xs:complexType>
+                                        <xs:sequence minOccurs="0">
+                                          <xs:element name="rank" type="alteredFloat"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="id" type="xs:string" use="required"/>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="id" type="xs:string" use="required"/>
+                            <xs:attributeGroup ref="alteredNode"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="lifecycle" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="stimuli">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                              <xs:element name="stimulus">
+                                <xs:complexType>
+                                  <xs:sequence minOccurs="0">
+                                    <xs:element name="denied_profiles">
+                                      <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                          <xs:element name="denied_profile">
+                                            <xs:complexType>
+                                              <xs:attribute name="id" type="xs:string" use="required"/>
+                                              <xs:attributeGroup ref="alteredNode"/>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                  <xs:attributeGroup ref="alteredNode"/>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="action_rules" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="action_rule" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:choice maxOccurs="unbounded">
+                  <xs:any processContents="lax"/>
+                </xs:choice>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="navigation_rules" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="navigation_rule" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="id" type="xs:string"/>
+                </xs:sequence>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="snippetNode">
+    <xs:all>
+      <xs:element name="placement" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="module"/>
+            <xs:enumeration value="core"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="module" type="xs:string" minOccurs="0"/>
+      <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+      <xs:element name="content" type="xs:string" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="eventNode">
+    <xs:all>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="internal" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="sources" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="source" type="alteredIdString"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="arguments" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="argument">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="description" type="xs:string" minOccurs="0"/>
+                  <xs:element name="type" type="xs:string" minOccurs="0"/>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="replaces" type="xs:string" minOccurs="0"/>
+      <xs:element name="event_data" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="event_datum">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="description" type="xs:string" minOccurs="0"/>
+                  <xs:element name="type" type="xs:string" minOccurs="0"/>
+                </xs:all>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="globalEventListenerNode">
+    <xs:all>
+      <xs:element name="event" type="eventEnumeration" minOccurs="0"/>
+      <xs:element name="filters" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="filter" type="alteredString"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+      <xs:element name="callback" type="xs:string" minOccurs="0"/>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <!-- #######################################################################
+         ########################### alterable types ###########################
+         ####################################################################### -->
+  <xs:attributeGroup name="alteredNode">
+    <xs:annotation>
+      <xs:documentation>Metadata attributes for tracking modifications to XML nodes within iTop datamodel delta files. - _delta: Controls how the node should be merged or modified during import. - _rename_from: If present, indicates the node was renamed from another identifier. - _created_in: Marks the module or context where the node was initially created. - _revision_id: Internal revision tracking number. - _altered_in: Identifies the module or source responsible for the change. - _alteration: Describes the type of change (e.g., added, removed, forced).</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="_delta" use="optional" default="merge">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="merge"/>
+          <xs:enumeration value="must_exist"/>
+          <xs:enumeration value="if_exists"/>
+          <xs:enumeration value="define"/>
+          <xs:enumeration value="define_if_not_exists"/>
+          <xs:enumeration value="redefine"/>
+          <xs:enumeration value="delete"/>
+          <xs:enumeration value="delete_if_exists"/>
+          <xs:enumeration value="force"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="_rename_from" type="xs:string" use="optional"/>
+    <xs:attribute name="_created_in" type="xs:string" use="optional"/>
+    <xs:attribute name="_revision_id" type="xs:integer" use="optional"/>
+    <xs:attribute name="_altered_in" type="xs:string" use="optional"/>
+    <xs:attribute name="_alteration" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="added"/>
+          <xs:enumeration value="needed"/>
+          <xs:enumeration value="replaced"/>
+          <xs:enumeration value="removed"/>
+          <xs:enumeration value="remove_needed"/>
+          <xs:enumeration value="forced"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:complexType name="alteredString">
+    <xs:annotation>
+      <xs:documentation>A string value with metadata for tracking modifications in delta XML files. This type extends a plain string (xs:string) with attributes from the alteredNode group, allowing to describe how and when the string was changed, created, renamed, or deleted.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attributeGroup ref="alteredNode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="alteredIdString">
+    <xs:annotation>
+      <xs:documentation>An altered string value that also carries a required ID attribute. This type extends alteredString by adding an "id" field, which is typically used to uniquely identify the string element.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="alteredString">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="alteredFloat">
+    <xs:annotation>
+      <xs:documentation>A float value extended with metadata for tracking changes in delta XML files. This type allows numeric content (xs:float) to carry alteration attributes from the alteredNode group, indicating how the value was introduced, modified, or removed in the datamodel.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attributeGroup ref="alteredNode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="presentationZlist">
+    <xs:all>
+      <xs:element name="items" type="presentationItems"/>
+    </xs:all>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="presentationItems">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="item">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="rank" minOccurs="0" type="alteredFloat"/>
+            <xs:element name="items" minOccurs="0" type="presentationItems"/>
+          </xs:sequence>
+          <xs:attribute name="id" type="xs:string" use="required"/>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="flatZlist">
+    <xs:all>
+      <xs:element name="items">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="item">
+              <xs:complexType>
+                <xs:sequence minOccurs="0">
+                  <xs:element name="rank" type="alteredFloat"/>
+                </xs:sequence>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="navRuleButtonNode">
+    <xs:all>
+      <xs:element name="default" type="xs:string" minOccurs="0"/>
+      <xs:element name="modal" type="xs:string" minOccurs="0"/>
+    </xs:all>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:simpleType name="profileGroupActionEnumeration">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="action:read"/>
+          <xs:enumeration value="action:write"/>
+          <xs:enumeration value="action:delete"/>
+          <xs:enumeration value="action:bulk read"/>
+          <xs:enumeration value="action:bulk write"/>
+          <xs:enumeration value="action:bulk delete"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="stimulus:(\w|_)+"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:complexType name="styleType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="main_color" type="xs:string"/>
+      <xs:element name="complementary_color" type="xs:string"/>
+      <xs:element name="decoration_classes" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="eventEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EVENT_DB_COMPUTE_VALUES"/>
+      <xs:enumeration value="EVENT_DB_BEFORE_WRITE"/>
+      <xs:enumeration value="EVENT_DB_ABOUT_TO_DELETE"/>
+      <xs:enumeration value="EVENT_DB_CHECK_TO_WRITE"/>
+      <xs:enumeration value="EVENT_DB_CHECK_TO_DELETE"/>
+      <xs:enumeration value="EVENT_DB_AFTER_WRITE"/>
+      <xs:enumeration value="EVENT_DB_AFTER_DELETE"/>
+      <xs:enumeration value="EVENT_DB_LINKS_CHANGED"/>
+      <xs:enumeration value="EVENT_DB_ARCHIVE"/>
+      <xs:enumeration value="EVENT_DB_UNARCHIVE"/>
+      <xs:enumeration value="EVENT_DB_SET_INITIAL_ATTRIBUTES_FLAGS"/>
+      <xs:enumeration value="EVENT_DB_SET_ATTRIBUTES_FLAGS"/>
+      <xs:enumeration value="EVENT_DB_OBJECT_RELOAD"/>
+      <xs:enumeration value="EVENT_ENUM_TRANSITIONS"/>
+      <xs:enumeration value="EVENT_DISPLAY_OBJECT_DETAILS"/>
+      <xs:enumeration value="EVENT_LOGIN"/>
+      <xs:enumeration value="EVENT_ADD_ATTACHMENT_TO_OBJECT"/>
+      <xs:enumeration value="EVENT_REMOVE_ATTACHMENT_FROM_OBJECT"/>
+      <xs:enumeration value="EVENT_DOWNLOAD_DOCUMENT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ########################### Stimuli ########################### -->
+  <xs:complexType name="ObjectStimulus" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Abstract base type for state transition stimuli in iTop lifecycle. Defines the common structure: a required 'id' and metadata via alteredNode.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="0">
+      <xs:element name="denied_profiles">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="denied_profile">
+              <xs:complexType>
+                <xs:attribute name="id" type="xs:string" use="required"/>
+                <xs:attributeGroup ref="alteredNode"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="StimulusUserAction">
+    <xs:annotation>
+      <xs:documentation>A stimulus representing an action explicitly triggered by the end-user. It is shown in the Actions menu when the object is in a compatible state.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ObjectStimulus"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StimulusInternal">
+    <xs:annotation>
+      <xs:documentation>A stimulus that is triggered programmatically by the application, not visible or directly accessible to the end-user.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ObjectStimulus"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /Stimuli ########################### -->
+  <!-- ########################### action parameters ########################### -->
+  <xs:simpleType name="string">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for xs:string.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="int">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for xs:integer.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="integer">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for xs:integer.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="boolean">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for xs:boolean.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:boolean"/>
+  </xs:simpleType>
+  <xs:simpleType name="float">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for xs:float.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:float"/>
+  </xs:simpleType>
+  <xs:simpleType name="reference">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for a string representing an object reference.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="string"/>
+  </xs:simpleType>
+  <xs:simpleType name="attcode">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for a string representing an attribute code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="string"/>
+  </xs:simpleType>
+  <xs:simpleType name="variables">
+    <xs:annotation>
+      <xs:documentation>iTop-specific alias for a string containing variable placeholders or expressions.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="string"/>
+  </xs:simpleType>
+  <xs:complexType name="utilities">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- ########################### /action parameters ########################### -->
+  <!-- ##################################################################
+         ########################### Attributes ###########################
+         ################################################################## -->
+  <xs:complexType name="AttributeDefinition">
+    <xs:annotation>
+      <xs:documentation>Base type for all attribute definitions in the iTop datamodel. Includes a required 'id' and alteration metadata from the alteredNode group.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:complexType name="dependenciesType">
+    <xs:annotation>
+      <xs:documentation>Defines a list of attribute dependencies within the iTop datamodel. Each dependency refers to an attribute by its 'id'.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="attribute">
+        <xs:complexType>
+          <xs:attribute name="id" type="xs:string" use="required"/>
+          <xs:attributeGroup ref="alteredNode"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="trackingLevelEnumeration">
+    <xs:annotation>
+      <xs:documentation>Adjusts the recording of changes (history tab) in iTop. Possible values: 'none' (no history), 'all' (full history). Defaults to 'all'.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="all"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enumSortEnumeration">
+    <xs:annotation>
+      <xs:documentation>Determines how enumeration values are sorted in the user interface. Allowed values: 'code' (sort by internal value), 'label' (sort by display label), 'rank' (custom order).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="code"/>
+      <xs:enumeration value="label"/>
+      <xs:enumeration value="rank"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="displayStyleEnumeration">
+    <xs:annotation>
+      <xs:documentation>Defines how a field with multiple choices is rendered in the iTop user interface. Allowed values: 'list', 'select' (same as 'list'), 'radio_horizontal', 'radio_vertical', or 'radio' (same as 'radio_vertical').</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="list"/>
+      <xs:enumeration value="select"/>
+      <xs:enumeration value="radio"/>
+      <xs:enumeration value="radio_horizontal"/>
+      <xs:enumeration value="radio_vertical"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="onTargetDeleteEnumeration">
+    <xs:annotation>
+      <xs:documentation>Defines how the deletion of the target object impacts the current object. Allowed values: 'DEL_MANUAL' (manual cleanup), 'DEL_AUTO' (automatic deletion). Other values like 'DEL_MOVEUP' and 'DEL_SILENT' are reserved for internal use.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DEL_MANUAL"/>
+      <xs:enumeration value="DEL_AUTO"/>
+      <xs:enumeration value="DEL_MOVEUP"/>
+      <xs:enumeration value="DEL_SILENT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ########################### AttributeBlob ########################### -->
+  <xs:complexType name="AttributeBlob">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeBlob ########################### -->
+  <!-- ########################### AttributeBoolean ########################### -->
+  <xs:complexType name="AttributeBoolean">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeBoolean ########################### -->
+  <!-- ########################### AttributeCaseLog ########################### -->
+  <xs:complexType name="AttributeCaseLog">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeCaseLog ########################### -->
+  <!-- ########################### AttributeCustomFields ########################### -->
+  <xs:complexType name="AttributeCustomFields">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="handler_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeCustomFields ########################### -->
+  <!-- ########################### AttributeDashboard ########################### -->
+  <xs:complexType name="AttributeDashboard">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="is_user_editable" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="definition_file" type="xs:string" minOccurs="0"/>
+          <xs:element name="definition" minOccurs="0">
+            <xs:complexType>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:any processContents="lax"/>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDashboard ########################### -->
+  <!-- ########################### AttributeDate ########################### -->
+  <xs:complexType name="AttributeDate">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDate ########################### -->
+  <!-- ########################### AttributeDateTime ########################### -->
+  <xs:complexType name="AttributeDateTime">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDateTime ########################### -->
+  <!-- ########################### AttributeDeadline ########################### -->
+  <xs:complexType name="AttributeDeadline">
+    <xs:complexContent>
+      <xs:extension base="AttributeDateTime"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDeadline ########################### -->
+  <!-- ########################### AttributeDecimal ########################### -->
+  <xs:complexType name="AttributeDecimal">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="digits" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="decimals" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDecimal ########################### -->
+  <!-- ########################### AttributeDuration ########################### -->
+  <xs:complexType name="AttributeDuration">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeDuration ########################### -->
+  <!-- ########################### AttributeEmailAddress ########################### -->
+  <xs:complexType name="AttributeEmailAddress">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeEmailAddress ########################### -->
+  <!-- ########################### AttributeEncryptedPassword ########################### -->
+  <xs:complexType name="AttributeEncryptedPassword">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeEncryptedPassword ########################### -->
+  <!-- ########################### AttributeEncryptedString ########################### -->
+  <xs:complexType name="AttributeEncryptedString">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeEncryptedString ########################### -->
+  <!-- ########################### AttributeEnum ########################### -->
+  <xs:complexType name="AttributeEnum">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sort_type" type="enumSortEnumeration" minOccurs="0"/>
+          <xs:element name="values" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence maxOccurs="unbounded">
+                <xs:element name="value">
+                  <xs:complexType>
+                    <xs:all>
+                      <xs:element name="code" type="xs:string" minOccurs="0"/>
+                      <xs:element name="rank" type="xs:string" minOccurs="0"/>
+                      <xs:element name="style" type="styleType" minOccurs="0"/>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attributeGroup ref="alteredNode"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="default_style" type="styleType" minOccurs="0"/>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="display_style" type="displayStyleEnumeration" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeEnum ########################### -->
+  <!-- ########################### AttributeEnumSet ########################### -->
+  <xs:complexType name="AttributeEnumSet">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="values" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="value">
+                  <xs:complexType>
+                    <xs:all>
+                      <xs:element name="code" type="xs:string" minOccurs="0"/>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeEnumSet ########################### -->
+  <!-- ########################### AttributeExternalField ########################### -->
+  <xs:complexType name="AttributeExternalField">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="extkey_attcode" type="xs:string" minOccurs="0"/>
+          <xs:element name="target_attcode" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeExternalField ########################### -->
+  <!-- ########################### AttributeExternalKey ########################### -->
+  <xs:complexType name="AttributeExternalKey">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="on_target_delete" type="onTargetDeleteEnumeration" minOccurs="0"/>
+          <xs:element name="target_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="filter" type="alteredString" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+          <xs:element name="max_combo_length" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="min_autocomplete_chars" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="allow_target_creation" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="display_style" type="displayStyleEnumeration" minOccurs="0"/>
+          <xs:element name="create_temporary_object" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="jointype" minOccurs="0">
+            <xs:complexType/>
+          </xs:element>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeExternalKey ########################### -->
+  <!-- ########################### AttributeHierarchicalKey ########################### -->
+  <xs:complexType name="AttributeHierarchicalKey">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="on_target_delete" type="onTargetDeleteEnumeration" minOccurs="0"/>
+          <xs:element name="filter" type="alteredString" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+          <xs:element name="max_combo_length" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="min_autocomplete_chars" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="allow_target_creation" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeHierarchicalKey ########################### -->
+  <!-- ########################### AttributeHTML ########################### -->
+  <xs:complexType name="AttributeHTML">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="width" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>This tag has no effect.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="height" type="xs:string" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeHTML ########################### -->
+  <!-- ########################### AttributeImage ########################### -->
+  <xs:complexType name="AttributeImage">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="display_max_width" type="xs:nonNegativeInteger" minOccurs="0" default="128"/>
+          <xs:element name="display_max_height" type="xs:nonNegativeInteger" minOccurs="0" default="128"/>
+          <xs:element name="storage_max_width" type="xs:nonNegativeInteger" minOccurs="0" default="256"/>
+          <xs:element name="storage_max_height" type="xs:nonNegativeInteger" minOccurs="0" default="256"/>
+          <xs:element name="default_image" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeImage ########################### -->
+  <!-- ########################### AttributeInteger ########################### -->
+  <xs:complexType name="AttributeInteger">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <!-- should be of type="xs:integer" but this will cause errors -->
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeInteger ########################### -->
+  <!-- ########################### AttributeIPAddress ########################### -->
+  <xs:complexType name="AttributeIPAddress">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeIPAddress ########################### -->
+  <!-- ########################### AttributeLinkedSet ########################### -->
+  <xs:complexType name="AttributeLinkedSet">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="linked_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="filter" type="alteredString" minOccurs="0"/>
+          <xs:element name="ext_key_to_me" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" minOccurs="0"/>
+          <xs:element name="edit_mode" type="editModeEnumeration" minOccurs="0" default="actions"/>
+          <xs:element name="edit_when" type="editWhenEnumeration" minOccurs="0"/>
+          <xs:element name="duplicates" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="count_min" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>unused yet</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="count_max" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>unused yet</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="with_php_constraint" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="with_php_computation" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="editModeEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="add_only"/>
+      <xs:enumeration value="add_remove"/>
+      <xs:enumeration value="actions"/>
+      <xs:enumeration value="in_place"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="editWhenEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="always"/>
+      <xs:enumeration value="on_host_edition"/>
+      <xs:enumeration value="on_host_display"/>
+      <xs:enumeration value="never"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="trackingLevelLinkedSetEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="list"/>
+      <xs:enumeration value="details"/>
+      <xs:enumeration value="all"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ########################### /AttributeLinkedSet ########################### -->
+  <!-- ########################### AttributeLinkedSetIndirect ########################### -->
+  <xs:complexType name="AttributeLinkedSetIndirect">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="linked_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="ext_key_to_me" type="xs:string" minOccurs="0"/>
+          <xs:element name="ext_key_to_remote" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelLinkedSetEnumeration" minOccurs="0"/>
+          <xs:element name="edit_when" type="editWhenEnumeration" minOccurs="0"/>
+          <xs:element name="duplicates" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="count_min" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="count_max" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="display_style" minOccurs="0" default="tab">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="tab"/>
+                <xs:enumeration value="property"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="with_php_constraint" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="with_php_computation" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="filter" type="alteredString" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeLinkedSetIndirect ########################### -->
+  <!-- ########################### AttributeMetaEnum ########################### -->
+  <xs:complexType name="AttributeMetaEnum">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="sort_type" type="enumSortEnumeration" minOccurs="0"/>
+          <xs:element name="values" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="value">
+                  <xs:complexType>
+                    <xs:all>
+                      <xs:element name="code" type="xs:string" minOccurs="0"/>
+                      <xs:element name="rank" type="xs:float" minOccurs="0"/>
+                      <xs:element name="style" type="styleType" minOccurs="0"/>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_style" type="styleType" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="mappings" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="mapping">
+                  <xs:complexType>
+                    <xs:all>
+                      <xs:element name="attcode" type="alteredString" minOccurs="0"/>
+                      <xs:element name="metavalues" minOccurs="0">
+                        <xs:complexType>
+                          <xs:sequence maxOccurs="unbounded">
+                            <xs:element name="metavalue">
+                              <xs:complexType>
+                                <xs:all>
+                                  <xs:element name="values" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence maxOccurs="unbounded">
+                                        <xs:element name="value">
+                                          <xs:complexType>
+                                            <xs:attribute name="id" type="xs:string" use="required"/>
+                                            <xs:attributeGroup ref="alteredNode"/>
+                                          </xs:complexType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                      <xs:attributeGroup ref="alteredNode"/>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:all>
+                                <xs:attribute name="id" type="xs:string" use="required"/>
+                                <xs:attributeGroup ref="alteredNode"/>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                          <xs:attributeGroup ref="alteredNode"/>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attributeGroup ref="alteredNode"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeMetaEnum ########################### -->
+  <!-- ########################### AttributeObjectKey ########################### -->
+  <xs:complexType name="AttributeObjectKey">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="class_attcode" type="xs:string" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeObjectKey ########################### -->
+  <!-- ########################### AttributeOneWayPassword ########################### -->
+  <xs:complexType name="AttributeOneWayPassword">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeOneWayPassword ########################### -->
+  <!-- ########################### AttributePassword ########################### -->
+  <xs:complexType name="AttributePassword">
+    <xs:complexContent>
+      <xs:extension base="AttributeString"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributePassword ########################### -->
+  <!-- ########################### AttributePercentage ########################### -->
+  <xs:complexType name="AttributePercentage">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributePercentage ########################### -->
+  <!-- ########################### AttributePhoneNumber ########################### -->
+  <xs:complexType name="AttributePhoneNumber">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributePhoneNumber ########################### -->
+  <!-- ########################### AttributeRedundancySettings ########################### -->
+  <xs:complexType name="AttributeRedundancySettings">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="relation_code" type="xs:string" minOccurs="0"/>
+          <xs:element name="from_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="neighbour_id" type="xs:string" minOccurs="0"/>
+          <xs:element name="enabled" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="enabled_mode" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="fixed"/>
+                <xs:enumeration value="user"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="min_up" type="xs:unsignedByte" minOccurs="0"/>
+          <xs:element name="min_up_type" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="count"/>
+                <xs:enumeration value="percent"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="min_up_mode" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="fixed"/>
+                <xs:enumeration value="user"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeRedundancySettings ########################### -->
+  <!-- ########################### AttributeStopWatch ########################### -->
+  <xs:complexType name="AttributeStopWatch">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="states" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence maxOccurs="unbounded">
+                <xs:element name="state">
+                  <xs:complexType>
+                    <xs:attribute name="id" type="xs:string" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="goal" type="xs:string" minOccurs="0" default="DefaultMetricComputer"/>
+          <xs:element name="working_time" type="xs:string" minOccurs="0" default="DefaultWorkingTimeComputer"/>
+          <xs:element name="thresholds" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="threshold">
+                  <xs:complexType>
+                    <xs:all>
+                      <xs:element name="actions" minOccurs="0">
+                        <xs:complexType>
+                          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="action">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="verb" type="xs:string" minOccurs="0"/>
+                                  <xs:element name="params" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence maxOccurs="unbounded">
+                                        <xs:element name="param"/>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="highlight" minOccurs="0">
+                        <xs:complexType>
+                          <xs:all>
+                            <xs:element name="code" type="xs:string" minOccurs="0"/>
+                            <xs:element name="persistent" type="xs:boolean" minOccurs="0"/>
+                          </xs:all>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:unsignedByte" use="required"/>
+                    <xs:attributeGroup ref="alteredNode"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeStopWatch ########################### -->
+  <!-- ########################### AttributeString ########################### -->
+  <xs:complexType name="AttributeString">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeString ########################### -->
+  <!-- ########################### AttributeApplicationLanguage ########################### -->
+  <!--
+    <xs:complexType name="AttributeApplicationLanguage">
+        <xs:complexContent>
+            <xs:extension base="AttributeString">
+                <xs:all>
+                    <xs:element name="allowed_values" type="xs:string" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    -->
+  <!-- ########################### /AttributeApplicationLanguage ########################### -->
+  <!-- ########################### AttributeSubItem ########################### -->
+  <xs:complexType name="AttributeSubItem">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="target_attcode" type="xs:string" minOccurs="0"/>
+          <xs:element name="item_code" minOccurs="0">
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="timespent"/>
+                    <xs:enumeration value="started"/>
+                    <xs:enumeration value="laststart"/>
+                    <xs:enumeration value="stopped"/>
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="(\d+)_deadline"/>
+                    <xs:pattern value="(\d+)_passed"/>
+                    <xs:pattern value="(\d+)_triggered"/>
+                    <xs:pattern value="(\d+)_overrun"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeSubItem ########################### -->
+  <!-- ########################### AttributeTagSet ########################### -->
+  <xs:complexType name="AttributeTagSet">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0" default="12"/>
+          <xs:element name="tag_code_max_len" type="xs:unsignedByte" minOccurs="0" default="20"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeTagSet ########################### -->
+  <!-- ########################### AttributeText ########################### -->
+  <xs:complexType name="AttributeText">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="width" type="xs:string" minOccurs="0"/>
+          <xs:element name="height" type="xs:string" minOccurs="0"/>
+          <xs:element name="format" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="text"/>
+                <xs:enumeration value="html"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeText ########################### -->
+  <!-- ########################### AttributeLongText ########################### -->
+  <xs:complexType name="AttributeLongText">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="width" type="xs:string" minOccurs="0"/>
+          <xs:element name="height" type="xs:string" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeLongText ########################### -->
+  <!-- ########################### AttributeURL ########################### -->
+  <xs:complexType name="AttributeURL">
+    <xs:complexContent>
+      <xs:extension base="AttributeDefinition">
+        <xs:all>
+          <xs:element name="sql" type="xs:string" minOccurs="0"/>
+          <xs:element name="default_value" type="xs:string" minOccurs="0"/>
+          <xs:element name="is_null_allowed" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="target" type="xs:string" minOccurs="0"/>
+          <xs:element name="validation_pattern" type="xs:string" minOccurs="0"/>
+          <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0"/>
+          <xs:element name="always_load_in_tables" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="dependencies" type="dependenciesType" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /AttributeURL ########################### -->
+  <xs:complexType name="File">
+    <xs:all>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="mime_type" type="xs:string" minOccurs="0"/>
+      <xs:element name="data" type="xs:string" minOccurs="0"/>
+      <xs:element name="width" type="xs:integer" minOccurs="0"/>
+      <xs:element name="height" type="xs:integer" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <!-- ############################################################
+         ########################### Menu ###########################
+         ############################################################ -->
+  <xs:complexType name="MenuNode" abstract="true">
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <xs:simpleType name="MenuEnableActionEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UR_ACTION_READ"/>
+      <xs:enumeration value="UR_ACTION_MODIFY"/>
+      <xs:enumeration value="UR_ACTION_DELETE"/>
+      <xs:enumeration value="UR_ACTION_BULK_READ"/>
+      <xs:enumeration value="UR_ACTION_BULK_MODIFY"/>
+      <xs:enumeration value="UR_ACTION_BULK_DELETE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MenuEnablePermissionEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UR_ALLOWED_NO"/>
+      <xs:enumeration value="UR_ALLOWED_YES"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="zeroOrOneEnumeration">
+    <xs:restriction base="xs:unsignedByte">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ########################### MenuGroup ########################### -->
+  <xs:complexType name="MenuGroup">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="style" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="decoration_classes" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /MenuGroup ########################### -->
+  <!-- ########################### DashboardMenuNode ########################### -->
+  <xs:complexType name="DashboardMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="definition_file" type="xs:string" minOccurs="0"/>
+          <xs:element name="definition" minOccurs="0">
+            <xs:complexType>
+              <xs:all>
+                <xs:element name="layout" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="DashboardLayoutOneCol"/>
+                      <xs:enumeration value="DashboardLayoutTwoCols"/>
+                      <xs:enumeration value="DashboardLayoutThreeCols"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="title" type="xs:string" minOccurs="0"/>
+                <xs:element name="cells" minOccurs="0">
+                  <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                      <xs:element name="cell">
+                        <xs:complexType>
+                          <xs:all>
+                            <xs:element name="rank" minOccurs="0"/>
+                            <xs:element name="dashlets" minOccurs="0">
+                              <xs:complexType>
+                                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                  <xs:element name="dashlet"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:all>
+                          <xs:attribute name="id" type="xs:string" use="required"/>
+                          <xs:attributeGroup ref="alteredNode"/>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:all>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashboardMenuNode ########################### -->
+  <!-- ########################### NewObjectMenuNode ########################### -->
+  <xs:complexType name="NewObjectMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /NewObjectMenuNode ########################### -->
+  <!-- ########################### SearchMenuNode ########################### -->
+  <xs:complexType name="SearchMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /SearchMenuNode ########################### -->
+  <!-- ########################### TemplateMenuNode ########################### -->
+  <xs:complexType name="TemplateMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="template_file" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /TemplateMenuNode ########################### -->
+  <!-- ########################### OQLMenuNode ########################### -->
+  <xs:complexType name="OQLMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="auto_reload" minOccurs="0" default="none">
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="none"/>
+                    <xs:enumeration value="standard"/>
+                    <xs:enumeration value="fast"/>
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="xs:nonNegativeInteger"/>
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="oql" type="xs:string" minOccurs="0"/>
+          <xs:element name="do_search" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="search_form_open" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /OQLMenuNode ########################### -->
+  <!-- ########################### WebPageMenuNode ########################### -->
+  <xs:complexType name="WebPageMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="url" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>URL to the page within the module. Prefix by a $$ to specify an absolute URL. Prefix by a $ to specify an URL relative to the iTop root URL. No prefix: relative to the module directory</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="in_new_window" type="xs:boolean" minOccurs="0" default="false"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /WebPageMenuNode ########################### -->
+  <!-- ########################### ShortcutContainerMenuNode ########################### -->
+  <xs:complexType name="ShortcutContainerMenuNode">
+    <xs:complexContent>
+      <xs:extension base="MenuNode">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
+          <xs:element name="parent" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
+          <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
+          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /ShortcutContainerMenuNode ########################### -->
+  <!-- ###############################################################
+         ########################### Dashlet ###########################
+         ############################################################### -->
+  <!-- ########################### Dashlet ########################### -->
+  <xs:complexType name="Dashlet" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Base type for all dashlet definitions in the iTop datamodel. Includes a required 'id' and alteration metadata from the alteredNode group.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attributeGroup ref="alteredNode"/>
+  </xs:complexType>
+  <!-- ########################### /Dashlet ########################### -->
+  <!-- ########################### DashletBadge ########################### -->
+  <xs:complexType name="DashletBadge">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="class" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletBadge ########################### -->
+  <!-- ########################### DashletBadge ########################### -->
+  <xs:complexType name="DashletEmptyCell">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletBadge ########################### -->
+  <!-- ########################### DashletPlainText ########################### -->
+  <xs:complexType name="DashletPlainText">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:string" minOccurs="0"/>
+          <xs:element name="text" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletPlainText ########################### -->
+  <!-- ########################### DashletHeaderDynamic ########################### -->
+  <xs:complexType name="DashletHeaderDynamic">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:string" minOccurs="0"/>
+          <xs:element name="title" type="xs:string" minOccurs="0"/>
+          <xs:element name="icon" type="xs:string" minOccurs="0"/>
+          <xs:element name="subtitle" type="xs:string" minOccurs="0"/>
+          <xs:element name="query" type="xs:string" minOccurs="0"/>
+          <xs:element name="group_by" type="xs:string" minOccurs="0"/>
+          <xs:element name="values" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletHeaderDynamic ########################### -->
+  <!-- ########################### DashletGroupBy ########################### -->
+  <xs:complexType name="DashletGroupBy">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:string" minOccurs="0"/>
+          <xs:element name="title" type="xs:string" minOccurs="0"/>
+          <xs:element name="query" type="xs:string" minOccurs="0"/>
+          <xs:element name="group_by" type="xs:string" minOccurs="0"/>
+          <xs:element name="style" minOccurs="0">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="pie"/>
+                <xs:enumeration value="bars"/>
+                <xs:enumeration value="table"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="aggregation_function" type="xs:string" minOccurs="0"/>
+          <xs:element name="aggregation_attribute" type="xs:string" minOccurs="0"/>
+          <xs:element name="limit" type="xs:string" minOccurs="0"/>
+          <xs:element name="order_by" type="xs:string" minOccurs="0"/>
+          <xs:element name="order_direction" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletGroupBy ########################### -->
+  <!-- ########################### DashletGroupByBars ########################### -->
+  <xs:complexType name="DashletGroupByBars">
+    <xs:complexContent>
+      <xs:extension base="DashletGroupBy"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletGroupByBars ########################### -->
+  <!-- ########################### DashletGroupByPie ########################### -->
+  <xs:complexType name="DashletGroupByPie">
+    <xs:complexContent>
+      <xs:extension base="DashletGroupBy"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletGroupByPie ########################### -->
+  <!-- ########################### DashletGroupByTable ########################### -->
+  <xs:complexType name="DashletGroupByTable">
+    <xs:complexContent>
+      <xs:extension base="DashletGroupBy"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletGroupByTable ########################### -->
+  <!-- ########################### DashletHeaderStatic ########################### -->
+  <xs:complexType name="DashletHeaderStatic">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:string" minOccurs="0"/>
+          <xs:element name="title" type="xs:string" minOccurs="0"/>
+          <xs:element name="subtitle" type="xs:string" minOccurs="0"/>
+          <xs:element name="icon" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletHeaderStatic ########################### -->
+  <!-- ########################### DashletObjectList ########################### -->
+  <xs:complexType name="DashletObjectList">
+    <xs:complexContent>
+      <xs:extension base="Dashlet">
+        <xs:all>
+          <xs:element name="rank" type="xs:string" minOccurs="0"/>
+          <xs:element name="title" type="xs:string" minOccurs="0"/>
+          <xs:element name="query" type="xs:string" minOccurs="0"/>
+          <xs:element name="menu" type="xs:boolean" minOccurs="0"/>
+        </xs:all>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- ########################### /DashletObjectList ########################### -->
+</xs:schema>
