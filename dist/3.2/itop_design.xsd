@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-06-26 12:45:42 UTC
+  Generated on: 2025-07-11 11:58:26 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -1360,11 +1360,11 @@
     </xs:union>
   </xs:simpleType>
   <xs:complexType name="styleType">
-    <xs:sequence maxOccurs="unbounded">
-      <xs:element name="main_color" type="xs:string"/>
-      <xs:element name="complementary_color" type="xs:string"/>
-      <xs:element name="decoration_classes" type="xs:string"/>
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="main_color" type="alteredString" minOccurs="0"/>
+      <xs:element name="complementary_color" type="alteredString" minOccurs="0"/>
+      <xs:element name="decoration_classes" type="alteredString" minOccurs="0"/>
+    </xs:all>
   </xs:complexType>
   <xs:simpleType name="eventEnumeration">
     <xs:restriction base="xs:string">
