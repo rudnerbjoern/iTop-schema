@@ -1403,11 +1403,11 @@
     </xs:simpleType>
 
     <xs:complexType name="styleType">
-        <xs:sequence maxOccurs="unbounded">
-            <xs:element name="main_color" type="xs:string" />
-            <xs:element name="complementary_color" type="xs:string" />
-            <xs:element name="decoration_classes" type="xs:string" />
-        </xs:sequence>
+        <xs:all>
+            <xs:element name="main_color" type="alteredString" minOccurs="0" />
+            <xs:element name="complementary_color" type="alteredString" minOccurs="0" />
+            <xs:element name="decoration_classes" type="alteredString" minOccurs="0" />
+        </xs:all>
     </xs:complexType>
 
     <xs:simpleType name="eventEnumeration">
