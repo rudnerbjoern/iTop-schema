@@ -2675,7 +2675,7 @@
         </xs:simpleContent>
     </xs:complexType>
 
-    <xs:simpleType name="autoReloadEnumeration">
+    <xs:simpleType name="MenuAutoReloadEnumeration">
         <xs:union memberTypes="xs:nonNegativeInteger">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
@@ -2686,9 +2686,9 @@
             </xs:simpleType>
         </xs:union>
     </xs:simpleType>
-    <xs:complexType name="alteredAutoReloadEnumeration">
+    <xs:complexType name="alteredMenuAutoReloadEnumeration">
         <xs:simpleContent>
-            <xs:extension base="autoReloadEnumeration">
+            <xs:extension base="MenuAutoReloadEnumeration">
                 <xs:attributeGroup ref="alteredNode" />
             </xs:extension>
         </xs:simpleContent>
@@ -2844,7 +2844,7 @@
             <xs:extension base="MenuNode">
                 <xs:all>
                     <xs:element name="rank" type="alteredFloat" minOccurs="0" />
-                    <xs:element name="auto_reload" type="alteredAutoReloadEnumeration" minOccurs="0" default="none" />
+                    <xs:element name="auto_reload" type="alteredMenuAutoReloadEnumeration" minOccurs="0" default="none" />
                     <xs:element name="enable_admin_only" type="alteredZeroOrOneEnumeration" minOccurs="0" />
                     <xs:element name="parent" type="alteredString" minOccurs="0" />
                     <xs:element name="oql" type="alteredString" minOccurs="0" />
