@@ -1285,6 +1285,11 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:attributeGroup name="alteredIdNode">
+        <xs:attribute name="id" type="xs:string" />
+        <xs:attributeGroup ref="alteredNode" />
+    </xs:attributeGroup>
+
     <xs:complexType name="alteredString">
         <xs:annotation>
             <xs:documentation>
@@ -1609,8 +1614,7 @@
                 Includes a required 'id' and alteration metadata from the alteredNode group.
             </xs:documentation>
         </xs:annotation>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="dependenciesType">
@@ -1623,8 +1627,7 @@
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="attribute">
                 <xs:complexType>
-                    <xs:attribute name="id" type="xs:string" use="required" />
-                    <xs:attributeGroup ref="alteredNode" />
+                    <xs:attributeGroup ref="alteredIdNode" />
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
@@ -1930,8 +1933,7 @@
                                             <xs:element name="rank" type="alteredFloat" minOccurs="0" />
                                             <xs:element name="style" type="styleType" minOccurs="0" />
                                         </xs:all>
-                                        <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attributeGroup ref="alteredNode" />
+                                        <xs:attributeGroup ref="alteredIdNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1965,8 +1967,7 @@
                                         <xs:all>
                                             <xs:element name="code" type="alteredString" minOccurs="0" />
                                         </xs:all>
-                                        <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attributeGroup ref="alteredNode" />
+                                        <xs:attributeGroup ref="alteredIdNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -2244,8 +2245,7 @@
                                             <xs:element name="rank" type="alteredFloat" minOccurs="0" />
                                             <xs:element name="style" type="styleType" minOccurs="0" />
                                         </xs:all>
-                                        <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attributeGroup ref="alteredNode" />
+                                        <xs:attributeGroup ref="alteredIdNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -2279,8 +2279,7 @@
                                                                         </xs:complexType>
                                                                     </xs:element>
                                                                 </xs:all>
-                                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                                <xs:attributeGroup ref="alteredNode" />
+                                                                <xs:attributeGroup ref="alteredIdNode" />
                                                             </xs:complexType>
                                                         </xs:element>
                                                     </xs:sequence>
@@ -2288,8 +2287,7 @@
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:all>
-                                        <xs:attribute name="id" type="xs:string" use="required" />
-                                        <xs:attributeGroup ref="alteredNode" />
+                                        <xs:attributeGroup ref="alteredIdNode" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
