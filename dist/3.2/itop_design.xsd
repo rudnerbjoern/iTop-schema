@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-08-04 08:49:54 UTC
+  Generated on: 2025-08-04 09:14:29 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -2733,8 +2733,8 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
-          <xs:element name="class" type="xs:string" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="class" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2745,7 +2745,7 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2756,8 +2756,8 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:string" minOccurs="0"/>
-          <xs:element name="text" type="xs:string" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="text" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2768,13 +2768,13 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:string" minOccurs="0"/>
-          <xs:element name="title" type="xs:string" minOccurs="0"/>
-          <xs:element name="icon" type="xs:string" minOccurs="0"/>
-          <xs:element name="subtitle" type="xs:string" minOccurs="0"/>
-          <xs:element name="query" type="xs:string" minOccurs="0"/>
-          <xs:element name="group_by" type="xs:string" minOccurs="0"/>
-          <xs:element name="values" type="xs:string" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="title" type="alteredString" minOccurs="0"/>
+          <xs:element name="icon" type="alteredString" minOccurs="0"/>
+          <xs:element name="subtitle" type="alteredString" minOccurs="0"/>
+          <xs:element name="query" type="alteredString" minOccurs="0"/>
+          <xs:element name="group_by" type="alteredString" minOccurs="0"/>
+          <xs:element name="values" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2785,24 +2785,26 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:string" minOccurs="0"/>
-          <xs:element name="title" type="xs:string" minOccurs="0"/>
-          <xs:element name="query" type="xs:string" minOccurs="0"/>
-          <xs:element name="group_by" type="xs:string" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="title" type="alteredString" minOccurs="0"/>
+          <xs:element name="query" type="alteredString" minOccurs="0"/>
+          <xs:element name="group_by" type="alteredString" minOccurs="0"/>
           <xs:element name="style" minOccurs="0">
-            <xs:simpleType>
-              <xs:restriction base="xs:string">
-                <xs:enumeration value="pie"/>
-                <xs:enumeration value="bars"/>
-                <xs:enumeration value="table"/>
-              </xs:restriction>
-            </xs:simpleType>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:restriction base="alteredString">
+                  <xs:enumeration value="pie"/>
+                  <xs:enumeration value="bars"/>
+                  <xs:enumeration value="table"/>
+                </xs:restriction>
+              </xs:simpleContent>
+            </xs:complexType>
           </xs:element>
-          <xs:element name="aggregation_function" type="xs:string" minOccurs="0"/>
-          <xs:element name="aggregation_attribute" type="xs:string" minOccurs="0"/>
-          <xs:element name="limit" type="xs:string" minOccurs="0"/>
-          <xs:element name="order_by" type="xs:string" minOccurs="0"/>
-          <xs:element name="order_direction" type="xs:string" minOccurs="0"/>
+          <xs:element name="aggregation_function" type="alteredString" minOccurs="0"/>
+          <xs:element name="aggregation_attribute" type="alteredString" minOccurs="0"/>
+          <xs:element name="limit" type="alteredString" minOccurs="0"/>
+          <xs:element name="order_by" type="alteredString" minOccurs="0"/>
+          <xs:element name="order_direction" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2834,10 +2836,10 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:string" minOccurs="0"/>
-          <xs:element name="title" type="xs:string" minOccurs="0"/>
-          <xs:element name="subtitle" type="xs:string" minOccurs="0"/>
-          <xs:element name="icon" type="xs:string" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="title" type="alteredString" minOccurs="0"/>
+          <xs:element name="subtitle" type="alteredString" minOccurs="0"/>
+          <xs:element name="icon" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2848,10 +2850,10 @@
     <xs:complexContent>
       <xs:extension base="Dashlet">
         <xs:all>
-          <xs:element name="rank" type="xs:string" minOccurs="0"/>
-          <xs:element name="title" type="xs:string" minOccurs="0"/>
-          <xs:element name="query" type="xs:string" minOccurs="0"/>
-          <xs:element name="menu" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="title" type="alteredString" minOccurs="0"/>
+          <xs:element name="query" type="alteredString" minOccurs="0"/>
+          <xs:element name="menu" type="alteredBoolean" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
