@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-07-11 11:58:26 UTC
+  Generated on: 2025-08-04 08:49:54 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -1292,6 +1292,16 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  <xs:complexType name="alteredBoolean">
+    <xs:annotation>
+      <xs:documentation>A boolean value with metadata for tracking modifications in delta XML files. This type extends a plain boolean (xs:boolean) with attributes from the alteredNode group, allowing to describe how and when the boolean was changed, created, renamed, or deleted.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:boolean">
+        <xs:attributeGroup ref="alteredNode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
   <xs:complexType name="presentationZlist">
     <xs:all>
       <xs:element name="items" type="presentationItems"/>
@@ -2460,44 +2470,69 @@
     <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attributeGroup ref="alteredNode"/>
   </xs:complexType>
-  <xs:simpleType name="MenuEnableActionEnumeration">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="UR_ACTION_READ"/>
-      <xs:enumeration value="UR_ACTION_MODIFY"/>
-      <xs:enumeration value="UR_ACTION_DELETE"/>
-      <xs:enumeration value="UR_ACTION_BULK_READ"/>
-      <xs:enumeration value="UR_ACTION_BULK_MODIFY"/>
-      <xs:enumeration value="UR_ACTION_BULK_DELETE"/>
-    </xs:restriction>
+  <xs:complexType name="MenuEnableActionEnumeration">
+    <xs:simpleContent>
+      <xs:restriction base="alteredString">
+        <xs:enumeration value="UR_ACTION_READ"/>
+        <xs:enumeration value="UR_ACTION_MODIFY"/>
+        <xs:enumeration value="UR_ACTION_DELETE"/>
+        <xs:enumeration value="UR_ACTION_BULK_READ"/>
+        <xs:enumeration value="UR_ACTION_BULK_MODIFY"/>
+        <xs:enumeration value="UR_ACTION_BULK_DELETE"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MenuEnablePermissionEnumeration">
+    <xs:simpleContent>
+      <xs:restriction base="alteredString">
+        <xs:enumeration value="UR_ALLOWED_NO"/>
+        <xs:enumeration value="UR_ALLOWED_YES"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="zeroOrOneEnumeration">
+    <xs:simpleContent>
+      <xs:restriction base="alteredString">
+        <xs:enumeration value="0"/>
+        <xs:enumeration value="1"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="MenuAutoReloadEnumeration">
+    <xs:union memberTypes="xs:nonNegativeInteger">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="standard"/>
+          <xs:enumeration value="fast"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
   </xs:simpleType>
-  <xs:simpleType name="MenuEnablePermissionEnumeration">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="UR_ALLOWED_NO"/>
-      <xs:enumeration value="UR_ALLOWED_YES"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="zeroOrOneEnumeration">
-    <xs:restriction base="xs:unsignedByte">
-      <xs:enumeration value="0"/>
-      <xs:enumeration value="1"/>
-    </xs:restriction>
-  </xs:simpleType>
+  <xs:complexType name="alteredMenuAutoReloadEnumeration">
+    <xs:simpleContent>
+      <xs:extension base="MenuAutoReloadEnumeration">
+        <xs:attributeGroup ref="alteredNode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
   <!-- ########################### MenuGroup ########################### -->
   <xs:complexType name="MenuGroup">
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
           <xs:element name="style" minOccurs="0">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="decoration_classes" type="xs:string"/>
+                <xs:element name="decoration_classes" type="alteredString"/>
               </xs:sequence>
+              <xs:attributeGroup ref="alteredNode"/>
             </xs:complexType>
           </xs:element>
         </xs:all>
@@ -2510,35 +2545,38 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="definition_file" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="definition_file" type="alteredString" minOccurs="0"/>
           <xs:element name="definition" minOccurs="0">
             <xs:complexType>
               <xs:all>
                 <xs:element name="layout" minOccurs="0">
-                  <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                      <xs:enumeration value="DashboardLayoutOneCol"/>
-                      <xs:enumeration value="DashboardLayoutTwoCols"/>
-                      <xs:enumeration value="DashboardLayoutThreeCols"/>
-                    </xs:restriction>
-                  </xs:simpleType>
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:restriction base="alteredString">
+                        <xs:enumeration value="DashboardLayoutOneCol"/>
+                        <xs:enumeration value="DashboardLayoutTwoCols"/>
+                        <xs:enumeration value="DashboardLayoutThreeCols"/>
+                      </xs:restriction>
+                    </xs:simpleContent>
+                  </xs:complexType>
                 </xs:element>
-                <xs:element name="title" type="xs:string" minOccurs="0"/>
+                <xs:element name="title" type="alteredString" minOccurs="0"/>
                 <xs:element name="cells" minOccurs="0">
                   <xs:complexType>
                     <xs:sequence maxOccurs="unbounded">
                       <xs:element name="cell">
                         <xs:complexType>
                           <xs:all>
-                            <xs:element name="rank" minOccurs="0"/>
+                            <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
                             <xs:element name="dashlets" minOccurs="0">
                               <xs:complexType>
                                 <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                  <xs:element name="dashlet"/>
+                                  <xs:element name="dashlet" type="Dashlet"/>
                                 </xs:sequence>
+                                <xs:attributeGroup ref="alteredNode"/>
                               </xs:complexType>
                             </xs:element>
                           </xs:all>
@@ -2547,15 +2585,17 @@
                         </xs:complexType>
                       </xs:element>
                     </xs:sequence>
+                    <xs:attributeGroup ref="alteredNode"/>
                   </xs:complexType>
                 </xs:element>
               </xs:all>
+              <xs:attributeGroup ref="alteredNode"/>
             </xs:complexType>
           </xs:element>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2566,14 +2606,14 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="class" type="xs:string" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="class" type="alteredString" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2584,14 +2624,14 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="class" type="xs:string" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="class" type="alteredString" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2602,14 +2642,14 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="template_file" type="xs:string" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="template_file" type="alteredString" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2620,32 +2660,17 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
-          <xs:element name="auto_reload" minOccurs="0" default="none">
-            <xs:simpleType>
-              <xs:union>
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:enumeration value="none"/>
-                    <xs:enumeration value="standard"/>
-                    <xs:enumeration value="fast"/>
-                  </xs:restriction>
-                </xs:simpleType>
-                <xs:simpleType>
-                  <xs:restriction base="xs:nonNegativeInteger"/>
-                </xs:simpleType>
-              </xs:union>
-            </xs:simpleType>
-          </xs:element>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
+          <xs:element name="auto_reload" type="alteredMenuAutoReloadEnumeration" minOccurs="0" default="none"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="oql" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="oql" type="alteredString" minOccurs="0"/>
           <xs:element name="do_search" type="zeroOrOneEnumeration" minOccurs="0"/>
           <xs:element name="search_form_open" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2656,19 +2681,19 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="url" type="xs:string" minOccurs="0">
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="url" type="alteredString" minOccurs="0">
             <xs:annotation>
               <xs:documentation>URL to the page within the module. Prefix by a $$ to specify an absolute URL. Prefix by a $ to specify an URL relative to the iTop root URL. No prefix: relative to the module directory</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="in_new_window" type="xs:boolean" minOccurs="0" default="false"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="in_new_window" type="alteredBoolean" minOccurs="0" default="false"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
@@ -2679,13 +2704,13 @@
     <xs:complexContent>
       <xs:extension base="MenuNode">
         <xs:all>
-          <xs:element name="rank" type="xs:decimal" minOccurs="0"/>
+          <xs:element name="rank" type="alteredFloat" minOccurs="0"/>
           <xs:element name="enable_admin_only" type="zeroOrOneEnumeration" minOccurs="0"/>
-          <xs:element name="parent" type="xs:string" minOccurs="0"/>
-          <xs:element name="enable_class" type="xs:string" minOccurs="0"/>
+          <xs:element name="parent" type="alteredString" minOccurs="0"/>
+          <xs:element name="enable_class" type="alteredString" minOccurs="0"/>
           <xs:element name="enable_action" type="MenuEnableActionEnumeration" minOccurs="0"/>
           <xs:element name="enable_permission" type="MenuEnablePermissionEnumeration" minOccurs="0" default="UR_ALLOWED_YES"/>
-          <xs:element name="enable_stimulus" type="xs:string" minOccurs="0"/>
+          <xs:element name="enable_stimulus" type="alteredString" minOccurs="0"/>
         </xs:all>
       </xs:extension>
     </xs:complexContent>
