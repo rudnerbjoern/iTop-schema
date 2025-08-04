@@ -904,111 +904,151 @@
     </classes>
     <!-- ***************** Menus ***************** -->
     <menus>
-        <menu id="1" xsi:type="MenuGroup">
-            <rank>1.2</rank>
-            <enable_admin_only>1</enable_admin_only>
-            <enable_class>name</enable_class>
-            <enable_action>UR_ACTION_MODIFY</enable_action>
-            <enable_permission>UR_ALLOWED_YES</enable_permission>
-            <enable_stimulus>ev_assign</enable_stimulus>
-            <style>
-                <decoration_classes>aaa</decoration_classes>
+        <menu id="1" xsi:type="MenuGroup" _delta="define">
+            <rank _delta="define">1.2</rank>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <enable_class _delta="define" >name</enable_class>
+            <enable_action _delta="define">UR_ACTION_READ</enable_action>
+            <enable_permission _delta="define">UR_ALLOWED_YES</enable_permission>
+            <enable_stimulus _delta="define">ev_assign</enable_stimulus>
+            <style _delta="define">
+                <decoration_classes _delta="define">aaa</decoration_classes>
             </style>
         </menu>
-        <menu id="2" xsi:type="DashboardMenuNode">
-            <enable_action>UR_ACTION_BULK_READ</enable_action>
-            <enable_admin_only>1</enable_admin_only>
-            <enable_class>class</enable_class>
-            <enable_permission>UR_ALLOWED_NO</enable_permission>
-            <enable_stimulus>aaa</enable_stimulus>
-            <parent>123</parent>
-            <rank>22.3</rank>
-            <definition>
-                <cells>
-                    <cell id="1">
-                        <rank>10</rank>
-                        <dashlets>
-                            <dashlet id="badge1" xsi:type="DashletBadge">
-                                <rank>10</rank>
-                                <class>class1</class>
+        <menu id="2" xsi:type="DashboardMenuNode" _delta="define">
+            <enable_action _delta="define">UR_ACTION_BULK_READ</enable_action>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <enable_class _delta="define">class</enable_class>
+            <enable_permission _delta="define">UR_ALLOWED_NO</enable_permission>
+            <enable_stimulus _delta="define">aaa</enable_stimulus>
+            <parent _delta="define">123</parent>
+            <rank _delta="define">22.3</rank>
+            <definition _delta="define">
+                <cells _delta="define">
+                    <cell id="1" _delta="define">
+                        <rank _delta="define">10</rank>
+                        <dashlets _delta="define">
+                            <dashlet id="badge1" xsi:type="DashletBadge" _delta="define">
+                                <rank _delta="define">10</rank>
+                                <class _delta="define">class1</class>
+                            </dashlet>
+                            <dashlet id="badge2" xsi:type="DashletEmptyCell" _delta="define">
+                                <rank _delta="define">10</rank>
+                            </dashlet>
+                            <dashlet id="badge3" xsi:type="DashletPlainText" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <text _delta="define">the text</text>
+                            </dashlet>
+                            <dashlet id="badge4" xsi:type="DashletHeaderStatic" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <subtitle _delta="define">the subtitle</subtitle>
+                                <icon _delta="define">icon</icon>
+                            </dashlet>
+                            <dashlet id="badge5" xsi:type="DashletHeaderDynamic" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <subtitle _delta="define">the subtitle</subtitle>
+                                <icon _delta="define">icon</icon>
+                                <query _delta="define">SELECT</query>
+                                <group_by _delta="define">group</group_by>
+                                <values _delta="define">item1, item2</values>
+                            </dashlet>
+                            <dashlet id="badge6" xsi:type="DashletGroupByTable" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <query _delta="define">SELECT</query>
+                                <group_by _delta="define">group</group_by>
+                                <style _delta="define">table</style>
+                                <aggregation_function _delta="define">function</aggregation_function>
+                                <aggregation_attribute _delta="define">attribute</aggregation_attribute>
+                                <limit _delta="define">10</limit>
+                                <order_by _delta="define">item1</order_by>
+                                <order_direction _delta="define">asc</order_direction>
+                            </dashlet>
+                            <dashlet id="badge7" xsi:type="DashletObjectList" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <query _delta="define">SELECT</query>
+                                <menu _delta="define">true</menu>
                             </dashlet>
                         </dashlets>
                     </cell>
                 </cells>
             </definition>
-            <definition_file>filename</definition_file>
+            <definition_file _delta="define">filename</definition_file>
         </menu>
         <menu id="3" xsi:type="NewObjectMenuNode" _delta="define">
-            <rank>123.45</rank>
-            <enable_admin_only>1</enable_admin_only>
-            <parent>parent</parent>
-            <class>class1</class>
-            <enable_class>class2</enable_class>
-            <enable_action>UR_ACTION_BULK_READ</enable_action>
-            <enable_permission>UR_ALLOWED_YES</enable_permission>
+            <rank _delta="define">123.45</rank>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <parent _delta="define">parent</parent>
+            <class _delta="define">class1</class>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_action _delta="define">UR_ACTION_BULK_READ</enable_action>
+            <enable_permission _delta="define">UR_ALLOWED_YES</enable_permission>
         </menu>
         <menu id="4" xsi:type="SearchMenuNode">
-            <rank>12.3</rank>
-            <enable_admin_only>0</enable_admin_only>
-            <parent>1</parent>
-            <class>class3</class>
-            <enable_class>class4</enable_class>
-            <enable_action>UR_ACTION_DELETE</enable_action>
+            <rank _delta="define">12.3</rank>
+            <enable_admin_only _delta="define">0</enable_admin_only>
+            <parent _delta="define">1</parent>
+            <class _delta="define">class3</class>
+            <enable_class _delta="define">class4</enable_class>
+            <enable_action _delta="define">UR_ACTION_DELETE</enable_action>
         </menu>
-        <menu id="5" xsi:type="TemplateMenuNode">
-            <rank>1.2</rank>
-            <parent>1</parent>
-            <template_file>filename</template_file>
-            <enable_class>class3</enable_class>
-            <enable_action>UR_ACTION_BULK_MODIFY</enable_action>
+        <menu id="5" xsi:type="TemplateMenuNode" _delta="define">
+            <rank _delta="define">1.2</rank>
+            <parent _delta="define">1</parent>
+            <template_file _delta="define">filename</template_file>
+            <enable_class _delta="define">class3</enable_class>
+            <enable_action _delta="define">UR_ACTION_BULK_MODIFY</enable_action>
         </menu>
-        <menu id="6" xsi:type="OQLMenuNode">
-            <rank>6.2</rank>
-            <parent>1</parent>
-            <auto_reload>none</auto_reload>
-            <oql>SELECT</oql>
-            <do_search>1</do_search>
-            <search_form_open>1</search_form_open>
-            <enable_class>class2</enable_class>
-            <enable_admin_only>0</enable_admin_only>
+        <menu id="6" xsi:type="OQLMenuNode" _delta="define">
+            <rank _delta="define">6.2</rank>
+            <parent _delta="define">1</parent>
+            <auto_reload _delta="define">none</auto_reload>
+            <oql _delta="define">SELECT</oql>
+            <do_search _delta="define">1</do_search>
+            <search_form_open _delta="define">1</search_form_open>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_admin_only _delta="define">0</enable_admin_only>
         </menu>
-        <menu id="6.3" xsi:type="OQLMenuNode">
-            <rank>6.3</rank>
-            <parent>1</parent>
-            <auto_reload>120</auto_reload>
-            <oql>SELECT</oql>
-            <do_search>1</do_search>
-            <search_form_open>1</search_form_open>
-            <enable_class>class2</enable_class>
-            <enable_admin_only>1</enable_admin_only>
+        <menu id="6.3" xsi:type="OQLMenuNode" _delta="define">
+            <rank _delta="define">6.3</rank>
+            <parent _delta="define">1</parent>
+            <auto_reload _delta="define">120</auto_reload>
+            <oql _delta="define">SELECT</oql>
+            <do_search _delta="define">1</do_search>
+            <search_form_open _delta="define">1</search_form_open>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_admin_only _delta="define">1</enable_admin_only>
         </menu>
-        <menu id="7" xsi:type="WebPageMenuNode">
-            <rank>7</rank>
-            <parent>1</parent>
-            <url>$$https://www.openitop.com/</url>
-            <in_new_window>true</in_new_window>
-            <enable_admin_only>1</enable_admin_only>
+        <menu id="7" xsi:type="WebPageMenuNode" _delta="define">
+            <rank _delta="define">7</rank>
+            <parent _delta="define">1</parent>
+            <url _delta="define">$$https://www.openitop.com/</url>
+            <in_new_window _delta="define" >true</in_new_window>
+            <enable_admin_only _delta="define">1</enable_admin_only>
         </menu>
-        <menu id="8" xsi:type="ShortcutContainerMenuNode">
-            <parent>1</parent>
-            <rank>8</rank>
+        <menu id="8" xsi:type="ShortcutContainerMenuNode" _delta="define">
+            <parent _delta="define">1</parent>
+            <rank _delta="define">8</rank>
         </menu>
         <menu id="Typology" xsi:type="DashboardMenuNode" _delta="if_exists">
-            <rank>80</rank>
-            <parent>Catalogs</parent>
-            <definition>
-                <layout>DashboardLayoutOneCol</layout>
-                <title>Menu:ConfigManagement:Typology</title>
-                <cells>
+            <rank _delta="define">80</rank>
+            <parent _delta="define">Catalogs</parent>
+            <definition _delta="define">
+                <layout _delta="define">DashboardLayoutOneCol</layout>
+                <title _delta="define">Menu:ConfigManagement:Typology</title>
+                <cells _delta="define">
                     <cell id="0" _delta="if_exists">
-                        <dashlets>
+                        <dashlets _delta="define">
                             <dashlet id="20" xsi:type="DashletBadge" _delta="define">
-                                <rank>20</rank>
-                                <class>class1</class>
+                                <rank _delta="define">20</rank>
+                                <class _delta="define">class1</class>
                             </dashlet>
                             <dashlet id="21" xsi:type="DashletBadge" _delta="define">
-                                <rank>21</rank>
-                                <class>class2</class>
+                                <rank _delta="define">21</rank>
+                                <class _delta="define">class2</class>
                             </dashlet>
                         </dashlets>
                     </cell>
