@@ -2664,8 +2664,7 @@
             <xs:element name="width" type="alteredNonNegativeInteger" minOccurs="0" />
             <xs:element name="height" type="alteredNonNegativeInteger" minOccurs="0" />
         </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <!-- ############################################################
