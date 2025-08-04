@@ -1976,7 +1976,7 @@
                     <xs:element name="sql" type="alteredString" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="alteredBoolean" minOccurs="0" />
                     <xs:element name="default_value" type="alteredString" minOccurs="0" />
-                    <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="max_items" type="alteredNonNegativeInteger" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="alteredBoolean" minOccurs="0" default="false" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
@@ -2039,8 +2039,8 @@
                     <xs:element name="on_target_delete" type="onTargetDeleteEnumeration" minOccurs="0" />
                     <xs:element name="filter" type="alteredString" minOccurs="0" />
                     <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
-                    <xs:element name="max_combo_length" type="xs:unsignedByte" minOccurs="0" />
-                    <xs:element name="min_autocomplete_chars" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="max_combo_length" type="alteredNonNegativeInteger" minOccurs="0" />
+                    <xs:element name="min_autocomplete_chars" type="alteredNonNegativeInteger" minOccurs="0" />
                     <xs:element name="allow_target_creation" type="alteredBoolean" minOccurs="0" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                     <xs:element name="always_load_in_tables" type="alteredBoolean" minOccurs="0" default="false" />
@@ -2398,7 +2398,7 @@
                             </xs:simpleContent>
                         </xs:complexType>
                     </xs:element>
-                    <xs:element name="min_up" type="xs:unsignedByte" minOccurs="0" />
+                    <xs:element name="min_up" type="alteredNonNegativeInteger" minOccurs="0" />
                     <xs:element name="min_up_type" minOccurs="0">
                         <xs:complexType>
                             <xs:simpleContent>
@@ -2578,8 +2578,8 @@
                 <xs:all>
                     <xs:element name="sql" type="alteredString" minOccurs="0" />
                     <xs:element name="is_null_allowed" type="alteredBoolean" minOccurs="0" />
-                    <xs:element name="max_items" type="xs:unsignedByte" minOccurs="0" default="12" />
-                    <xs:element name="tag_code_max_len" type="xs:unsignedByte" minOccurs="0" default="20" />
+                    <xs:element name="max_items" type="alteredNonNegativeInteger" minOccurs="0" default="12" />
+                    <xs:element name="tag_code_max_len" type="alteredNonNegativeInteger" minOccurs="0" default="20" />
                     <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
                 </xs:all>
             </xs:extension>
