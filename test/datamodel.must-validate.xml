@@ -456,6 +456,27 @@
                 </method>
                 <method id="TestMethod2" _delta="delete_if_exists" />
             </methods>
+            <lifecycle>
+                <states>
+                    <state id="state1" _delta="must_exist">
+                        <flags>
+                            <attribute id="attribute1" _delta="define">
+                                <mandatory _delta="define" />
+                            </attribute>
+                        </flags>
+                        <transitions>
+                            <transition id="transition1" _delta="define">
+                                <target>state2</target>
+                                <flags>
+                                    <attribute id="attribute1" _delta="define">
+                                        <mandatory _delta="define" />
+                                    </attribute>
+                                </flags>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
             <presentation>
                 <details>
                     <items>
