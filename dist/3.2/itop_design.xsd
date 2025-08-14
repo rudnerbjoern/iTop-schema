@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-08-04 10:36:15 UTC
+  Generated on: 2025-08-14 12:51:04 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -519,22 +519,32 @@
                                 <xs:complexType>
                                   <xs:all>
                                     <xs:element name="hidden" minOccurs="0">
-                                      <xs:complexType/>
+                                      <xs:complexType>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
                                     </xs:element>
                                     <xs:element name="read_only" minOccurs="0">
-                                      <xs:complexType/>
+                                      <xs:complexType>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
                                     </xs:element>
                                     <xs:element name="must_prompt" minOccurs="0">
-                                      <xs:complexType/>
+                                      <xs:complexType>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
                                     </xs:element>
                                     <xs:element name="must_change" minOccurs="0">
-                                      <xs:complexType/>
+                                      <xs:complexType>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
                                     </xs:element>
                                     <xs:element name="mandatory" minOccurs="0">
-                                      <xs:complexType/>
+                                      <xs:complexType>
+                                        <xs:attributeGroup ref="alteredNode"/>
+                                      </xs:complexType>
                                     </xs:element>
                                   </xs:all>
-                                  <xs:attribute name="id" type="xs:string" use="required"/>
+                                  <xs:attributeGroup ref="alteredIdNode"/>
                                 </xs:complexType>
                               </xs:element>
                             </xs:sequence>
@@ -554,19 +564,27 @@
                                             <xs:complexType>
                                               <xs:all>
                                                 <xs:element name="mandatory" minOccurs="0">
-                                                  <xs:complexType/>
+                                                  <xs:complexType>
+                                                    <xs:attributeGroup ref="alteredNode"/>
+                                                  </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="must_change" minOccurs="0">
-                                                  <xs:complexType/>
+                                                  <xs:complexType>
+                                                    <xs:attributeGroup ref="alteredNode"/>
+                                                  </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="must_prompt" minOccurs="0">
-                                                  <xs:complexType/>
+                                                  <xs:complexType>
+                                                    <xs:attributeGroup ref="alteredNode"/>
+                                                  </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="read_only" minOccurs="0">
-                                                  <xs:complexType/>
+                                                  <xs:complexType>
+                                                    <xs:attributeGroup ref="alteredNode"/>
+                                                  </xs:complexType>
                                                 </xs:element>
                                               </xs:all>
-                                              <xs:attribute name="id" type="xs:string" use="required"/>
+                                              <xs:attributeGroup ref="alteredIdNode"/>
                                             </xs:complexType>
                                           </xs:element>
                                         </xs:sequence>
@@ -595,16 +613,14 @@
                                       </xs:complexType>
                                     </xs:element>
                                   </xs:all>
-                                  <xs:attribute name="id" type="xs:string" use="required"/>
-                                  <xs:attributeGroup ref="alteredNode"/>
+                                  <xs:attributeGroup ref="alteredIdNode"/>
                                 </xs:complexType>
                               </xs:element>
                             </xs:sequence>
                           </xs:complexType>
                         </xs:element>
                       </xs:all>
-                      <xs:attribute name="id" type="xs:string" use="required"/>
-                      <xs:attributeGroup ref="alteredNode"/>
+                      <xs:attributeGroup ref="alteredIdNode"/>
                     </xs:complexType>
                   </xs:element>
                 </xs:sequence>
