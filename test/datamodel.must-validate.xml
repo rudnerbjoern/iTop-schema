@@ -111,11 +111,11 @@
                 <field id="enumTest" xsi:type="AttributeEnum" _delta="define">
                     <sql>enum_test</sql>
                     <values>
-                        <value id="enum1">
-                            <code>enum1</code>
-                            <rank>10</rank>
-                            <style>
-                                <decoration_classes>decoration</decoration_classes>
+                        <value id="enum1" _delta="define">
+                            <code _delta="define">enum1</code>
+                            <rank _delta="define">10</rank>
+                            <style _delta="define">
+                                <decoration_classes _delta="define">decoration</decoration_classes>
                                 <main_color _delta="define">$ibo-lifecycle-active-state-primary-color</main_color>
                                 <complementary_color _delta="define">$ibo-lifecycle-active-state-secondary-color</complementary_color>
                             </style>
