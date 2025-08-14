@@ -111,11 +111,11 @@
                 <field id="enumTest" xsi:type="AttributeEnum" _delta="define">
                     <sql>enum_test</sql>
                     <values>
-                        <value id="enum1">
-                            <code>enum1</code>
-                            <rank>10</rank>
-                            <style>
-                                <decoration_classes>decoration</decoration_classes>
+                        <value id="enum1" _delta="define">
+                            <code _delta="define">enum1</code>
+                            <rank _delta="define">10</rank>
+                            <style _delta="define">
+                                <decoration_classes _delta="define">decoration</decoration_classes>
                                 <main_color _delta="define">$ibo-lifecycle-active-state-primary-color</main_color>
                                 <complementary_color _delta="define">$ibo-lifecycle-active-state-secondary-color</complementary_color>
                             </style>
@@ -456,6 +456,27 @@
                 </method>
                 <method id="TestMethod2" _delta="delete_if_exists" />
             </methods>
+            <lifecycle>
+                <states>
+                    <state id="state1" _delta="must_exist">
+                        <flags>
+                            <attribute id="attribute1" _delta="define">
+                                <mandatory _delta="define" />
+                            </attribute>
+                        </flags>
+                        <transitions>
+                            <transition id="transition1" _delta="define">
+                                <target>state2</target>
+                                <flags>
+                                    <attribute id="attribute1" _delta="define">
+                                        <mandatory _delta="define" />
+                                    </attribute>
+                                </flags>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
             <presentation>
                 <details>
                     <items>

@@ -43,4 +43,6 @@
         "xs:documentation"
     ],
     "xml.format.spaceBeforeEmptyCloseTag": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
 }
