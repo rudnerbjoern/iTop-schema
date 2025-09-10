@@ -1268,7 +1268,27 @@
         </snippet>
     </snippets>
     <!-- ***************** Meta ***************** -->
-    <meta />
+    <meta>
+        <!-- Usage of this tag is restricted to Combodo for driving ITSM Designer behavior. -->
+        <classes>
+            <class id="classId" _delta="define">
+                <interfaces>
+                    <interface id="interfaceId" />
+                </interfaces>
+            </class>
+        </classes>
+        <dashlets>
+            <dashlet id="dashletId" _delta="define">
+                <label>DashletLabel</label>
+                <icon>DashletIcon</icon>
+                <description>DashletDescription</description>
+                <configuration>
+                    <arg1>arg 1 value</arg1>
+                    <arg2>arg 2 value</arg2>
+                </configuration>
+            </dashlet>
+        </dashlets>
+    </meta>
     <!-- ***************** Events ***************** -->
     <events>
         <event id="event-1" _delta="define">
