@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-08-14 12:51:04 UTC
+  Generated on: 2025-09-10 15:18:59 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -239,6 +239,30 @@
                     </xs:element>
                   </xs:sequence>
                   <xs:attributeGroup ref="alteredNode"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dashlets" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence maxOccurs="unbounded">
+                    <xs:element name="dashlet">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="label" type="xs:string" minOccurs="0"/>
+                          <xs:element name="icon" type="xs:string" minOccurs="0"/>
+                          <xs:element name="description" type="xs:string" minOccurs="0"/>
+                          <xs:element name="configuration">
+                            <xs:complexType>
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:any processContents="lax"/>
+                              </xs:choice>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                        <xs:attribute name="id" type="xs:string" use="required"/>
+                        <xs:attributeGroup ref="alteredNode"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
                 </xs:complexType>
               </xs:element>
             </xs:all>
