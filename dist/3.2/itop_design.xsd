@@ -6,7 +6,7 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2025-09-10 15:18:59 UTC
+  Generated on: 2025-09-11 07:12:26 UTC
 
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
@@ -1303,7 +1303,7 @@
     </xs:attribute>
   </xs:attributeGroup>
   <xs:attributeGroup name="alteredIdNode">
-    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="id" type="xs:string" use="required"/>
     <xs:attributeGroup ref="alteredNode"/>
   </xs:attributeGroup>
   <xs:complexType name="alteredString">
