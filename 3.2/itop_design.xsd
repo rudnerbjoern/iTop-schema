@@ -1326,7 +1326,7 @@
     </xs:attributeGroup>
 
     <xs:attributeGroup name="alteredIdNode">
-        <xs:attribute name="id" type="xs:string" />
+        <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attributeGroup ref="alteredNode" />
     </xs:attributeGroup>
 
