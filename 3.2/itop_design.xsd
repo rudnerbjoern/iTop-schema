@@ -1416,8 +1416,7 @@
                         <xs:element name="rank" minOccurs="0" type="alteredFloat" />
                         <xs:element name="items" minOccurs="0" type="presentationItems" />
                     </xs:sequence>
-                    <xs:attribute name="id" type="xs:string" use="required" />
-                    <xs:attributeGroup ref="alteredNode" />
+                    <xs:attributeGroup ref="alteredIdNode" />
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
@@ -1434,11 +1433,11 @@
                                 <xs:sequence minOccurs="0">
                                     <xs:element name="rank" type="alteredFloat" />
                                 </xs:sequence>
-                                <xs:attribute name="id" type="xs:string" use="required" />
-                                <xs:attributeGroup ref="alteredNode" />
+                                <xs:attributeGroup ref="alteredIdNode" />
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
+                    <xs:attributeGroup ref="alteredNode" />
                 </xs:complexType>
             </xs:element>
         </xs:all>
@@ -1518,11 +1517,7 @@
             <xs:element name="denied_profiles">
                 <xs:complexType>
                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xs:element name="denied_profile">
-                            <xs:complexType>
-                                <xs:attributeGroup ref="alteredIdNode" />
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="denied_profile" type="alteredEmptyIdNode" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -2706,8 +2701,7 @@
          ############################################################ -->
 
     <xs:complexType name="MenuNode" abstract="true">
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="MenuEnableActionEnumeration">
@@ -2825,8 +2819,7 @@
                                                             </xs:complexType>
                                                         </xs:element>
                                                     </xs:all>
-                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                    <xs:attributeGroup ref="alteredNode" />
+                                                    <xs:attributeGroup ref="alteredIdNode" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:sequence>
@@ -2985,8 +2978,7 @@
                 Includes a required 'id' and alteration metadata from the alteredNode group.
             </xs:documentation>
         </xs:annotation>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
     <!-- ########################### /Dashlet ########################### -->
 
