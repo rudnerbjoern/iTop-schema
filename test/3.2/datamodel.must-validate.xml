@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../3.2/itop_design.xsd">
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../3.2/itop_design.xsd">
     <!--
     This file serves as a quick reference for the iTop datamodel structure.
     It is intended solely for schema validation and must never produce any errors.
@@ -928,7 +928,7 @@
         <menu id="1" xsi:type="MenuGroup" _delta="define">
             <rank _delta="define">1.2</rank>
             <enable_admin_only _delta="define">1</enable_admin_only>
-            <enable_class _delta="define" >name</enable_class>
+            <enable_class _delta="define">name</enable_class>
             <enable_action _delta="define">UR_ACTION_READ</enable_action>
             <enable_permission _delta="define">UR_ALLOWED_YES</enable_permission>
             <enable_stimulus _delta="define">ev_assign</enable_stimulus>
@@ -1047,7 +1047,7 @@
             <rank _delta="define">7</rank>
             <parent _delta="define">1</parent>
             <url _delta="define">$$https://www.openitop.com/</url>
-            <in_new_window _delta="define" >true</in_new_window>
+            <in_new_window _delta="define">true</in_new_window>
             <enable_admin_only _delta="define">1</enable_admin_only>
         </menu>
         <menu id="8" xsi:type="ShortcutContainerMenuNode" _delta="define">
