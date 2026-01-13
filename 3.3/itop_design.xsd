@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema version="3.3" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="itop-delta.xsd" />
+    <xs:include schemaLocation="property_types.xsd" />
     <xs:element name="itop_design">
         <xs:annotation>
             <xs:documentation source="https://www.itophub.io/wiki/page?id=3_2_0:customization:xml_reference#xml_general_structure">
@@ -25,7 +27,9 @@
                 </xs:element>
                 <xs:element name="menus" minOccurs="0">
                     <xs:annotation>
-                        <xs:documentation>Declaration of the menus shown in the main GUI (left pane)</xs:documentation>
+                        <xs:documentation>
+                            Declaration of the menus shown in the main GUI (left pane)
+                        </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -35,7 +39,9 @@
                 </xs:element>
                 <xs:element name="user_rights" minOccurs="0">
                     <xs:annotation>
-                        <xs:documentation>Implementation of the user rights policy: users will have one or more profiles, granting them access rights.</xs:documentation>
+                        <xs:documentation>
+                            Implementation of the user rights policy: users will have one or more profiles, granting them access rights.
+                        </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:all>
@@ -211,6 +217,14 @@
                                     <xs:sequence maxOccurs="unbounded">
                                         <xs:element name="class" />
                                     </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="property_types" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="property_type" />
+                                    </xs:sequence>
+                                    <xs:attributeGroup ref="alteredNode" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="presentation" minOccurs="0">
@@ -717,8 +731,8 @@
                                     <xs:element name="arguments" minOccurs="0">
                                         <xs:annotation>
                                             <xs:documentation source="https://www.itophub.io/wiki/page?id=latest:customization:form_prefill">
-                                                    Use definition from https://www.itophub.io/wiki/page?id=latest:customization:form_prefill
-                                                </xs:documentation>
+                                                Use definition from https://www.itophub.io/wiki/page?id=latest:customization:form_prefill
+                                            </xs:documentation>
                                         </xs:annotation>
                                         <xs:complexType>
                                             <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -1354,8 +1368,8 @@
         <xs:annotation>
             <xs:documentation>
                 An altered string value that also carries a required ID attribute.
-                This type extends alteredString by adding an "id" field, which is typically used
-                to uniquely identify the string element.
+                This type extends alteredString by adding an "id" field,
+                which is typically used to uniquely identify the string element.
             </xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
@@ -1683,7 +1697,8 @@
         <xs:annotation>
             <xs:documentation>
                 Adjusts the recording of changes (history tab) in iTop.
-                Possible values: 'none' (no history), 'all' (full history). Defaults to 'all'.
+                Possible values: 'none' (no history), 'all' (full history).
+                Defaults to 'all'.
             </xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
