@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../3.2/itop_design.xsd">
+    <!--
+    This file serves as a quick reference for the iTop datamodel structure.
+    It is intended solely for schema validation and must never produce any errors.
+    The content will evolve gradually as new elements are introduced into the schema.
+    -->
+    <!-- ***************** Classes ***************** -->
+    <classes>
+        <class id="Delta1" _delta="define" />
+        <class id="Delta2" _delta="define_if_not_exists" />
+        <class id="Delta3" _delta="delete" />
+        <class id="Delta4" _delta="delete_if_exists" />
+        <class id="Delta5" _delta="force" />
+        <class id="Delta6" _delta="if_exists" />
+        <class id="Delta7" _delta="merge" />
+        <class id="Delta8" _delta="must_exist" />
+        <class id="Delta9" _delta="redefine" _rename_from="DeltaFrom" />
+        <class id="AttributesClass" _delta="define" _created_in="module1" _altered_in="module2" _alteration="replaced" _revision_id="1" />
+        <class id="TestClass1">
+            <parent>ParentClass</parent>
+            <php_parent>
+                <name>namespace\MyPhpClass</name>
+                <file>file_path_in_the_extension/file.php</file>
+            </php_parent>
+            <properties>
+                <is_link>1</is_link>
+                <comment>Comment</comment>
+                <category>category</category>
+                <abstract>false</abstract>
+                <key_type>autoincrement</key_type>
+                <db_table>table</db_table>
+                <db_key_field>id</db_key_field>
+                <db_final_class_field>finalclass</db_final_class_field>
+                <naming>
+                    <attributes>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </attributes>
+                    <complementary_attributes>
+                        <attribute id="3" />
+                        <attribute id="4" />
+                    </complementary_attributes>
+                </naming>
+                <fields_semantic>
+                    <image_attribute>Image</image_attribute>
+                    <state_attribute>State</state_attribute>
+                </fields_semantic>
+                <order>
+                    <columns>
+                        <column id="1" ascending="true" />
+                        <column id="2" ascending="false" />
+                    </columns>
+                </order>
+                <style>
+                    <icon>icon</icon>
+                    <main_color>#FFF</main_color>
+                    <complementary_color>#000</complementary_color>
+                </style>
+                <reconciliation>
+                    <attributes>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </attributes>
+                </reconciliation>
+                <indexes>
+                    <index id="1">
+                        <attributes>
+                            <attribute id="1" />
+                            <attribute id="2" />
+                        </attributes>
+                    </index>
+                    <index id="2">
+                        <attributes>
+                            <attribute id="3" />
+                            <attribute id="4" />
+                        </attributes>
+                    </index>
+                    <index id="3" _delta="delete_if_exists" />
+                </indexes>
+                <archive>
+                    <enabled>true</enabled>
+                </archive>
+                <obsolescence>
+                    <condition><![CDATA[status='closed']]></condition>
+                </obsolescence>
+                <uniqueness_rules>
+                    <rule id="1">
+                        <attributes>
+                            <attribute id="1" />
+                            <attribute id="2" />
+                        </attributes>
+                        <filter><![CDATA[status = 'active']]></filter>
+                        <disabled>true</disabled>
+                        <is_blocking>true</is_blocking>
+                    </rule>
+                    <rule id="2">
+                        <attributes>
+                            <attribute id="3" />
+                            <attribute id="4" />
+                        </attributes>
+                        <filter><![CDATA[status = 'active']]></filter>
+                        <disabled>false</disabled>
+                        <is_blocking>false</is_blocking>
+                    </rule>
+                </uniqueness_rules>
+            </properties>
+            <fields>
+                <field id="11" xsi:type="AttributeString" />
+                <field id="2" _delta="delete" />
+                <field id="enumTest" xsi:type="AttributeEnum" _delta="define">
+                    <sql>enum_test</sql>
+                    <values>
+                        <value id="enum1" _delta="define">
+                            <code _delta="define">enum1</code>
+                            <rank _delta="define">10</rank>
+                            <style _delta="define">
+                                <decoration_classes _delta="define">decoration</decoration_classes>
+                                <main_color _delta="define">$ibo-lifecycle-active-state-primary-color</main_color>
+                                <complementary_color _delta="define">$ibo-lifecycle-active-state-secondary-color</complementary_color>
+                            </style>
+                        </value>
+                        <value id="enum2" _delta="if_exists">
+                            <code>enum2</code>
+                            <rank>20</rank>
+                            <style>
+                                <main_color _delta="define">$ibo-lifecycle-active-state-primary-color</main_color>
+                                <complementary_color _delta="define">$ibo-lifecycle-active-state-secondary-color</complementary_color>
+                            </style>
+                        </value>
+                    </values>
+                    <sort_type>rank</sort_type>
+                    <default_value>enum1</default_value>
+                    <display_style>radio_horizontal</display_style>
+                </field>
+            </fields>
+            <lifecycle>
+                <highlight_scale>
+                    <item id="none">
+                        <rank>1</rank>
+                        <color>HIGHLIGHT_NONE</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="warning">
+                        <rank>2</rank>
+                        <color>HIGHLIGHT_WARNING</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="critical">
+                        <rank>3</rank>
+                        <color>HIGHLIGHT_CRITICAL</color>
+                        <icon>icon</icon>
+                    </item>
+                    <item id="ok">
+                        <rank>4</rank>
+                        <color>HIGHLIGHT_OK</color>
+                        <icon>icon</icon>
+                    </item>
+                </highlight_scale>
+                <stimuli>
+                    <stimulus id="1" xsi:type="StimulusUserAction" _delta="define" />
+                    <stimulus id="2" xsi:type="StimulusInternal" _delta="delete" />
+                    <stimulus id="3" xsi:type="StimulusUserAction">
+                        <denied_profiles>
+                            <denied_profile id="Support Agent" />
+                        </denied_profiles>
+                    </stimulus>
+                </stimuli>
+                <states>
+                    <state id="111">
+                        <initial_state_path>
+                            <state_ref>new</state_ref>
+                        </initial_state_path>
+                        <inherit_flags_from>*another_state*</inherit_flags_from>
+                        <highlight>
+                            <code>code</code>
+                        </highlight>
+                        <flags>
+                            <attribute id="1">
+                                <mandatory />
+                                <must_prompt />
+                            </attribute>
+                            <attribute id="2">
+                                <hidden />
+                            </attribute>
+                        </flags>
+                        <transitions>
+                            <transition id="1">
+                                <target>target</target>
+                                <flags>
+                                    <attribute id="1">
+                                        <mandatory />
+                                    </attribute>
+                                    <attribute id="2">
+                                        <read_only />
+                                    </attribute>
+                                </flags>
+                                <actions>
+                                    <action id="1">
+                                        <verb>name</verb>
+                                        <params>
+                                            <param xsi:type="string">value</param>
+                                            <param xsi:type="int">5</param>
+                                            <param xsi:type="float">2.2</param>
+                                            <param xsi:type="reference">value</param>
+                                        </params>
+                                    </action>
+                                </actions>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
+            <event_listeners>
+                <event_listener id="1">
+                    <event>EVENT_DB_BEFORE_WRITE</event>
+                    <callback>callback</callback>
+                    <code>code</code>
+                    <rank>1</rank>
+                </event_listener>
+                <event_listener id="OnUserRequestUpdateDone" _delta="define">
+                    <event>EVENT_DB_AFTER_WRITE</event>
+                    <callback>OnUserRequestUpdateDone</callback>
+                    <rank>2</rank>
+                </event_listener>
+            </event_listeners>
+            <methods>
+                <method id="1">
+                    <comment>comment</comment>
+                    <static>false</static>
+                    <access>public</access>
+                    <type>Overload-cmdbAbstractObject</type>
+                    <arguments>
+                        <argument id="1">
+                            <mandatory>true</mandatory>
+                            <type>reference</type>
+                        </argument>
+                        <argument id="2">
+                            <mandatory>false</mandatory>
+                            <type>current_stimulus_code</type>
+                        </argument>
+                        <argument id="3">
+                            <type>attcode</type>
+                        </argument>
+                    </arguments>
+                    <code><![CDATA[public function PrefillCreationForm(&$aContextParam)
+                        {       // code of the function    }]]>
+                    </code>
+                </method>
+                <method id="2" />
+            </methods>
+            <relations>
+                <relation id="impacts">
+                    <neighbours>
+                        <neighbour id="1" _delta="must_exist">
+                            <query_down _delta="define">SELECT</query_down>
+                            <query_up _delta="if_exists">SELECT</query_up>
+                            <attribute _delta="force">something</attribute>
+                            <direction>both</direction>
+                        </neighbour>
+                        <neighbour id="2" />
+                    </neighbours>
+                </relation>
+                <relation id="contains">
+                    <neighbours>
+                        <neighbour id="2">
+                            <attribute>2</attribute>
+                        </neighbour>
+                    </neighbours>
+                </relation>
+                <relation id="networkflow" _delta="define">
+                    <neighbours>
+                        <neighbour id="3">
+                            <query_up>SELECT</query_up>
+                            <query_down>SELECT </query_down>
+                            <direction>down</direction>
+                        </neighbour>
+                    </neighbours>
+                </relation>
+            </relations>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="col:col1">
+                            <rank>10</rank>
+                            <items>
+                                <item id="2">
+                                    <rank>11</rank>
+                                    <items>
+                                        <item id="3">
+                                            <rank>10</rank>
+                                        </item>
+                                        <item id="4" _delta="define">
+                                            <rank>20</rank>
+                                        </item>
+                                        <item id="5" _delta="define_if_not_exists">
+                                            <rank>30</rank>
+                                            <items>
+                                                <item id="20" />
+                                            </items>
+                                        </item>
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>2</rank>
+                        </item>
+                    </items>
+                </search>
+                <default_search>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </default_search>
+                <list>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </list>
+                <summary>
+                    <items>
+                        <item id="1">
+                            <rank>10</rank>
+                        </item>
+                        <item id="2">
+                            <rank>20</rank>
+                        </item>
+                    </items>
+                </summary>
+            </presentation>
+        </class>
+        <class id="TestClass2" _delta="define">
+            <parent>test</parent>
+            <properties>
+                <category>category1,category2</category>
+                <abstract>false</abstract>
+                <key_type>autoincrement</key_type>
+                <db_table>test</db_table>
+                <db_key_field>id</db_key_field>
+                <db_final_class_field />
+                <naming>
+                    <attributes>
+                        <attribute id="name" />
+                    </attributes>
+                </naming>
+                <fields_semantic>
+                    <state_attribute>status</state_attribute>
+                </fields_semantic>
+                <order>
+                    <columns>
+                        <column id="column1" ascending="true" />
+                        <column id="column2" ascending="true" />
+                    </columns>
+                </order>
+                <style>
+                    <icon>images/test.png</icon>
+                </style>
+                <reconciliation>
+                    <attributes>
+                        <attribute id="name" />
+                        <attribute id="org_id" />
+                        <attribute id="organization_name" />
+                    </attributes>
+                </reconciliation>
+                <obsolescence>
+                    <condition>
+                        <![CDATA[status = 'obsolete']]>
+                    </condition>
+                </obsolescence>
+            </properties>
+            <fields>
+                <field id="123" xsi:type="AttributeString">
+                    <sql>string</sql>
+                    <default_value>none</default_value>
+                    <validation_pattern>pattern</validation_pattern>
+                    <is_null_allowed>false</is_null_allowed>
+                    <dependencies>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </dependencies>
+                </field>
+            </fields>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="test" />
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="111" />
+                    </items>
+                </search>
+                <list>
+                    <items>
+                        <item id="123" />
+                        <item id="554" />
+                    </items>
+                </list>
+                <summary>
+                    <items>
+                        <item id="443" />
+                    </items>
+                </summary>
+            </presentation>
+        </class>
+        <class id="TestDelta" _delta="define_if_not_exists">
+            <properties>
+                <naming _delta="define">
+                    <attributes _delta="define">
+                        <attribute id="name1" _delta="delete" />
+                    </attributes>
+                    <complementary_attributes _delta="define">
+                        <attribute id="name2" _delta="if_exists" />
+                    </complementary_attributes>
+                </naming>
+                <obsolescence _delta="delete_if_exists" />
+            </properties>
+            <fields>
+                <field id="functionalci_id" xsi:type="AttributeExternalKey" _delta="must_exist">
+                    <!-- Issue: Tag filter of an AttributeExternalKey may be redefined
+                     https://github.com/rudnerbjoern/iTop-schema/issues/71 -->
+                    <filter _delta="redefine"><![CDATA[SELECT FunctionalCI WHERE finalclass IN ('NetworkDevice', 'Server', 'VirtualMachine')]]></filter>
+                </field>
+            </fields>
+            <methods>
+                <method id="TestMethod1">
+                    <comment _delta="define">comment</comment>
+                    <access _delta="define">public</access>
+                    <type _delta="define">Overload-cmdbAbstractObject</type>
+                    <arguments _delta="force">
+                        <argument id="argument1" _delta="delete" />
+                    </arguments>
+                    <code _delta="define"><![CDATA[function TestFunction()]]> </code>
+                </method>
+                <method id="TestMethod2" _delta="delete_if_exists" />
+            </methods>
+            <lifecycle>
+                <states>
+                    <state id="state1" _delta="must_exist">
+                        <flags>
+                            <attribute id="attribute1" _delta="define">
+                                <mandatory _delta="define" />
+                            </attribute>
+                        </flags>
+                        <transitions>
+                            <transition id="transition1" _delta="define">
+                                <target>state2</target>
+                                <flags>
+                                    <attribute id="attribute1" _delta="define">
+                                        <mandatory _delta="define" />
+                                    </attribute>
+                                </flags>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="item1" _delta="define">
+                            <rank _delta="force">10</rank>
+                            <items>
+                                <item id="item2" _delta="define">
+                                    <rank _delta="define">20</rank>
+                                    <items>
+                                        <item id="item3" _delta="define">
+                                            <rank _delta="define">30</rank>
+                                            <items>
+                                                <item id="item4" _delta="define" />
+                                            </items>
+                                        </item>
+                                    </items>
+                                </item>
+                            </items>
+                        </item>
+                    </items>
+                </details>
+            </presentation>
+        </class>
+        <class id="TestAttributes">
+            <fields>
+                <field id="blob" xsi:type="AttributeBlob" _delta="define">
+                    <sql>blob</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <tracking_level>none</tracking_level>
+                    <dependencies>
+                        <attribute id="item1" _delta="define" />
+                        <attribute id="item2" _delta="delete" />
+                    </dependencies>
+                </field>
+                <field id="log" xsi:type="AttributeCaseLog" _delta="define_if_not_exists">
+                    <sql>log</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="item" _delta="merge" />
+                    </dependencies>
+                </field>
+                <field id="custom" xsi:type="AttributeCustomFields" _delta="define">
+                    <handler_class>MyClass</handler_class>
+                    <tracking_level>none</tracking_level>
+                </field>
+                <field id="date" xsi:type="AttributeDate">
+                    <sql>date</sql>
+                    <default_value>nothing</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="define" />
+                    </dependencies>
+                </field>
+                <field id="datetime" xsi:type="AttributeDateTime" _delta="must_exist">
+                    <sql>datetime</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="redefine" />
+                    </dependencies>
+                </field>
+                <field id="decimal" xsi:type="AttributeDecimal" _delta="define">
+                    <sql>decimal</sql>
+                    <default_value>10.2</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <digits>6</digits>
+                    <decimals>2</decimals>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" _delta="if_exists" />
+                    </dependencies>
+                </field>
+                <field id="duration" xsi:type="AttributeDuration" _delta="define">
+                    <sql>duration</sql>
+                    <default_value>value</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="item-2" />
+                    </dependencies>
+                </field>
+                <field id="email" xsi:type="AttributeEmailAddress" _delta="define">
+                    <sql>email</sql>
+                    <default_value>aaa@example.tld</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <validation_pattern>[a-z]+@[a-z]+</validation_pattern>
+                    <dependencies>
+                        <attribute id="123" />
+                    </dependencies>
+                </field>
+                <field id="pwd" xsi:type="AttributeEncryptedPassword">
+                    <sql>pwd</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="123" _delta="must_exist" />
+                    </dependencies>
+                </field>
+                <field id="string1" xsi:type="AttributeEncryptedString" _delta="define">
+                    <sql>string1</sql>
+                    <default_value>value</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="12" />
+                    </dependencies>
+                </field>
+                <field id="enum" xsi:type="AttributeEnum" _delta="define_if_not_exists">
+                    <sql>enum</sql>
+                    <sort_type>rank</sort_type>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <values>
+                        <value id="value1" _delta="define">
+                            <code>value1</code>
+                            <rank>10.2</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                        <value id="value2" _delta="define">
+                            <code>value2</code>
+                            <rank>20</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                    </values>
+                    <default_value>value1</default_value>
+                    <default_style>
+                        <main_color>#4E79A5</main_color>
+                        <complementary_color>#FFFFFF</complementary_color>
+                        <decoration_classes>fas fa-user-tag</decoration_classes>
+                    </default_style>
+                    <display_style>select</display_style>
+                    <dependencies>
+                        <attribute id="1" />
+                    </dependencies>
+                </field>
+                <field id="enumSet" xsi:type="AttributeEnumSet" _delta="define">
+                    <sql>enumSet</sql>
+                    <values>
+                        <value id="1">
+                            <code>1</code>
+                        </value>
+                    </values>
+                    <max_items>255</max_items>
+                </field>
+                <field id="external1" xsi:type="AttributeExternalField" _delta="define">
+                    <extkey_attcode>attcode</extkey_attcode>
+                    <target_attcode>attcode</target_attcode>
+                </field>
+                <field id="external2" xsi:type="AttributeExternalKey" _delta="define">
+                    <sql>external2</sql>
+                    <is_null_allowed>true</is_null_allowed>
+                    <on_target_delete>DEL_AUTO</on_target_delete>
+                    <target_class>class1</target_class>
+                    <filter><![CDATA[SELECT Location AS L WHERE L.org_id = :this->org_id]]></filter>
+                    <dependencies>
+                        <attribute id="org_id" />
+                    </dependencies>
+                    <max_combo_length>10</max_combo_length>
+                    <min_autocomplete_chars>3</min_autocomplete_chars>
+                    <allow_target_creation>true</allow_target_creation>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <display_style>select</display_style>
+                    <create_temporary_object>true</create_temporary_object>
+                </field>
+                <field id="key2" xsi:type="AttributeHierarchicalKey" _delta="define">
+                    <sql>key2</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <on_target_delete>DEL_MANUAL</on_target_delete>
+                    <filter><![CDATA[SELECT Location AS L WHERE L.org_id = :this->org_id]]></filter>
+                    <dependencies>
+                        <attribute id="org_id" />
+                        <attribute id="org_name" />
+                    </dependencies>
+                    <max_combo_length>50</max_combo_length>
+                    <min_autocomplete_chars>4</min_autocomplete_chars>
+                    <allow_target_creation>false</allow_target_creation>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                </field>
+                <field id="html" xsi:type="AttributeHTML">
+                    <sql>html</sql>
+                    <default_value />
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <width>800px</width>
+                    <height>200px</height>
+                </field>
+                <field id="image" xsi:type="AttributeImage">
+                    <sql>image</sql>
+                    <display_max_width>4096</display_max_width>
+                    <display_max_height>1024</display_max_height>
+                    <storage_max_width>4096</storage_max_width>
+                    <storage_max_height>1024</storage_max_height>
+                    <default_image>nobody.png</default_image>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>none</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                </field>
+                <field id="int" xsi:type="AttributeInteger">
+                    <sql>int</sql>
+                    <default_value>123</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="ip" xsi:type="AttributeIPAddress">
+                    <sql>ip</sql>
+                    <default_value>0.0.0.0</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="item_list" xsi:type="AttributeLinkedSet">
+                    <linked_class>name</linked_class>
+                    <filter>SELECT Person AS P</filter>
+                    <ext_key_to_me>name</ext_key_to_me>
+                    <tracking_level>list</tracking_level>
+                    <edit_mode>actions</edit_mode>
+                    <edit_when>always</edit_when>
+                    <count_min>0</count_min>
+                    <count_max>0</count_max>
+                    <with_php_constraint>false</with_php_constraint>
+                    <with_php_computation>false</with_php_computation>
+                    <dependencies>
+                        <attribute id="name1" />
+                        <attribute id="name2" />
+                    </dependencies>
+                </field>
+                <field id="item2_list" xsi:type="AttributeLinkedSetIndirect">
+                    <linked_class>class2</linked_class>
+                    <ext_key_to_me>key1</ext_key_to_me>
+                    <ext_key_to_remote>key2</ext_key_to_remote>
+                    <tracking_level>list</tracking_level>
+                    <edit_when>always</edit_when>
+                    <duplicates>true</duplicates>
+                    <count_min>0</count_min>
+                    <count_max>0</count_max>
+                    <display_style>property</display_style>
+                    <with_php_constraint>false</with_php_constraint>
+                    <with_php_computation>true</with_php_computation>
+                    <filter>filter</filter>
+                </field>
+                <field id="meta1" xsi:type="AttributeMetaEnum">
+                    <sql>meta1</sql>
+                    <sort_type>label</sort_type>
+                    <values>
+                        <value id="v1">
+                            <code>value 1</code>
+                            <rank>10</rank>
+                            <style>
+                                <main_color>#4E79A5</main_color>
+                                <complementary_color>#FFFFFF</complementary_color>
+                                <decoration_classes>fas fa-user-tag</decoration_classes>
+                            </style>
+                        </value>
+                        <value id="v2" _delta="delete_if_exists" />
+                    </values>
+                    <default_value>v1</default_value>
+                    <default_style>
+                        <main_color>#4E79A5</main_color>
+                        <complementary_color>#FFFFFF</complementary_color>
+                        <decoration_classes>fas fa-user-tag</decoration_classes>
+                    </default_style>
+                    <mappings>
+                        <mapping id="1" _delta="must_exist">
+                            <attcode>attcode</attcode>
+                            <metavalues>
+                                <metavalue id="meta1">
+                                    <values>
+                                        <value id="item1" _delta="define" />
+                                        <value id="item2" />
+                                    </values>
+                                </metavalue>
+                                <metavalue id="meta1" _delta="delete" />
+                            </metavalues>
+                        </mapping>
+                    </mappings>
+                </field>
+                <field id="obj1" xsi:type="AttributeObjectKey">
+                    <sql>obj1</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <class_attcode>attcode</class_attcode>
+                </field>
+                <field id="password1" xsi:type="AttributeOneWayPassword">
+                    <sql>pwd1</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <default_value>pwd1</default_value>
+                </field>
+                <field id="password2" xsi:type="AttributePassword">
+                    <sql>pwd2</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <default_value />
+                    <validation_pattern>pattern</validation_pattern>
+                </field>
+                <field id="p1" xsi:type="AttributePercentage">
+                    <sql>p1</sql>
+                    <default_value>10</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="phone1" xsi:type="AttributePhoneNumber">
+                    <sql>phone1</sql>
+                    <default_value>+49</default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <validation_pattern>[0-9.\-\ \+\(\)]+</validation_pattern>
+                </field>
+                <field id="r1" xsi:type="AttributeRedundancySettings">
+                    <sql>r1</sql>
+                    <relation_code>impacts</relation_code>
+                    <from_class>class1</from_class>
+                    <neighbour_id>id</neighbour_id>
+                    <enabled>true</enabled>
+                    <enabled_mode>fixed</enabled_mode>
+                    <min_up>10</min_up>
+                    <min_up_type>percent</min_up_type>
+                    <min_up_mode>user</min_up_mode>
+                </field>
+                <field id="watch1" xsi:type="AttributeStopWatch">
+                    <states>
+                        <state id="state1" />
+                        <state id="state2" />
+                    </states>
+                    <goal>DefaultMetricComputer</goal>
+                    <working_time>DefaultWorkingTimeComputer</working_time>
+                    <thresholds>
+                        <threshold id="50">
+                            <actions>
+                                <action>
+                                    <verb>DoThis</verb>
+                                    <params>
+                                        <param xsi:type="string">ev_close</param>
+                                        <param xsi:type="integer">10</param>
+                                        <param xsi:type="float">10</param>
+                                        <param xsi:type="boolean">true</param>
+                                        <param xsi:type="reference">other</param>
+                                    </params>
+                                </action>
+                                <action>
+                                    <verb>DoThat</verb>
+                                </action>
+                            </actions>
+                            <highlight>
+                                <code>warning</code>
+                                <persistent>true</persistent>
+                            </highlight>
+                        </threshold>
+                        <threshold id="80">
+                            <actions>
+                                <action>
+                                    <verb>DoThis</verb>
+                                    <params>
+                                        <param xsi:type="string">ev_close</param>
+                                    </params>
+                                </action>
+                                <action>
+                                    <verb>DoThat</verb>
+                                </action>
+                            </actions>
+                            <highlight>
+                                <code>critical</code>
+                                <persistent>false</persistent>
+                            </highlight>
+                        </threshold>
+                    </thresholds>
+                </field>
+                <field id="string1" xsi:type="AttributeString" _delta="define">
+                    <sql>string1</sql>
+                    <default_value>nothing</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>false</always_load_in_tables>
+                    <dependencies>
+                        <attribute id="1" />
+                        <attribute id="2" />
+                    </dependencies>
+                </field>
+                <field id="item3" xsi:type="AttributeSubItem">
+                    <target_attcode>watch1</target_attcode>
+                    <item_code>100_passed</item_code>
+                    <dependencies>
+                        <attribute id="watch1" />
+                    </dependencies>
+                </field>
+                <field id="item4" xsi:type="AttributeSubItem">
+                    <target_attcode>attcode</target_attcode>
+                    <item_code>stopped</item_code>
+                    <dependencies>
+                        <attribute id="watch2" />
+                    </dependencies>
+                </field>
+                <field id="tag" xsi:type="AttributeTagSet">
+                    <sql>tag</sql>
+                    <is_null_allowed>false</is_null_allowed>
+                    <max_items>5</max_items>
+                    <tag_code_max_len>255</tag_code_max_len>
+                </field>
+                <field id="text" xsi:type="AttributeText">
+                    <sql>text</sql>
+                    <width>800px</width>
+                    <height>200px</height>
+                    <format>text</format>
+                </field>
+                <field id="text2" xsi:type="AttributeLongText">
+                    <sql>text2</sql>
+                    <width>800px</width>
+                    <height>200px</height>
+                </field>
+                <field id="url" xsi:type="AttributeURL">
+                    <sql>url</sql>
+                    <default_value />
+                    <is_null_allowed>true</is_null_allowed>
+                    <target>_blank</target>
+                    <validation_pattern>^[a-z]*\d+$</validation_pattern>
+                </field>
+                <field id="dashboard" xsi:type="AttributeDashboard" _delta="define">
+                    <is_user_editable>true</is_user_editable>
+                    <definition_file>filename</definition_file>
+                    <definition>
+                        <something />
+                    </definition>
+                </field>
+            </fields>
+        </class>
+    </classes>
+    <!-- ***************** Menus ***************** -->
+    <menus>
+        <menu id="1" xsi:type="MenuGroup" _delta="define">
+            <rank _delta="define">1.2</rank>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <enable_class _delta="define">name</enable_class>
+            <enable_action _delta="define">UR_ACTION_READ</enable_action>
+            <enable_permission _delta="define">UR_ALLOWED_YES</enable_permission>
+            <enable_stimulus _delta="define">ev_assign</enable_stimulus>
+            <style _delta="define">
+                <decoration_classes _delta="define">aaa</decoration_classes>
+            </style>
+        </menu>
+        <menu id="2" xsi:type="DashboardMenuNode" _delta="define">
+            <enable_action _delta="define">UR_ACTION_BULK_READ</enable_action>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <enable_class _delta="define">class</enable_class>
+            <enable_permission _delta="define">UR_ALLOWED_NO</enable_permission>
+            <enable_stimulus _delta="define">aaa</enable_stimulus>
+            <parent _delta="define">123</parent>
+            <rank _delta="define">22.3</rank>
+            <definition _delta="define">
+                <cells _delta="define">
+                    <cell id="1" _delta="define">
+                        <rank _delta="define">10</rank>
+                        <dashlets _delta="define">
+                            <dashlet id="badge1" xsi:type="DashletBadge" _delta="define">
+                                <rank _delta="define">10</rank>
+                                <class _delta="define">class1</class>
+                            </dashlet>
+                            <dashlet id="badge2" xsi:type="DashletEmptyCell" _delta="define">
+                                <rank _delta="define">10</rank>
+                            </dashlet>
+                            <dashlet id="badge3" xsi:type="DashletPlainText" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <text _delta="define">the text</text>
+                            </dashlet>
+                            <dashlet id="badge4" xsi:type="DashletHeaderStatic" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <subtitle _delta="define">the subtitle</subtitle>
+                                <icon _delta="define">icon</icon>
+                            </dashlet>
+                            <dashlet id="badge5" xsi:type="DashletHeaderDynamic" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <subtitle _delta="define">the subtitle</subtitle>
+                                <icon _delta="define">icon</icon>
+                                <query _delta="define">SELECT</query>
+                                <group_by _delta="define">group</group_by>
+                                <values _delta="define">item1, item2</values>
+                            </dashlet>
+                            <dashlet id="badge6" xsi:type="DashletGroupByTable" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <query _delta="define">SELECT</query>
+                                <group_by _delta="define">group</group_by>
+                                <style _delta="define">table</style>
+                                <aggregation_function _delta="define">function</aggregation_function>
+                                <aggregation_attribute _delta="define">attribute</aggregation_attribute>
+                                <limit _delta="define">10</limit>
+                                <order_by _delta="define">item1</order_by>
+                                <order_direction _delta="define">asc</order_direction>
+                            </dashlet>
+                            <dashlet id="badge7" xsi:type="DashletObjectList" _delta="define">
+                                <rank _delta="define">10.1</rank>
+                                <title _delta="define">the title</title>
+                                <query _delta="define">SELECT</query>
+                                <menu _delta="define">true</menu>
+                            </dashlet>
+                        </dashlets>
+                    </cell>
+                </cells>
+            </definition>
+            <definition_file _delta="define">filename</definition_file>
+        </menu>
+        <menu id="3" xsi:type="NewObjectMenuNode" _delta="define">
+            <rank _delta="define">123.45</rank>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+            <parent _delta="define">parent</parent>
+            <class _delta="define">class1</class>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_action _delta="define">UR_ACTION_BULK_READ</enable_action>
+            <enable_permission _delta="define">UR_ALLOWED_YES</enable_permission>
+        </menu>
+        <menu id="4" xsi:type="SearchMenuNode">
+            <rank _delta="define">12.3</rank>
+            <enable_admin_only _delta="define">0</enable_admin_only>
+            <parent _delta="define">1</parent>
+            <class _delta="define">class3</class>
+            <enable_class _delta="define">class4</enable_class>
+            <enable_action _delta="define">UR_ACTION_DELETE</enable_action>
+        </menu>
+        <menu id="5" xsi:type="TemplateMenuNode" _delta="define">
+            <rank _delta="define">1.2</rank>
+            <parent _delta="define">1</parent>
+            <template_file _delta="define">filename</template_file>
+            <enable_class _delta="define">class3</enable_class>
+            <enable_action _delta="define">UR_ACTION_BULK_MODIFY</enable_action>
+        </menu>
+        <menu id="6" xsi:type="OQLMenuNode" _delta="define">
+            <rank _delta="define">6.2</rank>
+            <parent _delta="define">1</parent>
+            <auto_reload _delta="define">none</auto_reload>
+            <oql _delta="define">SELECT</oql>
+            <do_search _delta="define">1</do_search>
+            <search_form_open _delta="define">1</search_form_open>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_admin_only _delta="define">0</enable_admin_only>
+        </menu>
+        <menu id="6.3" xsi:type="OQLMenuNode" _delta="define">
+            <rank _delta="define">6.3</rank>
+            <parent _delta="define">1</parent>
+            <auto_reload _delta="define">120</auto_reload>
+            <oql _delta="define">SELECT</oql>
+            <do_search _delta="define">1</do_search>
+            <search_form_open _delta="define">1</search_form_open>
+            <enable_class _delta="define">class2</enable_class>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+        </menu>
+        <menu id="7" xsi:type="WebPageMenuNode" _delta="define">
+            <rank _delta="define">7</rank>
+            <parent _delta="define">1</parent>
+            <url _delta="define">$$https://www.openitop.com/</url>
+            <in_new_window _delta="define">true</in_new_window>
+            <enable_admin_only _delta="define">1</enable_admin_only>
+        </menu>
+        <menu id="8" xsi:type="ShortcutContainerMenuNode" _delta="define">
+            <parent _delta="define">1</parent>
+            <rank _delta="define">8</rank>
+        </menu>
+        <menu id="Typology" xsi:type="DashboardMenuNode" _delta="if_exists">
+            <rank _delta="define">80</rank>
+            <parent _delta="define">Catalogs</parent>
+            <definition _delta="define">
+                <layout _delta="define">DashboardLayoutOneCol</layout>
+                <title _delta="define">Menu:ConfigManagement:Typology</title>
+                <cells _delta="define">
+                    <cell id="0" _delta="if_exists">
+                        <dashlets _delta="define">
+                            <dashlet id="20" xsi:type="DashletBadge" _delta="define">
+                                <rank _delta="define">20</rank>
+                                <class _delta="define">class1</class>
+                            </dashlet>
+                            <dashlet id="21" xsi:type="DashletBadge" _delta="define">
+                                <rank _delta="define">21</rank>
+                                <class _delta="define">class2</class>
+                            </dashlet>
+                        </dashlets>
+                    </cell>
+                </cells>
+            </definition>
+        </menu>
+    </menus>
+    <!-- ***************** User Rights ***************** -->
+    <user_rights>
+        <groups>
+            <group id="1" _delta="define">
+                <classes>
+                    <class id="TestClass" />
+                    <class id="Test2Class" />
+                    <class id="RemoveClass" _delta="delete_if_exists" />
+                </classes>
+            </group>
+        </groups>
+        <profiles>
+            <profile id="123">
+                <name>Test Name</name>
+                <description>Test Description</description>
+                <groups>
+                    <group id="122">
+                        <actions>
+                            <action id="action:read">allow</action>
+                            <action id="stimulus:ev_done">allow</action>
+                        </actions>
+                    </group>
+                </groups>
+            </profile>
+            <profile id="124" _delta="delete" />
+            <profile id="125">
+                <name _delta="define">Test Name 2</name>
+                <description _delta="redefine">description</description>
+                <groups>
+                    <group id="123" _delta="define">
+                        <actions>
+                            <action id="action:read" _delta="define" />
+                            <action id="action:write" _delta="delete" />
+                        </actions>
+                    </group>
+                    <group id="125" _delta="delete" />
+                </groups>
+            </profile>
+        </profiles>
+    </user_rights>
+    <!-- ***************** Files ***************** -->
+    <files>
+        <file id="cron_c8b5" xsi:type="File" _delta="define">
+            <name>cron.png</name>
+            <mime_type>image/png</mime_type>
+            <width>37</width>
+            <height>37</height>
+            <!-- In tag 'data' provide the image encoded in base 64 -->
+            <data>base64String...</data>
+        </file>
+    </files>
+    <!-- ***************** Dictionaries ***************** -->
+    <dictionaries>
+        <dictionary id="EN US" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+        <dictionary id="DE DE" _delta="define">
+            <entries>
+                <entry id="Class:Server/Attribute:name"><![CDATA[Server Name]]></entry>
+                <entry id="entry-2" _delta="delete" />
+            </entries>
+        </dictionary>
+    </dictionaries>
+    <!-- ***************** Branding ***************** -->
+    <branding>
+        <login_favicon>
+            <fileref ref="cron_c8b5" />
+        </login_favicon>
+        <login_logo>
+            <fileref ref="123" />
+        </login_logo>
+        <main_favicon>
+            <fileref ref="123" />
+        </main_favicon>
+        <main_logo>
+            <fileref ref="123" />
+        </main_logo>
+        <main_logo_compact>
+            <fileref ref="123" />
+        </main_logo_compact>
+        <portal_favicon>
+            <fileref ref="123" />
+        </portal_favicon>
+        <portal_logo>
+            <fileref ref="123" />
+        </portal_logo>
+        <themes>
+            <theme id="theme-1">
+                <variables>
+                    <variable id="1" _delta="define">#C53030</variable>
+                    <variable id="2" _delta="define">#F7FAFC</variable>
+                </variables>
+                <imports>
+                    <import id="css-variables">css-variables</import>
+                </imports>
+                <stylesheets>
+                    <stylesheet id="1">compat.scss</stylesheet>
+                    <stylesheet id="2">compat.scss</stylesheet>
+                    <stylesheet id="3">main.scss</stylesheet>
+                </stylesheets>
+            </theme>
+            <theme id="test-red" _delta="must_exist">
+                <variables _delta="redefine">
+                    <variable id="backoffice-environment-banner-background-color" _delta="define">#C53030</variable>
+                    <variable id="backoffice-environment-banner-text-color" _delta="define">#F7FAFC</variable>
+                    <variable id="backoffice-environment-banner-text-content" _delta="define">"THIS IS A TEST INSTANCE"</variable>
+                </variables>
+                <imports _delta="redefine">
+                    <import id="css-variables" _delta="define">itop-themes-compat/assets/css/css-variables.scss</import>
+                </imports>
+                <stylesheets _delta="redefine">
+                    <stylesheet id="jqueryui" _delta="define">compat.scss</stylesheet>
+                    <stylesheet id="main" _delta="define">compat.scss</stylesheet>
+                </stylesheets>
+            </theme>
+        </themes>
+        <themes_common>
+            <variables>
+                <variable id="color-1" _delta="define">#fff</variable>
+                <variable id="color-2" _delta="delete_if_exists">#000</variable>
+            </variables>
+            <imports>
+                <import id="1" _delta="merge">111</import>
+                <import id="2">222</import>
+                <import id="111" _delta="define">filename</import>
+            </imports>
+            <stylesheets>
+                <stylesheet id="123">test</stylesheet>
+            </stylesheets>
+        </themes_common>
+    </branding>
+    <!-- ***************** Constants ***************** -->
+    <constants />
+    <!-- ***************** Portals ***************** -->
+    <portals>
+        <portal id="itop-portal" _delta="define">
+            <!-- ID must match module_design[id] -->
+            <url>url</url>
+            <!-- portal_id must match module_design[id] -->
+            <rank>1.0</rank>
+            <handler />
+            <allow />
+            <deny />
+        </portal>
+    </portals>
+    <!-- ***************** Module Parameters ***************** -->
+    <module_parameters>
+        <parameters id="itop-object-copier" _delta="define">
+            <rules>
+                <rule id="0" type="hash">
+                    <source_scope>SELECT UserRequest WHERE status IN ("assigned", "pending")</source_scope>
+                    <allowed_profiles>Administrator,Support Agent</allowed_profiles>
+                    <menu_label>Issue a change ticket...</menu_label>
+                    <form_label>Issue a change from request %1$s. Please review the description before create the change ticket. After creation of the change ticket, the request ticket will be automatically updated. </form_label>
+                    <report_label>Issued from the request %1$s. The request has been updated.</report_label>
+                    <dest_class>Change</dest_class>
+                    <preset type="array">
+                        <action id="0"> clone(...)</action>
+                        <action id="1">set(...)</action>
+                    </preset>
+                    <retrofit type="array">
+                        <action id="0">copy(id, parent_change_id)'</action>
+                        <action id="1">set(private_log,Issued change $this->ref$)'</action>
+                    </retrofit>
+                </rule>
+            </rules>
+        </parameters>
+        <parameters id="itop-portal" _delta="define">
+            <lazy_loading_threshold>500</lazy_loading_threshold>
+        </parameters>
+    </module_parameters>
+    <!-- ***************** Module Designs ***************** -->
+    <module_designs />
+    <!-- ***************** Snippets ***************** -->
+    <snippets>
+        <snippet id="snippet-1">
+            <placement>module</placement>
+            <module>module</module>
+            <rank>10</rank>
+            <content>content</content>
+        </snippet>
+        <snippet id="snippet-2">
+            <placement>core</placement>
+            <rank>20</rank>
+            <content>content</content>
+        </snippet>
+    </snippets>
+    <!-- ***************** Meta ***************** -->
+    <meta>
+        <!-- Usage of this tag is restricted to Combodo for driving ITSM Designer behavior. -->
+        <classes>
+            <class id="classId" _delta="define">
+                <interfaces>
+                    <interface id="interfaceId" />
+                </interfaces>
+            </class>
+        </classes>
+        <dashlets>
+            <dashlet id="dashletId" _delta="define">
+                <label>DashletLabel</label>
+                <icon>DashletIcon</icon>
+                <description>DashletDescription</description>
+                <configuration>
+                    <arg1>arg 1 value</arg1>
+                    <arg2>arg 2 value</arg2>
+                </configuration>
+            </dashlet>
+        </dashlets>
+    </meta>
+    <!-- ***************** Events ***************** -->
+    <events>
+        <event id="event-1" _delta="define">
+            <description>description</description>
+            <sources>
+                <source id="source-1">cmdbAbstractObject</source>
+                <source id="source-2">source2</source>
+            </sources>
+            <replaces>DBObject::OnInsert</replaces>
+            <event_data>
+                <event_datum id="event-datum-1">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+                <event_datum id="event-datum-2">
+                    <description>description</description>
+                    <type>array</type>
+                </event_datum>
+            </event_data>
+        </event>
+        <event id="EVENT_DOWNLOAD_DOCUMENT" _delta="define">
+            <description>A document has been downloaded from the GUI</description>
+            <sources>
+                <source id="Document">Document</source>
+            </sources>
+            <event_data>
+                <event_datum id="object">
+                    <description>The object containing the document</description>
+                    <type>DBObject</type>
+                </event_datum>
+                <event_datum id="document">
+                    <description>The document downloaded</description>
+                    <type>ormDocument</type>
+                </event_datum>
+                <event_datum id="att_code">
+                    <description>Attribute code of the object, containing the document</description>
+                    <type>string</type>
+                </event_datum>
+                <event_datum id="content_disposition">
+                    <description>To differentiate if the document was displayed in preview or truly downloaded</description>
+                    <type>string</type>
+                </event_datum>
+                <event_datum id="debug_info">
+                    <description>Debug string</description>
+                    <type>string</type>
+                </event_datum>
+            </event_data>
+        </event>
+        <event id="EVENT_DISPLAY_OBJECT_DETAILS" _delta="define">
+            <name>Portal object displayed</name>
+            <description><![CDATA[An object details is about to be displayed to a user on a portal]]></description>
+            <sources>
+                <source id="cmdbAbstractObject">cmdbAbstractObject</source>
+            </sources>
+            <arguments>
+                <argument id="object">
+                    <description>The object displayed</description>
+                    <type>DBObject</type>
+                </argument>
+                <argument id="debug_info">
+                    <description>Debug string</description>
+                    <type>string</type>
+                </argument>
+            </arguments>
+        </event>
+    </events>
+    <!-- ***************** Event Listeners ***************** -->
+    <event_listeners>
+        <event_listener id="listener-1" _delta="define">
+            <event>EVENT_DISPLAY_OBJECT_DETAILS</event>
+            <filters>
+                <filter>FAQ</filter>
+            </filters>
+            <rank>10</rank>
+            <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
+        </event_listener>
+        <event_listener id="listener-2" _delta="if_exists">
+            <event>EVENT_DB_COMPUTE_VALUES</event>
+            <filters>
+                <filter _delta="define">FAQ</filter>
+            </filters>
+            <rank>20</rank>
+            <code>function(\Combodo\iTop\Service\EventData $oEventData) {}</code>
+        </event_listener>
+        <event_listener id="OnAttachmentDownloadActivateTriggers" _delta="define">
+            <event>EVENT_DOWNLOAD_DOCUMENT</event>
+            <filters>
+                <filter>Attachment</filter>
+            </filters>
+            <rank>0</rank>
+            <code><![CDATA[function(Combodo\iTop\Service\Events\EventData $oEventData){ ... }]]></code>
+        </event_listener>
+    </event_listeners>
+</itop_design>

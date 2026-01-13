@@ -1,20 +1,24 @@
 {
     "cSpell.words": [
         "addprevious",
+        "appinfo",
         "attcode",
         "autoincrement",
+        "bizmodel",
         "cmdb",
         "CMDB",
         "Combodo",
         "dashlet",
         "dashlets",
         "datamodels",
+        "dictentry",
         "evans",
         "extkey",
         "fileref",
         "finalclass",
         "functionalci",
         "github",
+        "groupable",
         "Hipska",
         "ITSM",
         "jointype",
@@ -28,6 +32,7 @@
         "neighbours",
         "networkflow",
         "Nihilo",
+        "NMTOKEN",
         "noout",
         "NSMAP",
         "stylesheet",
@@ -40,7 +45,8 @@
     "xml.format.emptyElements": "collapse",
     "xml.format.maxLineWidth": 0,
     "xml.format.preserveSpace": [
-        "xs:documentation"
+        "xs:documentation",
+        "xsd:documentation"
     ],
     "xml.format.spaceBeforeEmptyCloseTag": true,
     "editor.formatOnSave": true,

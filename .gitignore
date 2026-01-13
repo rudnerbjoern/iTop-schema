@@ -1,3 +1,6 @@
 test/*.xml
+test/*/*.xml
 test/*.xsd
-!test/datamodel.must-validate.xml
+test/*/*.xsd
+!test/3.2/datamodel.must-validate.xml
+!test/3.3/datamodel.must-validate.xml

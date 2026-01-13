@@ -1,12 +1,12 @@
 #
-# GitHub Actions Workflow: Validate iTop datamodel XML v3.2
+# GitHub Actions Workflow: Validate iTop datamodel XML v3.3
 #
 # This workflow runs on every pull request to the 'main' branch.
 # It validates an XML data model against the corresponding XSD schema.
 # The validation logic is implemented in a separate Python script.
 #
 
-name: Validate iTop datamodel XML version 3.2
+name: Validate iTop datamodel XML version 3.3
 
 on:
   pull_request:
@@ -17,8 +17,8 @@ jobs:
   validate-xml:
     runs-on: ubuntu-latest
     env:
-      XSD_PATH: 3.2/itop_design.xsd
-      XML_PATH: test/3.2/datamodel.must-validate.xml
+      XSD_PATH: 3.3/itop_design.xsd
+      XML_PATH: test/3.3/datamodel.must-validate.xml
 
     steps:
       - name: Checkout repository
@@ -30,13 +30,13 @@ jobs:
         id: determine
         run: |
           git fetch origin main
-          CHANGED=$(git diff --name-only origin/main...HEAD | grep '^3.2/' || true)
+          CHANGED=$(git diff --name-only origin/main...HEAD | grep '^3.3/' || true)
           if [ -z "$CHANGED" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
-            echo "No relevant changes in /3.2 detected. Skipping validation."
+            echo "No relevant changes in /3.3 detected. Skipping validation."
           else
             echo "skip=false" >> $GITHUB_OUTPUT
-            echo "Relevant changes detected in /3.2. Proceeding with validation."
+            echo "Relevant changes detected in /3.3. Proceeding with validation."
           fi
 
       - name: Set up Python
@@ -64,13 +64,13 @@ jobs:
 
       - name: Skip validation (no relevant changes)
         if: steps.determine.outputs.skip == 'true'
-        run: echo "✅ No relevant changes in /3.2. Validation skipped."
+        run: echo "✅ No relevant changes in /3.3. Validation skipped."
 
       - name: Add workflow summary
         run: |
-          echo "## Workflow Summary: Validate iTop datamodel XML version 3.2" >> $GITHUB_STEP_SUMMARY
+          echo "## Workflow Summary: Validate iTop datamodel XML version 3.3" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "This workflow automatically validates the iTop datamodel XML against the version 3.2 XSD schema on every pull request to the main branch." >> $GITHUB_STEP_SUMMARY
+          echo "This workflow automatically validates the iTop datamodel XML against the version 3.3 XSD schema on every pull request to the main branch." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Key Features:**" >> $GITHUB_STEP_SUMMARY
           echo "- Change detection to skip unnecessary validation runs." >> $GITHUB_STEP_SUMMARY
