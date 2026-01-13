@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../3.3/itop_design.xsd">
+    <!--
+    This file serves as a quick reference for the iTop datamodel structure.
+    It is intended solely for schema validation and must never produce any errors.
+    The content will evolve gradually as new elements are introduced into the schema.
+    -->
+    <!-- ***************** Classes ***************** -->
+    <classes>
+        <class id="Delta1" _delta="define" />
+        <class id="Delta2" _delta="define_if_not_exists" />
+        <class id="Delta3" _delta="delete" />
+        <class id="Delta4" _delta="delete_if_exists" />
+        <class id="Delta5" _delta="force" />
+        <class id="Delta6" _delta="if_exists" />
+        <class id="Delta7" _delta="merge" />
+        <class id="Delta8" _delta="must_exist" />
+        <class id="Delta9" _delta="redefine" _rename_from="DeltaFrom" />
+        <class id="AttributesClass" _delta="define" _created_in="module1" _altered_in="module2" _alteration="replaced" _revision_id="1" />
+    </classes>
+    <!-- ***************** Menus ***************** -->
+    <menus />
+    <!-- ***************** User Rights ***************** -->
+    <user_rights />
+    <!-- ***************** Files ***************** -->
+    <files />
+    <!-- ***************** Dictionaries ***************** -->
+    <dictionaries />
+    <!-- ***************** Branding ***************** -->
+    <branding />
+    <!-- ***************** Constants ***************** -->
+    <constants />
+    <!-- ***************** Portals ***************** -->
+    <portals />
+    <!-- ***************** Module Parameters ***************** -->
+    <module_parameters />
+    <!-- ***************** Module Designs ***************** -->
+    <module_designs />
+    <!-- ***************** Snippets ***************** -->
+    <snippets />
+    <!-- ***************** Meta ***************** -->
+    <meta>
+        <!-- Usage of this tag is restricted to Combodo for driving ITSM Designer behavior. -->
+    </meta>
+    <!-- ***************** Events ***************** -->
+    <events />
+    <!-- ***************** Event Listeners ***************** -->
+    <event_listeners />
+</itop_design>
