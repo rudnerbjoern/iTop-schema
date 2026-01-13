@@ -17,6 +17,11 @@
                             <xs:element name="class" type="classNode" />
                         </xs:sequence>
                     </xs:complexType>
+                    <xs:key name="uniqueClassId">
+                        <xs:selector xpath="class" />
+                        <xs:field xpath="@id" />
+                        <xs:field xpath="@_delta" />
+                    </xs:key>
                 </xs:element>
                 <xs:element name="menus" minOccurs="0">
                     <xs:annotation>
