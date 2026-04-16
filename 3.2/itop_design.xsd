@@ -117,8 +117,7 @@
                                                         <xs:complexType>
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:anySimpleType">
-                                                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                                                    <xs:attributeGroup ref="alteredNode" />
+                                                                    <xs:attributeGroup ref="alteredIdNode" />
                                                                 </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
@@ -170,8 +169,7 @@
                                     <xs:choice maxOccurs="unbounded">
                                         <xs:any processContents="lax" />
                                     </xs:choice>
-                                    <xs:attribute name="id" type="xs:string" use="required" />
-                                    <xs:attributeGroup ref="alteredNode" />
+                                    <xs:attributeGroup ref="alteredIdNode" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -261,8 +259,7 @@
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:all>
-                                                <xs:attribute name="id" type="xs:string" use="required" />
-                                                <xs:attributeGroup ref="alteredNode" />
+                                                <xs:attributeGroup ref="alteredIdNode" />
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -798,18 +795,13 @@
             <xs:element name="classes">
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded">
-                        <xs:element name="class">
-                            <xs:complexType>
-                                <xs:attribute name="id" type="xs:string" use="required" />
-                                <xs:attributeGroup ref="alteredNode" />
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="class" type="alteredEmptyIdNode" />
                     </xs:sequence>
+                    <xs:attributeGroup ref="alteredNode" />
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="userRightsProfileNode">
@@ -839,16 +831,14 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
-                                <xs:attribute name="id" type="xs:string" use="required" />
-                                <xs:attributeGroup ref="alteredNode" />
+                                <xs:attributeGroup ref="alteredIdNode" />
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="dictionaryNode">
@@ -863,8 +853,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="logoNode">
@@ -906,8 +895,7 @@
             </xs:element>
             <xs:element name="precompiled_stylesheet" type="xs:string" minOccurs="0" />
         </xs:all>
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attributeGroup ref="alteredNode" />
+        <xs:attributeGroup ref="alteredIdNode" />
     </xs:complexType>
 
     <xs:complexType name="portalNode">
