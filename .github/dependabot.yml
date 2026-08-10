@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directories:
+      - '/'
+      - '/scripts'
+    schedule:
+      interval: monthly
+    groups:
+      python-dependencies:
+        patterns:
+          - '*'
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns:
+          - '*'
