@@ -10,6 +10,7 @@
         "Combodo",
         "dashlet",
         "dashlets",
+        "datamodel",
         "datamodels",
         "dictentry",
         "evans",
@@ -17,9 +18,11 @@
         "fileref",
         "finalclass",
         "functionalci",
+        "geolocation",
         "github",
         "groupable",
         "Hipska",
+        "itop",
         "ITSM",
         "jointype",
         "jqueryui",
@@ -35,6 +38,7 @@
         "NMTOKEN",
         "noout",
         "NSMAP",
+        "Pytest",
         "stylesheet",
         "teemip",
         "timespent",
@@ -51,4 +55,15 @@
     "xml.format.spaceBeforeEmptyCloseTag": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "file": ".github/commit-message-instructions.md"
+        }
+    ]
 }

@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "charliermarsh.ruff",
+        "davidanson.vscode-markdownlint",
+        "ms-python.python",
+        "ms-vscode.powershell"
+    ]
+}
