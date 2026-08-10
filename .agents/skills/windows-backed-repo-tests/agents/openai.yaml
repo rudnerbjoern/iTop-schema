@@ -1,0 +1,4 @@
+interface:
+  display_name: "Windows-backed repo tests"
+  short_description: "Run Windows tests safely from WSL"
+  default_prompt: "Use $windows-backed-repo-tests to run this repository test suite through its Windows environment."

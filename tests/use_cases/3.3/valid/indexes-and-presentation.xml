@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3">
+    <classes>
+        <class id="ExamplePresentation" _delta="define">
+            <properties>
+                <indexes>
+                    <index id="name_idx">
+                        <attributes>
+                            <attribute id="name"/>
+                        </attributes>
+                    </index>
+                </indexes>
+            </properties>
+            <presentation>
+                <details>
+                    <items>
+                        <item id="name"><rank>10</rank></item>
+                    </items>
+                </details>
+                <search>
+                    <items>
+                        <item id="name"><rank>10</rank></item>
+                    </items>
+                </search>
+                <list>
+                    <items>
+                        <item id="name"><rank>10</rank></item>
+                    </items>
+                </list>
+            </presentation>
+        </class>
+    </classes>
+</itop_design>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleServiceTarget" _delta="define">
+            <fields>
+                <field id="response_time" xsi:type="AttributeStopWatch">
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <states>
+                        <state id="new"/>
+                        <state id="assigned"/>
+                    </states>
+                    <working_time/>
+                    <goal>ExampleMetricComputer</goal>
+                    <thresholds>
+                        <threshold id="75">
+                            <highlight>
+                                <code>warning</code>
+                                <persistent>false</persistent>
+                            </highlight>
+                            <actions/>
+                        </threshold>
+                        <threshold id="100">
+                            <highlight>
+                                <code>critical</code>
+                                <persistent>true</persistent>
+                            </highlight>
+                            <actions>
+                                <action>
+                                    <verb>ApplyStimulus</verb>
+                                    <params><param>ev_timeout</param></params>
+                                </action>
+                            </actions>
+                        </threshold>
+                    </thresholds>
+                </field>
+                <field id="response_deadline" xsi:type="AttributeSubItem">
+                    <target_attcode>response_time</target_attcode>
+                    <item_code>100_deadline</item_code>
+                </field>
+                <field id="response_time_spent" xsi:type="AttributeSubItem">
+                    <target_attcode>response_time</target_attcode>
+                    <item_code>timespent</item_code>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

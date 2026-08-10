@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleWorkflow" _delta="define">
+            <fields>
+                <field id="status" xsi:type="AttributeEnum">
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <sort_type>rank</sort_type>
+                    <values>
+                        <value id="new">
+                            <code>new</code>
+                            <rank>10</rank>
+                            <style>
+                                <main_color>$example-new-primary</main_color>
+                                <complementary_color>$example-new-secondary</complementary_color>
+                                <decoration_classes>fas fa-plus</decoration_classes>
+                            </style>
+                        </value>
+                        <value id="closed">
+                            <code>closed</code>
+                            <rank>20</rank>
+                            <style>
+                                <main_color>$example-closed-primary</main_color>
+                                <complementary_color>$example-closed-secondary</complementary_color>
+                                <decoration_classes>fas fa-check</decoration_classes>
+                            </style>
+                        </value>
+                    </values>
+                    <default_value>new</default_value>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

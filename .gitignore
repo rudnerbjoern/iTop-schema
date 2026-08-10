@@ -1,6 +1,11 @@
-test/*.xml
-test/*/*.xml
-test/*.xsd
-test/*/*.xsd
-!test/3.2/datamodel.must-validate.xml
-!test/3.3/datamodel.must-validate.xml
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files created during schema generation
+*.tmp

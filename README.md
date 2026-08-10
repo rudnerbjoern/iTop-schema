@@ -1,100 +1,127 @@
 # iTop DataModel XSD
 
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?logo=git&style=flat)](https://github.com/rudnerbjoern/iTop-schema/issues)
-[![Validate XSD Schema v3.2](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/validate-xml.v3.2.yml/badge.svg)](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/validate-xml.v3.2.yml)
-[![Combine XSD Schema v3.2](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/combine-schema.v3.2.yml/badge.svg)](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/combine-schema.v3.2.yml)
+[![Validate XSD Schemas](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/validate-xml.yml/badge.svg)](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/validate-xml.yml)
+[![Combine XSD Schemas](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/combine-schema.yml/badge.svg)](https://github.com/rudnerbjoern/iTop-schema/actions/workflows/combine-schema.yml)
 
-This project provides an **XSD schema** to validate `datamodel.my-module.xml`
-files used in the [iTop CMDB software](https://www.itophub.io).
+This project provides a community-maintained **XSD schema** for validating
+`datamodel.my-module.xml` files used by the
+[iTop CMDB software](https://www.itophub.io).
 
-The goal is to catch **syntax errors** and **inconsistencies** in your datamodel
-files *before* importing them into iTop.
+It helps detect syntax errors and structural inconsistencies before a data
+model is imported into iTop.
 
-Keep in mind that this schema definition does not guarantee that your datamodel
-file is fully supported by iTop.
-Always use the [iTop toolkit](https://github.com/Combodo/itop-toolkit-community/releases)
-to fully verify your extension and ensure compatibility with iTop.
+> [!IMPORTANT]
+> Successful schema validation does not guarantee that a data model is fully
+> compatible with iTop. Always verify extensions with the
+> [iTop toolkit](https://github.com/Combodo/itop-toolkit-community/releases)
+> before deployment.
 
-## Current status
+## Quick start
 
-Supported iTop design versions and URL to use to reference the schema:
-
-- [Latest](https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd):
-  This will always point to the datamodel reference version from the latest
-  release (STS or LTS) of iTop.
-- [Version 3.2](https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd):
-  This version is released with iTop 3.2 LTS in August 2024, see also the
-  [schema changes](https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#version_32).
-
-The project is in an **early stage**:
-
-- The XSD is still **incomplete**.
-- Many **errors and gaps** are [expected](#known-issues).
-
-## Usage
-
-You can either:
-
-  1. Use the schema [offline](#offline).
-  2. Feed it directly into a [validator tool](#validator-tool).
-  3. Update your [datamodel](#datamodel) to reference the schema.
-
-### Offline
-
-  1. Download the latest `itop_design.xsd` file from [dist](dist/) for the
-     version you want to validate against.
-  2. Validate your `datamodel.xml` with your preferred XML validator or directly
-     include it in your project.
-
-### Validator tool
-
-#### xmllint
+Validate an iTop 3.2 data model with `xmllint`:
 
 ```bash
-xmllint --noout --schema https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd datamodel.my-module.xml
+xmllint --noout \
+  --schema https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd \
+  datamodel.my-module.xml
 ```
 
-### Datamodel
-
-Change the top of your `datamodel.my-module.xml` to this:
+For IDE validation, reference the same versioned schema in the data model:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd">
+  xsi:noNamespaceSchemaLocation="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd">
 ```
 
-Your IDE will (probably) do the rest.
+## Supported versions
 
-If you are not yet using an IDE, you might try [Visual Studio Code](https://code.visualstudio.com)
-by Microsoft and the [XML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
-by Red Hat.
+| Version | Status                  | Schema                             |
+| ------- | ----------------------- | ---------------------------------- |
+| Latest  | Currently points to 3.2 | [Latest endpoint][latest-schema]   |
+| 3.2     | Supported               | [Version 3.2 endpoint][schema-3-2] |
+| 3.3     | In development          | Not published                      |
+
+The `Latest` endpoint follows the release configured by this project and may
+change to a newer iTop STS or LTS version. Use a versioned URL when validation
+must remain reproducible across future releases.
+
+iTop 3.2 LTS was released in August 2024. See the corresponding
+[schema changes](https://www.itophub.io/wiki/page?id=latest:customization:xml_reference#version_32)
+in the iTop documentation.
+
+The project remains at an early stage. The schemas are incomplete, and some
+iTop data model constructs are not represented correctly yet. See the
+[known limitations](docs/known-issues.md) for examples.
+
+## Usage
+
+### Reference a schema from a data model
+
+For stable validation, reference the schema matching the targeted iTop
+version:
+
+```xml
+xsi:noNamespaceSchemaLocation="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd"
+```
+
+Use the following endpoint only when automatically following this project's
+latest supported version is intentional:
+
+```xml
+xsi:noNamespaceSchemaLocation="https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd"
+```
+
+Visual Studio Code users can use the
+[XML extension by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
+for schema-based validation and completion.
+
+### Validate from the command line
+
+Any XML validator with XSD support can use the published schema. For example:
+
+```bash
+xmllint --noout \
+  --schema https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd \
+  datamodel.my-module.xml
+```
+
+### Validate offline
+
+The versioned files such as `3.2/itop_design.xsd` are the published schema
+entry points and can reference additional XSD files from the same version
+directory.
+
+The generated files below [`dist/`](dist/) are self-contained: all local
+`xs:include` references have already been merged. Download
+[`dist/3.2/itop_design.xsd`](dist/3.2/itop_design.xsd) when validation must work
+without network access or accompanying schema files.
 
 > [!WARNING]
-> When using the `xml-model` declaration, the datamodel will probably not be
-> processed by the iTop installer!
+> A data model containing an `xml-model` processing instruction may not be
+> accepted by the iTop installer. Prefer `xsi:noNamespaceSchemaLocation` for
+> editor integration.
 >
 > ```xml
 > <?xml version="1.0" encoding="UTF-8"?>
-> <?xml-model href="https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd"?>
+> <?xml-model href="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd"?>
 > <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.2">
 > ```
 
-## Extending the schema for your own definitions
+## Extend the schema for custom definitions
 
-You can extend the provided base schema with your own types by creating a local
-`itop_design.xsd` file in your project and include the base schema.
-
-Here is a minimal example:
+Create a local `itop_design.xsd` when a module requires additional types or
+constraints. Include the community-maintained versioned schema and add custom
+definitions locally:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <!-- Include the official base schema -->
+  <!-- Include the community-maintained base schema -->
   <xs:include schemaLocation="https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd"/>
 
-  <!-- Add your custom type definition -->
   <xs:complexType name="AttributeMyOwnDefinition">
     <xs:complexContent>
       <xs:extension base="AttributeDefinition">
@@ -112,113 +139,39 @@ Here is a minimal example:
 </xs:schema>
 ```
 
-This technique allows you to create additional schema constraints or custom
-attributes while still relying on the iTop structure.
+This keeps project-specific definitions separate while retaining the shared
+iTop data model structure. See the
+[sv-geolocation example](https://github.com/Super-Visions/sv-geolocation/blob/master/doc/itop_design.xsd)
+for a real-world implementation.
 
-Take a look at [this example](https://github.com/Super-Visions/sv-geolocation/blob/master/doc/itop_design.xsd)
-to see it in action.
+## Development and testing
 
-## Known issues
+See the [testing guide](docs/testing.md) for local setup, Pytest, coverage,
+VS Code Test Explorer, and the PowerShell test lifecycle.
 
-<!-- TOD: Convert these to GitHub Issues -->
+Maintainers should follow the [release guide](docs/releases.md) when publishing
+or changing supported schema versions.
 
-### Required elements
+## Contributing
 
-Some elements are required in different scenario's such as `_define`.
-This is currently not checked against.
+Contributions are welcome, particularly:
 
-### constants/constant
+- corrections and additions to the schemas;
+- test cases based on real-world iTop data models;
+- reports for unsupported or incorrectly validated constructs.
 
-```xml
-<itop_design>
-    <constants>
-        <constant id="id-here" xsi:type="string" >content here</constant>
-    </constants>
-</itop_design>
-```
-
-Returns this error:
-
-> **cvc-type.3.1.1**: Element 'constant' is a simple type, so it cannot have
-  attributes. However, the attribute, 'id' was found.
-
-### module_designs/module_design
-
-```xml
-<itop_design>
-    <module_designs>
-        <module_design id="itop-portal" xsi:type="portal" />
-    </module_designs>
-</itop_design>
-```
-
-Returns this error:
-
-> **cvc-elt.4.2**: Cannot resolve 'portal' to a type definition for element 'module_design'.
-
-### module_designs/module_design/bricks/brick
-
-```xml
-<itop_design>
-    <module_designs>
-        <module_design id="some-id">
-            <bricks>
-                <brick id="cis-for-portal-user" xsi:type="Combodo\iTop\Portal\Brick\ManageBrick">
-                    <!-- brick content -->
-                </brick>
-            </bricks>
-        </module_design>
-    </module_designs>
-</itop_design>
-```
-
-Returns this error:
-
-> **cvc-attribute.3**: The value 'Combodo\iTop\Portal\Brick\ManageBrick' of
-  attribute 'xsi:type' on element 'brick' is not valid with respect to its type,
-  'QName'.
-
-### branding/themes/theme/imports/import
-
-```xml
-<itop_design>
-    <branding>
-        <themes>
-            <theme id="theme-id">
-                <imports>
-                    <import id="import-id" xsi:type="variables">import-file</import>
-                </imports>
-            </theme>
-        </themes>
-    </branding>
-</itop_design>
-```
-
-Returns the following errors:
-
-> **cvc-elt.4.3**: Type 'variables' is not validly derived from the type
-  definition of element 'import'.
->
-> **cvc-type.3.1.1**: Element 'import' is a simple type, so it cannot have
-  attributes. However, the attribute, 'id' was found.
-
-## How to help
-
-**Contributions are very welcome!**
-
-- If you have experience with iTop data models or XSD, please help us improve
-  this schema.
-- Issues, suggestions and pull requests are highly appreciated.
-- Testing with real-world `datamodel.xml` files is extremely helpful.
-
-If you would like to contribute, please check the [issues](https://github.com/rudnerbjoern/iTop-schema/issues)
-or open a pull request.
+Review the [known limitations](docs/known-issues.md) and
+[open issues](https://github.com/rudnerbjoern/iTop-schema/issues), or submit a
+pull request.
 
 ## Contributors
 
-Thanks to everyone who has contributed to this project!
+Thanks to everyone who has contributed to this project.
 
 Special thanks to:
 
 - [@Hipska](https://github.com/Hipska) — for valuable additions, corrections,
   and improvements to the XSD.
+
+[latest-schema]: https://rudnerbjoern.github.io/iTop-schema/itop_design.xsd
+[schema-3-2]: https://rudnerbjoern.github.io/iTop-schema/3.2/itop_design.xsd

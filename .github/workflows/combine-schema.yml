@@ -1,0 +1,56 @@
+#
+# GitHub Actions Workflow: Combine configured iTop XSD schemas
+#
+# This manually triggered workflow combines all configured schema versions and
+# verifies the committed distribution files.
+#
+
+name: Combine iTop XSD schemas
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: combine-schema
+  cancel-in-progress: true
+
+jobs:
+  combine-schemas:
+    name: Combine configured schemas
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            schemas.json
+            scripts/constraints.txt
+            scripts/requirements.txt
+
+      - name: Install Python dependencies
+        run: python -m pip install -r scripts/requirements.txt
+
+      - name: Combine configured schemas
+        run: python scripts/update_dist.py
+
+      - name: Verify committed distributions
+        run: git diff --exit-code -- dist
+
+      - name: Add workflow summary
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ## ✅ iTop schemas verified
+
+          All configured schemas match their committed distribution files and
+          can be reproduced from their versioned sources.
+
+          EOF

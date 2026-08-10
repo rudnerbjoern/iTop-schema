@@ -1,0 +1,74 @@
+#
+# GitHub Actions Workflow: Validate configured iTop datamodel XML schemas
+#
+# This workflow validates configured schema versions and the shared Python
+# tooling when relevant files change in a pull request to main.
+#
+
+name: Validate iTop datamodel XML schemas
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-xml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            schemas.json
+            scripts/constraints.txt
+            scripts/requirements-dev.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r scripts/requirements-dev.txt
+
+      - name: Run Ruff linting
+        run: python -m ruff check .
+
+      - name: Check Ruff formatting
+        run: python -m ruff format --check .
+
+      - name: Run Pyright type checking
+        run: python -m pyright
+
+      - name: Run PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          $toolVersions = Import-PowerShellDataFile scripts/tool-versions.psd1
+          Install-Module PSScriptAnalyzer -RequiredVersion $toolVersions.PSScriptAnalyzer -Scope CurrentUser -Repository PSGallery -Force
+          $results = @(Invoke-ScriptAnalyzer -Path scripts/tests -Recurse -Settings PSScriptAnalyzerSettings.psd1)
+          $results | Format-Table -AutoSize
+          if ($results.Count -gt 0) { exit 1 }
+
+      - name: Run pytest suite and verify generated schemas
+        run: python -m pytest --cov=itop_schema --cov-report=term-missing
+
+      - name: Add workflow summary
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ## ✅ iTop schema validation passed
+
+          All versions configured in `schemas.json` and the shared tooling
+          passed validation.
+
+          | Check | Scope | Result |
+          | --- | --- | :---: |
+          | Ruff | Python linting and formatting | ✅ |
+          | Pyright | Static type checking | ✅ |
+          | PSScriptAnalyzer | PowerShell analysis | ✅ |
+          | Pytest | XML validation, coverage, and current `dist` schemas | ✅ |
+          EOF
