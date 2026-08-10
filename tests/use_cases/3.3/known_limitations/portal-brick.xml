@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <module_designs>
+        <module_design id="itop-portal">
+            <bricks>
+                <brick id="example" xsi:type="Combodo\iTop\Portal\Brick\ManageBrick"/>
+            </bricks>
+        </module_design>
+    </module_designs>
+</itop_design>

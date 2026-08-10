@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3">
+    <classes>
+        <class id="ExampleChild" _delta="define">
+            <parent>cmdbAbstractObject</parent>
+            <properties>
+                <abstract>false</abstract>
+                <key_type>autoincrement</key_type>
+                <db_table>example_child</db_table>
+            </properties>
+        </class>
+    </classes>
+</itop_design>

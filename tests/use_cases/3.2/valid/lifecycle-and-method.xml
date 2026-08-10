@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleLifecycle" _delta="define">
+            <lifecycle>
+                <stimuli>
+                    <stimulus id="ev_close" xsi:type="StimulusUserAction"/>
+                </stimuli>
+                <states>
+                    <state id="new">
+                        <transitions>
+                            <transition id="ev_close">
+                                <target>closed</target>
+                            </transition>
+                        </transitions>
+                    </state>
+                    <state id="closed"/>
+                </states>
+            </lifecycle>
+            <methods>
+                <method id="GetDisplayLabel">
+                    <static>false</static>
+                    <access>public</access>
+                    <type>Overload-cmdbAbstractObject</type>
+                    <code><![CDATA[return $this->Get('name');]]></code>
+                </method>
+            </methods>
+        </class>
+    </classes>
+</itop_design>

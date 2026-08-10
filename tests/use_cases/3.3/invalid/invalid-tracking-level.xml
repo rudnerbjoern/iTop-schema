@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="InvalidTracking">
+            <fields>
+                <field id="name" xsi:type="AttributeString">
+                    <tracking_level>sometimes</tracking_level>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

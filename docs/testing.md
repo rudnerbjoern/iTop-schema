@@ -106,6 +106,28 @@ preparing the environment:
 The recommended Microsoft Python extension is declared in
 `.vscode/extensions.json`.
 
+## Versioned schema use cases
+
+Focused integration fixtures below `tests/use_cases/<version>/` validate the
+actual modular `<version>/itop_design.xsd` entry points:
+
+- `valid/` contains data model constructs the schema must accept.
+- `invalid/` contains constructs the schema must reject.
+- `known_limitations/` contains valid iTop constructs represented as strict
+  `xfail` tests until the schema supports them.
+
+Run only these contracts through the PowerShell lifecycle:
+
+```powershell
+./scripts/tests/run-tests.ps1 tests/test_use_cases_3_2.py -q --no-cov
+./scripts/tests/run-tests.ps1 tests/test_use_cases_3_3.py -q --no-cov
+```
+
+Use small fixtures that exercise one behavior each. Add larger anonymized real
+data models only as complementary end-to-end cases. Never commit original
+customer or installation data; derive minimal fixtures with synthetic class,
+field, module, query, and label values instead.
+
 ## Update generated schemas
 
 `schemas.json` is the canonical list of supported and development schema

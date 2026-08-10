@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <menus>
+        <menu id="ExampleGroup" xsi:type="MenuGroup" _delta="define">
+            <rank>20</rank>
+            <style>
+                <decoration_classes>fas fa-flask</decoration_classes>
+            </style>
+        </menu>
+        <menu id="ExampleSearch" xsi:type="SearchMenuNode" _delta="define">
+            <rank>10</rank>
+            <parent>ExampleGroup</parent>
+            <class>ExampleObject</class>
+        </menu>
+        <menu id="ExampleNew" xsi:type="NewObjectMenuNode" _delta="define">
+            <rank>20</rank>
+            <parent>ExampleGroup</parent>
+            <class>ExampleObject</class>
+        </menu>
+        <menu id="ExampleQuery" xsi:type="OQLMenuNode" _delta="define">
+            <rank>30</rank>
+            <parent>ExampleGroup</parent>
+            <oql>SELECT ExampleObject WHERE status = "active"</oql>
+            <do_search>1</do_search>
+            <auto_reload>fast</auto_reload>
+        </menu>
+    </menus>
+</itop_design>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleScalars" _delta="define">
+            <fields>
+                <field id="name" xsi:type="AttributeString">
+                    <sql>name</sql>
+                    <default_value/>
+                    <is_null_allowed>false</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                </field>
+                <field id="count" xsi:type="AttributeInteger">
+                    <sql>item_count</sql>
+                    <default_value>0</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                </field>
+                <field id="enabled" xsi:type="AttributeBoolean">
+                    <sql>enabled</sql>
+                    <default_value>true</default_value>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

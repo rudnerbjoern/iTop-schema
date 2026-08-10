@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.3">
+    <events>
+        <event id="EXAMPLE_EVENT" _delta="define">
+            <name>Example event</name>
+            <description>An anonymized event contract.</description>
+            <sources>
+                <source id="ExampleObject">ExampleObject</source>
+            </sources>
+            <replaces>ExampleObject::LegacyHook</replaces>
+            <event_data>
+                <event_datum id="object">
+                    <description>The affected object</description>
+                    <type>DBObject</type>
+                </event_datum>
+                <event_datum id="is_new">
+                    <description>Whether the object is new</description>
+                    <type>boolean</type>
+                </event_datum>
+            </event_data>
+        </event>
+    </events>
+</itop_design>
