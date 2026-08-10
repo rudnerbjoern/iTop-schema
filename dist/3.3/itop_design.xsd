@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!--
   This schema file was automatically generated from modular XSD components.
   Provided by the iTop-schema project by Björn Rudner.
@@ -6,11 +6,404 @@
   Project website: https://rudnerbjoern.github.io/iTop-schema/
   GitHub repository: https://github.com/rudnerbjoern/iTop-schema
 
-  Generated on: 2026-01-13 09:33:17 UTC
-
   Use this file to validate your iTop datamodels with confidence and consistency.
     -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="3.3" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.3" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <!-- source: https://github.com/Combodo/iTop/blob/feature/property_types/validation/itop-delta.xsd -->
+  <!-- ===================== Lazy validation in the first place ===================== -->
+  <xs:complexType name="Combodo-Anything">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xsd:string"/>
+    <xs:attribute name="id" type="xsd:string"/>
+    <xs:attribute name="_delta" type="itop-delta-flag"/>
+  </xs:complexType>
+  <!-- ============================= Reusable components =============================== -->
+  <xs:simpleType name="itop-delta-flag" final="restriction">
+    <xs:restriction base="xsd:string">
+      <xs:enumeration value="merge"/>
+      <xs:enumeration value="if_exists"/>
+      <xs:enumeration value="must_exist"/>
+      <xs:enumeration value="define"/>
+      <xs:enumeration value="define_if_not_exists"/>
+      <xs:enumeration value="redefine"/>
+      <xs:enumeration value="force"/>
+      <xs:enumeration value="delete"/>
+      <xs:enumeration value="delete_if_exists"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- source: https://github.com/Combodo/iTop/blob/feature/property_types/validation/property_types.xsd -->
+  <xs:complexType name="Combodo-AbstractAbstractPropertyType" abstract="true">
+    <xs:attribute name="id" type="xsd:string" use="required"/>
+    <xs:attribute name="_delta" type="itop-delta-flag"/>
+  </xs:complexType>
+  <xs:complexType name="Combodo-AbstractPropertyType">
+    <!-- not abstract! -->
+    <xs:complexContent>
+      <xs:extension base="Combodo-AbstractAbstractPropertyType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-PropertyType">
+    <xs:complexContent>
+      <xs:extension base="Combodo-AbstractAbstractPropertyType">
+        <xs:sequence>
+          <xs:element name="extends" type="xsd:string"/>
+          <xs:element name="definition" type="Combodo-ValueType-Abstract"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--============================= Internal types ===============================-->
+  <xs:simpleType name="itop-tag" id="itop-tag">
+    <xs:restriction base="xsd:string">
+      <xs:pattern value="[A-Za-z][A-Za-z_0-9]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attributeGroup name="attribute-itop-tag-as-id">
+    <xs:attribute name="id" type="itop-tag" use="required">
+      <xs:annotation>
+        <xs:documentation>Name of the tag in the target XML delta. Should be lower case, separated by underscores</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:simpleType name="dictentry-or-string">
+    <xs:annotation>
+      <xs:documentation>Dictionary entry or string</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xsd:string"/>
+  </xs:simpleType>
+  <xs:complexType name="class-name-or-ref">
+    <xs:annotation>
+      <xs:appinfo>Example: "{{query1.class}}"</xs:appinfo>
+      <xs:documentation>Reference to the class to</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xsd:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="label-and-value">
+    <xs:sequence>
+      <xs:element name="label" type="dictentry-or-string"/>
+      <xs:element name="value" type="xsd:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--============================= Scalar Value types ===============================-->
+  <xs:complexType name="Combodo-ValueType-Abstract">
+    <xs:sequence>
+      <xs:element name="label" minOccurs="0" type="xsd:string"/>
+      <xs:element name="usage" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>When to use this tag (always, never, optional...)</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xsd:NMTOKEN">
+            <xs:enumeration value="optional"/>
+            <xs:enumeration value="required"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="relevance-condition" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>OQL Expression, with each sibling value as a parameter like in "{{query.selected_class = 'Ticket'}}"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="itop-tag"/>
+    <!-- Sometimes mandatory, sometimes optional... could not manage to handle both cases, thus I've left it as a lazy validation -->
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Leaf">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Abstract">
+        <xs:sequence>
+          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
+            <xs:annotation>
+              <xs:documentation>Format of the property in the source XML</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Label">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="min-length" minOccurs="0" type="xsd:positiveInteger"/>
+          <xs:element name="max-length" minOccurs="0" type="xsd:positiveInteger"/>
+          <xs:element name="not-blank" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-String">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="min-length" minOccurs="0" type="xsd:positiveInteger"/>
+          <xs:element name="max-length" minOccurs="0" type="xsd:positiveInteger"/>
+          <xs:element name="not-blank" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Text">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-String">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Choice">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="values" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="label" type="dictentry-or-string"/>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xsd:string" use="required"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-ChoiceFromInput">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="values" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="label" type="dictentry-or-string"/>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xsd:string" use="required"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Integer">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Boolean">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="on" type="label-and-value">
+            <xs:annotation>
+              <xs:documentation>Value representing "true"</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="off" type="label-and-value">
+            <xs:annotation>
+              <xs:documentation>Value representing "false"</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-OQL">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Class">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="categories-csv" type="xsd:string" minOccurs="0">
+            <xs:annotation>
+              <xs:appinfo>Example: "bizmodel,structure"</xs:appinfo>
+              <xs:documentation>Categories of classes to propose (union)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-ClassAttribute">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="class" type="class-name-or-ref"/>
+          <xs:element name="category" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:appinfo>Example: "groupable"</xs:appinfo>
+              <xs:documentation>Category of attributes to propose</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xsd:NMTOKEN">
+                <xs:enumeration value="groupable"/>
+                <xs:enumeration value="displayable"/>
+                <xs:enumeration value="numeric"/>
+                <xs:enumeration value="enum"/>
+                <xs:enumeration value="date"/>
+                <xs:enumeration value="link"/>
+                <xs:enumeration value="string"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-ClassAttributeGroupBy">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="class" type="class-name-or-ref"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-AggregateFunction">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="class" type="class-name-or-ref"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-ClassAttributeValue">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence>
+          <xs:element name="class" type="class-name-or-ref"/>
+          <xs:element name="attribute"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-ProfileName">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Icon">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Leaf">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--============================= Complex value types ===============================-->
+  <xs:complexType name="Combodo-ValueType-PropertyTree">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Abstract">
+        <xs:sequence>
+          <xs:element name="nodes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="node" type="Combodo-ValueType-Abstract"/>
+                </xs:choice>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-Collection">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Abstract">
+        <xs:sequence>
+          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
+            <xs:annotation>
+              <xs:documentation>Format of the property in the source XML</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="prototype">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="node" type="Combodo-ValueType-Abstract"/>
+                </xs:choice>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-ValueType-CollectionOfValues">
+    <xs:complexContent>
+      <xs:extension base="Combodo-ValueType-Abstract">
+        <xs:sequence>
+          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
+            <xs:annotation>
+              <xs:documentation>Format of the property in the source XML</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="value-type" type="Combodo-ValueType-Leaf"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--============================= XML Formats ===============================-->
+  <xs:complexType name="Combodo-XMLFormat-Abstract">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="Combodo-XMLFormat-CSV">
+    <xs:complexContent>
+      <xs:extension base="Combodo-XMLFormat-Abstract">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-XMLFormat-ValueAsId">
+    <xs:complexContent>
+      <xs:extension base="Combodo-XMLFormat-Abstract">
+        <xs:sequence>
+          <xs:element name="tag-name" type="xsd:NCName"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Combodo-XMLFormat-FlatArray">
+    <xs:complexContent>
+      <xs:extension base="Combodo-XMLFormat-Abstract">
+        <xs:sequence>
+          <xs:element name="count-tag" type="xsd:NCName">
+            <xs:annotation>
+              <xs:documentation>Tag to hold the number of items in the collection</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="tag-format" type="xsd:string">
+            <xs:annotation>
+              <xs:documentation>Template to generate tag name for the sub-nodes. Available placeholders: $id$ and $rank$</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:element name="itop_design">
     <xs:annotation>
       <xs:documentation source="https://www.itophub.io/wiki/page?id=3_2_0:customization:xml_reference#xml_general_structure">Structural node. No comments are allowed before this tag.</xs:documentation>
@@ -2953,399 +3346,4 @@
     </xs:complexContent>
   </xs:complexType>
   <!-- ########################### /DashletObjectList ########################### -->
-  <!-- source: https://github.com/Combodo/iTop/blob/feature/property_types/validation/itop-delta.xsd -->
-  <!-- ===================== Lazy validation in the first place ===================== -->
-  <xs:complexType name="Combodo-Anything">
-    <xs:sequence>
-      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
-    </xs:sequence>
-    <xs:attribute name="version" type="xsd:string"/>
-    <xs:attribute name="id" type="xsd:string"/>
-    <xs:attribute name="_delta" type="itop-delta-flag"/>
-  </xs:complexType>
-  <!-- ============================= Reusable components =============================== -->
-  <xs:simpleType name="itop-delta-flag" final="restriction">
-    <xs:restriction base="xsd:string">
-      <xs:enumeration value="merge"/>
-      <xs:enumeration value="if_exists"/>
-      <xs:enumeration value="must_exist"/>
-      <xs:enumeration value="define"/>
-      <xs:enumeration value="define_if_not_exists"/>
-      <xs:enumeration value="redefine"/>
-      <xs:enumeration value="force"/>
-      <xs:enumeration value="delete"/>
-      <xs:enumeration value="delete_if_exists"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <!-- source: https://github.com/Combodo/iTop/blob/feature/property_types/validation/property_types.xsd -->
-  <xs:complexType name="Combodo-AbstractAbstractPropertyType" abstract="true">
-    <xs:attribute name="id" type="xsd:string" use="required"/>
-    <xs:attribute name="_delta" type="itop-delta-flag"/>
-  </xs:complexType>
-  <xs:complexType name="Combodo-AbstractPropertyType">
-    <!-- not abstract! -->
-    <xs:complexContent>
-      <xs:extension base="Combodo-AbstractAbstractPropertyType"/>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-PropertyType">
-    <xs:complexContent>
-      <xs:extension base="Combodo-AbstractAbstractPropertyType">
-        <xs:sequence>
-          <xs:element name="extends" type="xsd:string"/>
-          <xs:element name="definition" type="Combodo-ValueType-Abstract"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <!--============================= Internal types ===============================-->
-  <xs:simpleType name="itop-tag" id="itop-tag">
-    <xs:restriction base="xsd:string">
-      <xs:pattern value="[A-Za-z][A-Za-z_0-9]*"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:attributeGroup name="attribute-itop-tag-as-id">
-    <xs:attribute name="id" type="itop-tag" use="required">
-      <xs:annotation>
-        <xs:documentation>Name of the tag in the target XML delta. Should be lower case, separated by underscores</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:simpleType name="dictentry-or-string">
-    <xs:annotation>
-      <xs:documentation>Dictionary entry or string</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xsd:string"/>
-  </xs:simpleType>
-  <xs:complexType name="class-name-or-ref">
-    <xs:annotation>
-      <xs:appinfo>Example: "{{query1.class}}"</xs:appinfo>
-      <xs:documentation>Reference to the class to</xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base="xsd:string"/>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="label-and-value">
-    <xs:sequence>
-      <xs:element name="label" type="dictentry-or-string"/>
-      <xs:element name="value" type="xsd:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <!--============================= Scalar Value types ===============================-->
-  <xs:complexType name="Combodo-ValueType-Abstract">
-    <xs:sequence>
-      <xs:element name="label" minOccurs="0" type="xsd:string"/>
-      <xs:element name="usage" minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>When to use this tag (always, never, optional...)</xs:documentation>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:restriction base="xsd:NMTOKEN">
-            <xs:enumeration value="optional"/>
-            <xs:enumeration value="required"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element name="relevance-condition" minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>OQL Expression, with each sibling value as a parameter like in "{{query.selected_class = 'Ticket'}}"</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-    <xs:attribute name="id" type="itop-tag"/>
-    <!-- Sometimes mandatory, sometimes optional... could not manage to handle both cases, thus I've left it as a lazy validation -->
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Leaf">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Abstract">
-        <xs:sequence>
-          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
-            <xs:annotation>
-              <xs:documentation>Format of the property in the source XML</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Label">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="min-length" minOccurs="0" type="xsd:positiveInteger"/>
-          <xs:element name="max-length" minOccurs="0" type="xsd:positiveInteger"/>
-          <xs:element name="not-blank" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-String">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="min-length" minOccurs="0" type="xsd:positiveInteger"/>
-          <xs:element name="max-length" minOccurs="0" type="xsd:positiveInteger"/>
-          <xs:element name="not-blank" minOccurs="0"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Text">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-String">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Choice">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="values" minOccurs="0">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="label" type="dictentry-or-string"/>
-                    </xs:sequence>
-                    <xs:attribute name="id" type="xsd:string" use="required"/>
-                  </xs:complexType>
-                </xs:element>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-ChoiceFromInput">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="values" minOccurs="0">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="label" type="dictentry-or-string"/>
-                    </xs:sequence>
-                    <xs:attribute name="id" type="xsd:string" use="required"/>
-                  </xs:complexType>
-                </xs:element>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Integer">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Boolean">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="on" type="label-and-value">
-            <xs:annotation>
-              <xs:documentation>Value representing "true"</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="off" type="label-and-value">
-            <xs:annotation>
-              <xs:documentation>Value representing "false"</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-OQL">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Class">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="categories-csv" type="xsd:string" minOccurs="0">
-            <xs:annotation>
-              <xs:appinfo>Example: "bizmodel,structure"</xs:appinfo>
-              <xs:documentation>Categories of classes to propose (union)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-ClassAttribute">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="class" type="class-name-or-ref"/>
-          <xs:element name="category" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:appinfo>Example: "groupable"</xs:appinfo>
-              <xs:documentation>Category of attributes to propose</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-              <xs:restriction base="xsd:NMTOKEN">
-                <xs:enumeration value="groupable"/>
-                <xs:enumeration value="displayable"/>
-                <xs:enumeration value="numeric"/>
-                <xs:enumeration value="enum"/>
-                <xs:enumeration value="date"/>
-                <xs:enumeration value="link"/>
-                <xs:enumeration value="string"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-ClassAttributeGroupBy">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="class" type="class-name-or-ref"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-AggregateFunction">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="class" type="class-name-or-ref"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-ClassAttributeValue">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence>
-          <xs:element name="class" type="class-name-or-ref"/>
-          <xs:element name="attribute"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-ProfileName">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Icon">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Leaf">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <!--============================= Complex value types ===============================-->
-  <xs:complexType name="Combodo-ValueType-PropertyTree">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Abstract">
-        <xs:sequence>
-          <xs:element name="nodes">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                  <xs:element name="node" type="Combodo-ValueType-Abstract"/>
-                </xs:choice>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-Collection">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Abstract">
-        <xs:sequence>
-          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
-            <xs:annotation>
-              <xs:documentation>Format of the property in the source XML</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="prototype">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                  <xs:element name="node" type="Combodo-ValueType-Abstract"/>
-                </xs:choice>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-ValueType-CollectionOfValues">
-    <xs:complexContent>
-      <xs:extension base="Combodo-ValueType-Abstract">
-        <xs:sequence>
-          <xs:element name="xml-format" minOccurs="0" type="Combodo-XMLFormat-Abstract">
-            <xs:annotation>
-              <xs:documentation>Format of the property in the source XML</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="value-type" type="Combodo-ValueType-Leaf"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <!--============================= XML Formats ===============================-->
-  <xs:complexType name="Combodo-XMLFormat-Abstract">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="Combodo-XMLFormat-CSV">
-    <xs:complexContent>
-      <xs:extension base="Combodo-XMLFormat-Abstract">
-        <xs:sequence/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-XMLFormat-ValueAsId">
-    <xs:complexContent>
-      <xs:extension base="Combodo-XMLFormat-Abstract">
-        <xs:sequence>
-          <xs:element name="tag-name" type="xsd:NCName"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Combodo-XMLFormat-FlatArray">
-    <xs:complexContent>
-      <xs:extension base="Combodo-XMLFormat-Abstract">
-        <xs:sequence>
-          <xs:element name="count-tag" type="xsd:NCName">
-            <xs:annotation>
-              <xs:documentation>Tag to hold the number of items in the collection</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="tag-format" type="xsd:string">
-            <xs:annotation>
-              <xs:documentation>Template to generate tag name for the sub-nodes. Available placeholders: $id$ and $rank$</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
 </xs:schema>

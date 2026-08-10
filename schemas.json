@@ -1,0 +1,9 @@
+{
+    "latest": "3.2",
+    "supported": [
+        "3.2"
+    ],
+    "development": [
+        "3.3"
+    ]
+}

@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "itop-schema-tools"
+version = "0.1.0"
+description = "Tools for combining and validating iTop XML schemas"
+requires-python = ">=3.14"
+dependencies = [
+    "lxml>=6.1.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pyright>=1.1.411",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.22",
+    "types-lxml>=2026.2.16",
+]
+
+[project.scripts]
+combine-itop-schema = "itop_schema.combine:main"
+validate-itop-xml = "itop_schema.validation:main"
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers -ra"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["itop_schema"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["B", "E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.pyright]
+include = ["src", "tests", "scripts/*.py"]
+pythonVersion = "3.14"
+reportPrivateUsage = false
+typeCheckingMode = "strict"
+venv = ".venv"
+venvPath = "."
