@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleQueryScope" _delta="define">
+            <fields>
+                <field id="scope" xsi:type="AttributeOQL" _delta="define">
+                    <sql>scope</sql>
+                    <default_value><![CDATA[SELECT Contract WHERE end_date < CURRENT_DATE()]]></default_value>
+                    <is_null_allowed>true</is_null_allowed>
+                    <tracking_level>all</tracking_level>
+                    <width>80</width>
+                    <height>10</height>
+                    <format>text</format>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies><attribute id="name" /></dependencies>
+                </field>
+                <field id="unchecked_scope" xsi:type="AttributeOQL">
+                    <!-- OQL syntax is validated by iTop, not by the XML schema. -->
+                    <format>html</format>
+                    <is_null_allowed>false</is_null_allowed>
+                    <default_value>not a query</default_value>
+                    <sql>unchecked_scope</sql>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

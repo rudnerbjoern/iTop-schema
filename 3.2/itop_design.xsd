@@ -2667,6 +2667,20 @@
     </xs:complexType>
     <!-- ########################### /AttributeText ########################### -->
 
+    <!-- ########################### AttributeOQL ########################### -->
+    <xs:complexType name="AttributeOQL">
+        <xs:annotation>
+            <xs:documentation>
+                Native OQL expression attribute with the properties of AttributeText.
+                Query syntax and semantics are validated by iTop, not by this schema.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AttributeText" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeOQL ########################### -->
+
     <!-- ########################### AttributeLongText ########################### -->
     <xs:complexType name="AttributeLongText">
         <xs:complexContent>

@@ -41,3 +41,11 @@ def test_3_2_public_schemas_accept_attribute_class(
     schema_path: str,
 ) -> None:
     validate_xml(repository_root / schema_path, USE_CASE_ROOT / "valid" / "attribute-class.xml")
+
+
+@pytest.mark.parametrize("schema_path", ["itop_design.xsd", "dist/3.2/itop_design.xsd"])
+def test_3_2_public_schemas_accept_attribute_oql(
+    repository_root: Path,
+    schema_path: str,
+) -> None:
+    validate_xml(repository_root / schema_path, USE_CASE_ROOT / "valid" / "attribute-oql.xml")
