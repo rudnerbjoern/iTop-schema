@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleOptionalActionId" _delta="define">
+            <lifecycle>
+                <states>
+                    <state id="new">
+                        <transitions>
+                            <transition id="ev_assign">
+                                <target>assigned</target>
+                                <actions>
+                                    <action unsupported="value">
+                                        <verb>SetCurrentDate</verb>
+                                        <params><param xsi:type="string">assignment_date</param></params>
+                                    </action>
+                                    <action id="set_flag" _delta="define">
+                                        <verb>Set</verb>
+                                        <params><param xsi:type="string">flag</param></params>
+                                    </action>
+                                    <action _delta="merge">
+                                        <verb>Reset</verb>
+                                        <params><param xsi:type="string">counter</param></params>
+                                    </action>
+                                </actions>
+                            </transition>
+                        </transitions>
+                    </state>
+                </states>
+            </lifecycle>
+        </class>
+    </classes>
+</itop_design>
