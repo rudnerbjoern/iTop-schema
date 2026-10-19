@@ -599,7 +599,8 @@
                                                   </xs:complexType>
                                                 </xs:element>
                                               </xs:sequence>
-                                              <xs:attributeGroup ref="alteredIdNode"/>
+                                              <xs:attribute name="id" type="xs:string" use="optional"/>
+                                              <xs:attributeGroup ref="alteredNode"/>
                                             </xs:complexType>
                                           </xs:element>
                                         </xs:sequence>
