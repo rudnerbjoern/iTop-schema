@@ -2542,6 +2542,33 @@
     </xs:complexType>
     <!-- ########################### /AttributeString ########################### -->
 
+    <!-- ########################### AttributeClass ########################### -->
+    <xs:complexType name="AttributeClass">
+        <xs:annotation>
+            <xs:documentation>
+                Native class selector with AttributeString properties, class categories,
+                and additional class values. The flat content model preserves unordered
+                properties because XSD 1.0 cannot extend an xs:all group with more elements.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AttributeDefinition">
+                <xs:all>
+                    <xs:element name="sql" type="alteredString" minOccurs="0" />
+                    <xs:element name="default_value" type="alteredString" minOccurs="0" />
+                    <xs:element name="is_null_allowed" type="alteredBoolean" minOccurs="0" />
+                    <xs:element name="validation_pattern" type="alteredString" minOccurs="0" />
+                    <xs:element name="tracking_level" type="trackingLevelEnumeration" minOccurs="0" />
+                    <xs:element name="always_load_in_tables" type="alteredBoolean" minOccurs="0" default="false" />
+                    <xs:element name="dependencies" type="dependenciesType" minOccurs="0" />
+                    <xs:element name="class_category" type="alteredString" minOccurs="0" />
+                    <xs:element name="more_values" type="alteredString" minOccurs="0" />
+                </xs:all>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ########################### /AttributeClass ########################### -->
+
     <!-- ########################### AttributeApplicationLanguage ########################### -->
     <!--
     <xs:complexType name="AttributeApplicationLanguage">

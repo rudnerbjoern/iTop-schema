@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="InvalidClassSelector">
+            <fields>
+                <field id="target_class" xsi:type="AttributeClass">
+                    <tracking_level>sometimes</tracking_level>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>

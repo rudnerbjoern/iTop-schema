@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="ExampleClassSelector" _delta="define">
+            <fields>
+                <field id="target_class" xsi:type="AttributeClass" _delta="define">
+                    <sql>target_class</sql>
+                    <default_value>CustomerContract</default_value>
+                    <is_null_allowed>false</is_null_allowed>
+                    <validation_pattern>^[A-Za-z][A-Za-z0-9_]*$</validation_pattern>
+                    <tracking_level>all</tracking_level>
+                    <always_load_in_tables>true</always_load_in_tables>
+                    <dependencies><attribute id="name" /></dependencies>
+                    <class_category>bizmodel</class_category>
+                    <more_values />
+                </field>
+                <field id="other_class" xsi:type="AttributeClass">
+                    <more_values>CustomerContract,Licence</more_values>
+                    <class_category />
+                    <is_null_allowed>true</is_null_allowed>
+                    <default_value />
+                    <sql>other_class</sql>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>
