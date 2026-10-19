@@ -1,0 +1,28 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Match Ruff's configured Python line length.
+[*.py]
+max_line_length = 100
+
+[*.{yaml,yml}]
+indent_size = 2
+
+# Match the schema generator's output indentation.
+[dist/**/*.xsd]
+indent_size = 2
+
+# Preserve Markdown hard line breaks.
+[*.md]
+trim_trailing_whitespace = false
+
+# Match Git's checkout rules for Windows command scripts.
+[*.{bat,cmd}]
+end_of_line = crlf
