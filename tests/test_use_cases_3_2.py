@@ -33,3 +33,11 @@ def test_3_2_schema_rejects_invalid_use_case(repository_root: Path, xml_path: Pa
 @pytest.mark.parametrize("xml_path", KNOWN_LIMITATIONS, ids=lambda parameter: parameter.stem)
 def test_3_2_schema_known_limitation(repository_root: Path, xml_path: Path) -> None:
     validate_xml(repository_root / "3.2" / "itop_design.xsd", xml_path)
+
+
+@pytest.mark.parametrize("schema_path", ["itop_design.xsd", "dist/3.2/itop_design.xsd"])
+def test_3_2_public_schemas_accept_attribute_class(
+    repository_root: Path,
+    schema_path: str,
+) -> None:
+    validate_xml(repository_root / schema_path, USE_CASE_ROOT / "valid" / "attribute-class.xml")

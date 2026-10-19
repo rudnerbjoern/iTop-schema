@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <classes>
+        <class id="InvalidClassSelector">
+            <fields>
+                <field id="target_class" xsi:type="AttributeClass">
+                    <class_category>bizmodel</class_category>
+                    <unknown_property>unsupported</unknown_property>
+                </field>
+            </fields>
+        </class>
+    </classes>
+</itop_design>
