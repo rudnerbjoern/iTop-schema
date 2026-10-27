@@ -21,6 +21,7 @@
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
+						<xs:attribute name="type" type="xs:string" fixed="array"/>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="release_date" type="xs:date" />

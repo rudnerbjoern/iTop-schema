@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+  <extension_code>example</extension_code>
+  <company>Example</company>
+  <author>Example Author</author>
+  <label>Example extension</label>
+  <description>Extension descriptor for schema validation</description>
+  <version>0.1.0</version>
+  <modules>
+    <module>
+      <id>example-0</id>
+      <version>0.1.0</version>
+    </module>
+  </modules>
+  <release_date>2026-10-27</release_date>
+  <version_description>Initial release</version_description>
+  <itop_version_min>3.2.0</itop_version_min>
+  <status>stable</status>
+  <mandatory>false</mandatory>
+  <more_info_url>https://example.com/extension</more_info_url>
+</extension>
